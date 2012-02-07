@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.0'
 gem 'heroku'
 gem 'jquery-rails'
+gem 'devise'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
