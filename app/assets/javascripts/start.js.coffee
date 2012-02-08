@@ -2,4 +2,3 @@
 @app = window.app ? {}
 
 jQuery ->
-	alert("ninjas")
