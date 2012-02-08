@@ -23,6 +23,19 @@ end
 group :development do
   gem 'sqlite3'
   gem 'rspec-rails', '2.8.1'
+
+  # Guard setup (Assumes you have the ruby dev kit installed and bundled the gems below)
+  # Download: http://www.growlforwindows.com/gfw/about.aspx
+  # Install chrome ext: https:/chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei
+  # bundle exec guard
+  gem 'guard'
+  gem 'win32console'
+  gem 'growl'
+  gem 'ruby_gntp'
+
+  # Guard inits
+  gem 'guard-livereload'
+  gem 'guard-rspec'
 end
 
 group :test do

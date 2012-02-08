@@ -1,1 +1,9 @@
-test!
+A project to display the yegrb rubyists
+
+Future Features:
+Let user pick the image they want to use while signing up
+Validate, github, twitter, gravatar, rss blog as they fill out the form
+Signup captcha
+
+
+
