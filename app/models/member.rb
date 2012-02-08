@@ -9,5 +9,11 @@ class Member < ActiveRecord::Base
                   :twitter, :github, :blogrss
   
   validates :name,  :presence => true
+  validate :social_media_supplied
   
+  def social_media_supplied
+    if twitter.empty? and github.empty? and blogrss.empty?
+      errors.add :base, "At least 1 social media link is required."
+    end
+  end
 end
