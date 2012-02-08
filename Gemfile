@@ -29,7 +29,6 @@ group :development do
   # Install chrome ext: https:/chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei
   # bundle exec guard
   gem 'guard'
-  gem 'win32console'
   gem 'growl'
   gem 'ruby_gntp'
 
