@@ -1,6 +1,12 @@
 YegRubyists::Application.routes.draw do
   devise_for :members
 
+  get 'member/administer'
+  
+  match "/admin" => 'member#administer'
+
+  root :to => "member#new"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

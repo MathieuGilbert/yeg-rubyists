@@ -16,4 +16,6 @@ class Member < ActiveRecord::Base
       errors.add :base, "At least 1 social media link is required."
     end
   end
+  
+
 end
