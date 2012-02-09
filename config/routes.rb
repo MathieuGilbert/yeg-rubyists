@@ -1,4 +1,6 @@
 YegRubyists::Application.routes.draw do
+  get "waffle/index"
+
   devise_for :members
 
   get 'member/administer'

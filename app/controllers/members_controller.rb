@@ -1,4 +1,4 @@
-class MemberController < ActionController::Base
+class MembersController < ApplicationController
   before_filter :authenticate_member!
   before_filter :admin_member, :only => [:administer]
   
