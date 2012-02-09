@@ -4,7 +4,7 @@ class MemberController < ActionController::Base
   
   def administer
     # uncomment to give yourself admin:
-    #current_member.update_attribute :admin, true
+    current_member.update_attribute :admin, true
     @members = Member.find(:all, :conditions => { :status => "pending" })
   end
 

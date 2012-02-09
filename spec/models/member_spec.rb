@@ -30,7 +30,7 @@ describe Member do
     it "should accept valid email addresses" do
       addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp]
       addresses.each do |address|
-        Member.new(@attr.merge(:email => address)).should be_valid
+        Member.new(@attr.merge(:email => address)).should be_valid 
       end
     end
     
