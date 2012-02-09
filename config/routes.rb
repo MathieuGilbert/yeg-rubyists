@@ -1,13 +1,17 @@
 YegRubyists::Application.routes.draw do
-  get "waffle/index"
-
   devise_for :members
 
-  get 'member/administer'
-  
-  match "/admin" => 'member#administer'
+  match "/admin" => 'members#administer'
 
-  root :to => "member#new"
+  root :to => "members#new"
+  
+  resources :members do
+    member do
+      #get 'administer'
+      
+    end
+  end
+    
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
