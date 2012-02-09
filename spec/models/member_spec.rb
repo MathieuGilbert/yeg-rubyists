@@ -8,7 +8,8 @@ describe Member do
               :password_confirmation => "password",
               :twitter               => "http://www.twitter.com",
               :github                => "http://www.github.com",
-              :blogrss               => "http://www.google.com" }
+              :blogrss               => "http://www.google.com",
+              :status                => "approved" }
   end
   
   it "should create a member given valid attributes" do

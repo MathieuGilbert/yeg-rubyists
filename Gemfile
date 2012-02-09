@@ -23,6 +23,7 @@ end
 group :development do
   gem 'sqlite3'
   gem 'rspec-rails', '2.8.1'
+  gem 'faker', '1.0.1'
   
   # Guard setup
   # Install chrome ext: https:/chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei
@@ -38,6 +39,7 @@ end
 group :test do
   gem 'sqlite3'
   gem 'rspec', '2.8.0'
+  gem 'factory_girl_rails', '1.6.0'
 end
 
 group :production do
