@@ -17,7 +17,7 @@ def make_members
                         :password_confirmation => "password",
                         :twitter               => "mathieu_gilbert",
                         :github                => "mathieugilbert",
-                        :blogrss               => "http://www.helloabs.com/feed",
+                        :blogrss               => "http://www.helloabs.com/feed/atom",
                         :status                => "approved" )
   mat.toggle!(:admin)
   
@@ -28,7 +28,7 @@ def make_members
                          :password_confirmation => "password",
                          :twitter               => "ryanonrails",
                          :github                => "ryanonrails",
-                         :blogrss               => "http://www.ryanonrails.com/feed",
+                         :blogrss               => "http://www.ryanonrails.com/feed/atom",
                          :status                => "approved" )
   ryan.toggle!(:admin)
   
