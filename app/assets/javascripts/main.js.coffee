@@ -2,3 +2,4 @@
 @app = window.app ? {}
 
 jQuery ->
+

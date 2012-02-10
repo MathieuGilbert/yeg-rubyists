@@ -16,5 +16,5 @@
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
-//= require backbone/yeg-rubyists
-//= require ./start
+//= require backbone/backbone_folders
+//= require ./main
