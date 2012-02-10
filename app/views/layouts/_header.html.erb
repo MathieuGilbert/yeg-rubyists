@@ -1,0 +1,12 @@
+<div id="header">
+	YEG Rubyists! 
+	<% if member_signed_in? && current_member.admin? %>
+		<%= link_to 'Admin', admin_path %>
+	<% end %>
+	
+	<% if !member_signed_in? %>
+		<%= link_to 'Sign up', new_member_registration_path %>
+		<%= link_to 'Sign in', member_session_path %>
+	<% end %>
+</div>
+  
