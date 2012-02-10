@@ -7,13 +7,13 @@ describe MembersController do
   
 
   describe "administrator access" do
-    it "should deny non admins access to /admin" do
+    it "should be denied to regular members" do
       sign_in(@member)
       get :administer
       response.should redirect_to(root_path)
     end
     
-    it "should allow admins to access /admin" do
+    it "should allow be granted to administrators" do
       @member.toggle!(:admin)
       sign_in(@member)
       get :administer
