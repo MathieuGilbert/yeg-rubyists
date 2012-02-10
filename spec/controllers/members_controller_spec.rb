@@ -25,8 +25,11 @@ describe MembersController do
     end
     
     describe "admins" do
-      it "should allow admins to access /admin" do
+      before(:each) do
         @member.toggle!(:admin)
+      end
+      
+      it "should allow admins to access /admin" do
         get :administer
         response.should be_success
       end
