@@ -7,7 +7,6 @@ YegRubyists::Application.routes.draw do
   
   resources :members do
     member do
-      #get 'administer'
       
     end
   end

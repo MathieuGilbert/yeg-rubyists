@@ -9,11 +9,11 @@ describe Member do
               :twitter               => "http://www.twitter.com",
               :github                => "http://www.github.com",
               :blogrss               => "http://www.google.com",
-              :status                => "approved" }
+              :status                => "pending" }
   end
   
   it "should create a member given valid attributes" do
-    Member.create!(@attr)
+    member = Member.create!(@attr)
   end
 
   it "should require a name" do
@@ -51,5 +51,6 @@ describe Member do
       Member.new(@attr.merge(:password_confirmation => "nomatch")).should_not be_valid
     end
   end
+ 
 
 end

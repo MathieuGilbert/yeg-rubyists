@@ -8,7 +8,7 @@ FactoryGirl.define do
     twitter               "http://www.twitter.com/sample"
     github                "http://www.github.com/sample"
     blogrss               "http://www.blog.com/sample.rss"
-    status                "approved"
+    status                "pending"
   end
   
   
