@@ -3,15 +3,8 @@ YegRubyists::Application.routes.draw do
 
   match "/admin" => 'members#administer'
 
-  root :to => "members#new"
+  root :to => "pages#index"
   
-  resources :members do
-    member do
-      
-    end
-  end
-    
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
