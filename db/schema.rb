@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120209015533) do
+ActiveRecord::Schema.define(:version => 20120210050756) do
 
   create_table "members", :force => true do |t|
     t.string   "name",                   :default => "",        :null => false
@@ -36,5 +36,17 @@ ActiveRecord::Schema.define(:version => 20120209015533) do
 
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
+
+  create_table "tweets", :force => true do |t|
+    t.string   "screen_name"
+    t.string   "description"
+    t.string   "location"
+    t.string   "followers_count"
+    t.string   "text"
+    t.integer  "retweet_count"
+    t.string   "profile_image_url"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
 end
