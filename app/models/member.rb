@@ -11,6 +11,8 @@ class Member < ActiveRecord::Base
   validates :name,  :presence => true
   validate :social_media_supplied
   
+  has_many :tweets, :dependent => :destroy
+  
   def social_media_supplied
     if twitter.empty? and github.empty? and blogrss.empty?
       errors.add :base, "At least 1 social media link is required."

@@ -8,7 +8,7 @@ describe MembersController do
   describe "public users" do
     it "should protect the admin page" do
       get :administer
-      response.should redirect_to(root_path)
+      response.should redirect_to(new_member_session_path)
     end  
   end
   

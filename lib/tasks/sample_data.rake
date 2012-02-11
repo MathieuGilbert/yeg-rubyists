@@ -6,6 +6,7 @@ namespace :db do
     Rake::Task['db:reset'].invoke
     
     make_members
+    make_tweets
   end
 end
 
@@ -35,34 +36,36 @@ def make_members
   
   # 25 pending members
   25.times do |n|
-    Member.create!( :name                  => Faker::Name.name,
-                    :email                 => "sample-user-#{n + 1}@example.com",
-                    :password              => "password",
-                    :password_confirmation => "password",
-                    :twitter               => "",
-                    :github                => "",
-                    :blogrss               => "http://www.google.com",
-                    :status                => "pending" )
+    create_new_user_with_status "pending" 
   end
   
   # 25 approved members
   25.times do |n|
-    Member.create!( :name                  => Faker::Name.name,
-                    :email                 => "sample-user-#{n + 26}@example.com",
-                    :password              => "password",
-                    :password_confirmation => "password",
-                    :twitter               => "",
-                    :github                => "",
-                    :blogrss               => "http://www.google.com",
-                    :status                => "approved" )
+    create_new_user_with_status "approved"
   end
   
-  # 25 tweets
-  25.times do |n|
-    Tweet.create!(  :username              => Faker::Name.name,
-                    :date                  => Time.at(rand * Time.now.to_i),
-                    :content               => Faker::Lorem.sentence,
-                    :url                   => "www.zzzz" + Faker::Internet.domain_name)
+end
+
+def make_tweets
+  Member.all(:limit => 5).each do |member|
+    25.times do
+      member.tweets.create!(:username   => member.name,
+                            :date       => Time.at(rand * Time.now.to_i),
+                            :content    => Faker::Lorem.sentence(10),
+                            :url        => "www.zzzz" + Faker::Internet.domain_name)
+    end
   end
-  
+end
+
+def create_new_user_with_status(status)
+  name = Faker::Name.name
+  username = name.gsub(/\s+/, '')
+  Member.create!( :name                  => name,
+                  :email                 => "#{username}@example.com",
+                  :password              => "password",
+                  :password_confirmation => "password",
+                  :twitter               => "twitter_#{username}",
+                  :github                => "github_#{username}",
+                  :blogrss               => "http://www.#{username}.com/atom",
+                  :status                => status )
 end
