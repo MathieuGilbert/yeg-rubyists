@@ -38,12 +38,15 @@ ActiveRecord::Schema.define(:version => 20120210050756) do
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
   create_table "tweets", :force => true do |t|
-    t.string   "username"
-    t.string   "date"
-    t.string   "content"
-    t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "screen_name"
+    t.string   "description"
+    t.string   "location"
+    t.string   "followers_count"
+    t.string   "text"
+    t.integer  "retweet_count"
+    t.string   "profile_image_url"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
 end
