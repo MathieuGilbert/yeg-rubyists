@@ -26,6 +26,10 @@ describe Member do
                            :blogrss => "")).should_not be_valid
   end
   
+  it "should default to non-admin" do
+    Member.new(@attr).admin.should == false
+  end
+    
   describe "email validation" do
     it "should accept valid email addresses" do
       addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp]
