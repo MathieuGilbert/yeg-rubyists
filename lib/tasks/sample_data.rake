@@ -10,6 +10,8 @@ namespace :db do
 end
 
 def make_members
+  put 'Creating Administrators'
+  
   # mat admin
   mat = Member.create!( :name                  => "Mathieu Gilbert",
                         :email                 => "matnarak@gmail.com",
@@ -31,6 +33,7 @@ def make_members
                          :blogrss               => "http://www.ryanonrails.com/feed/atom",
                          :status                => "approved" )
   ryan.toggle!(:admin)
+  
   
   # 25 pending members
   25.times do |n|
@@ -54,6 +57,14 @@ def make_members
                     :github                => "",
                     :blogrss               => "http://www.google.com",
                     :status                => "approved" )
+  end
+  
+  # 25 tweets
+  25.times do |n|
+    Tweet.create!(  :username              => Faker::Name.name,
+                    :date                  => Time.at(rand * Time.now.to_i),
+                    :content               => Faker::Lorem.sentence,
+                    :url                   => "www." + Faker::Internet.domain_name)
   end
   
 end
