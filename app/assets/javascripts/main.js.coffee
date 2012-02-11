@@ -2,7 +2,7 @@
 @app = window.app ? {}
 
 jQuery ->
-  # Refresh incoming twitter posts
+  #Refresh incoming twitter posts
   setInterval( ->
-    app.Tweets.fetch()
-  , 1000)
+    app.Tweets.fetch({add: true})
+  , 5000)

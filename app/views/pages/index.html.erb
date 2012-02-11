@@ -1,3 +1,9 @@
+<script>
+  $(function() {
+    app.Tweets.reset(<%= @tweets.to_json.html_safe %>);
+  });
+</script>
+
 <div id='main' class='feeds'>
   <div id='twitter' class='feed'>
   </div>

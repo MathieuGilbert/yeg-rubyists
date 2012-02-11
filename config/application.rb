@@ -55,5 +55,9 @@ module YegRubyists
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # When JSON-encoding a record, don't wrap the attributes in a hash where the
+    # key is named after the model
+    config.active_record.include_root_in_json = false
   end
 end
