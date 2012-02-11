@@ -4,5 +4,5 @@ jQuery ->
     url: '/tweets'
     
   
-    @app = window.app ? {}
-    @app.Tweets = new Tweets
+  @app = window.app ? {}
+  @app.Tweets = new Tweets
