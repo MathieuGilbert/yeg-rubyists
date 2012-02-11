@@ -1,7 +1,7 @@
 jQuery ->
   class TweetView extends Backbone.View
     tagName: "div"
-    className: "tweet"
+    id: "tweet"
     template: JST["backbone/templates/tweet"]
     
     initialize: () ->
