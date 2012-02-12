@@ -3,8 +3,7 @@ require 'spec_helper'
 describe GitEvent do
   before(:each) do
     @member = Factory(:member)
-    @attr = { :username => @member.github,
-              :date => Time.at(rand * Time.now.to_i),
+    @attr = { :date => Time.at(rand * Time.now.to_i),
               :event => "Pushed to project waffle/sauce.",
               :url => "http://www.github.com/sample" }
   end

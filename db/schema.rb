@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120212043334) do
+ActiveRecord::Schema.define(:version => 20120212222353) do
 
   create_table "blog_posts", :force => true do |t|
     t.string   "title"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20120212043334) do
   end
 
   create_table "git_events", :force => true do |t|
-    t.string   "username"
     t.string   "date"
     t.string   "event"
     t.integer  "member_id"
@@ -58,7 +57,6 @@ ActiveRecord::Schema.define(:version => 20120212043334) do
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
   create_table "tweets", :force => true do |t|
-    t.string   "username"
     t.string   "date"
     t.string   "content"
     t.string   "url"

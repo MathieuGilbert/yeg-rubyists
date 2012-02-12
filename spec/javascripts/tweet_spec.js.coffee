@@ -5,7 +5,7 @@ describe "Tweet", ->
   describe "when instantiated", ->
     beforeEach ->
       @tweet = new app.Tweet
-        username: 'ryanonrails'
+        content: 'I like pie!'
 
     it "should exhibit attributes", ->
-      expect(@tweet.get('username')).toEqual 'ryanonrails'
+      expect(@tweet.get('content')).toEqual 'I like pie!'

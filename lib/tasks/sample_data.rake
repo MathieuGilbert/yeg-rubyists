@@ -51,8 +51,7 @@ end
 def make_tweets
   Member.all.each do |member|
     5.times do
-      member.tweets.create!(:username   => member.twitter,
-                            :date       => Time.at(rand * Time.now.to_i),
+      member.tweets.create!(:date       => Time.at(rand * Time.now.to_i),
                             :content    => Faker::Lorem.sentence(10),
                             :url        => "www.zzzz" + Faker::Internet.domain_name)
     end
@@ -62,8 +61,7 @@ end
 def make_git_events
     Member.all.each do |member|
     5.times do
-      member.git_events.create!(:username   => member.github,
-                                :event      => Faker::Lorem.sentence(3),
+      member.git_events.create!(:event      => Faker::Lorem.sentence(3),
                                 :date       => Time.at(rand * Time.now.to_i),
                                 :url        => "www.blog" + Faker::Internet.domain_name)
     end

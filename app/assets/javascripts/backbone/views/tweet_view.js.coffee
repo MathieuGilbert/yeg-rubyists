@@ -5,7 +5,7 @@ jQuery ->
     template: JST["backbone/templates/tweet"]
     
     initialize: () ->
-
+      
     render: ->
       $(@el).html(@template(@model.toJSON()));
       @
