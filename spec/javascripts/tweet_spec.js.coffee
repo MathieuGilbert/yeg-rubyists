@@ -8,4 +8,22 @@ describe "Tweet", ->
         username: 'ryanonrails'
 
     it "should exhibit attributes", ->
-      expect(@tweet.get('username')).toEqual 'ryanonrails'
+      expect(@tweet.get('username')).toEqual('ryanonrails')
+      
+#  describe "url", ->
+#    beforeEach ->
+#      @tweets = new app.TweetsTest
+#      
+#    describe "when no id is set", ->
+#      it "should return the collection URL", ->
+#        expect(@tweets.url()).toEqual("/tweets")
+
+
+      
+      
+      
+      
+      
+      
+      
+      
