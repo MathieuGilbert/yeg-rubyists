@@ -1,5 +1,7 @@
 <script>
   $(function() {
+    // Reset must be defined here instead of coffeescript since the assests are created
+    // upon load and unable to execute/access erb (from what I could tell)
     app.Tweets.reset(<%= @tweets.to_json.html_safe %>);
   });
 </script>
