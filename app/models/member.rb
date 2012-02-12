@@ -12,6 +12,8 @@ class Member < ActiveRecord::Base
   validate :social_media_supplied
   
   has_many :tweets, :dependent => :destroy
+  has_many :git_events, :dependent => :destroy
+  has_many :blog_posts, :dependent => :destroy
   
   def social_media_supplied
     if twitter.empty? and github.empty? and blogrss.empty?

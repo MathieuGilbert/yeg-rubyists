@@ -11,7 +11,31 @@ FactoryGirl.define do
     status                "pending"
   end
   
+  factory :tweet do
+    date        :date_in_last_month
+    content     "I really like pies!"
+    url         "http://www.twitter.com/sample"
+    association :member
+  end
   
+  factory :git_event do
+    date        :date_in_last_month
+    event       "Pushed to some/repo"
+    url         "http://www.github.com/sample"
+    association :member
+  end
+  
+  factory :blog_post do
+    title       "Post Title"
+    summary     "Summary of the blog post."
+    date        :date_in_last_month
+    url         "http://www.blog.com/sample"
+    association :member
+  end
+  
+  factory :date_in_last_month do
+    Time.now - (rand * 60 * 60 * 24 * 30)
+  end
 end
 
 Factory.sequence :email do |n|

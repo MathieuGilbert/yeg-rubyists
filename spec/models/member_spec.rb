@@ -29,6 +29,27 @@ describe Member do
   it "should default to non-admin" do
     Member.new(@attr).admin.should == false
   end
+  
+  describe "methods" do
+    before(:each) do
+      @member = Member.new(@attr)
+    end
+    
+    it "should respond to 'tweets'" do
+      @member.should respond_to(:tweets)
+    end
+    
+    it "should respond to 'gitevents'" do
+      @member.should respond_to(:git_events)
+    end
+    
+    it "should respond to 'blogposts'" do
+      @member.should respond_to(:blog_posts)
+    end
+  end
+  
+
+  
     
   describe "email validation" do
     it "should accept valid email addresses" do

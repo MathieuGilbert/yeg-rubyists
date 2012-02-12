@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Tweet do
   before(:each) do
     @member = Factory(:member)
-    @attr = { :username  => @member.name,
+    @attr = { :username  => @member.twitter,
               :date      => Time.at(rand * Time.now.to_i),
               :content   => "I like pies",
               :url       => "http://www.google.com" }
@@ -34,7 +34,7 @@ describe Tweet do
   end
   
   it "should have the correct member association" do
-    tweet = @member.tweets.create(@attr)
+    tweet = @member.tweets.build(@attr)
     tweet.member_id.should == @member.id
   end
   

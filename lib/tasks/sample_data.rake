@@ -7,6 +7,8 @@ namespace :db do
     
     make_members
     make_tweets
+    make_git_events
+    make_blog_posts
   end
 end
 
@@ -47,12 +49,34 @@ def make_members
 end
 
 def make_tweets
-  Member.all(:limit => 5).each do |member|
-    25.times do
-      member.tweets.create!(:username   => member.name,
+  Member.all.each do |member|
+    5.times do
+      member.tweets.create!(:username   => member.twitter,
                             :date       => Time.at(rand * Time.now.to_i),
                             :content    => Faker::Lorem.sentence(10),
                             :url        => "www.zzzz" + Faker::Internet.domain_name)
+    end
+  end
+end
+
+def make_git_events
+    Member.all.each do |member|
+    5.times do
+      member.git_events.create!(:username   => member.github,
+                                :event      => Faker::Lorem.sentence(3),
+                                :date       => Time.at(rand * Time.now.to_i),
+                                :url        => "www.blog" + Faker::Internet.domain_name)
+    end
+  end
+end
+
+def make_blog_posts
+    Member.all.each do |member|
+    5.times do
+      member.blog_posts.create!(:title   => Faker::Lorem.sentence(2),
+                                :summary => Faker::Lorem.sentence(5),
+                                :date       => Time.at(rand * Time.now.to_i),
+                                :url        => "www.blog" + Faker::Internet.domain_name)
     end
   end
 end

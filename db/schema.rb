@@ -11,7 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211163953) do
+ActiveRecord::Schema.define(:version => 20120212043334) do
+
+  create_table "blog_posts", :force => true do |t|
+    t.string   "title"
+    t.string   "summary"
+    t.string   "date"
+    t.integer  "member_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "url"
+  end
+
+  create_table "git_events", :force => true do |t|
+    t.string   "username"
+    t.string   "date"
+    t.string   "event"
+    t.integer  "member_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "url"
+  end
 
   create_table "members", :force => true do |t|
     t.string   "name",                   :default => "",        :null => false
