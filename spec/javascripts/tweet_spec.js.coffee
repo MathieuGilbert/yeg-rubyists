@@ -2,10 +2,10 @@ app = window.app ? {}
 
 describe "Tweet", ->
 
-  describe "new tweet", ->
+  describe "when instantiated", ->
     beforeEach ->
       @tweet = new app.Tweet
         username: 'ryanonrails'
 
-    it "should not have a null username", ->
+    it "should exhibit attributes", ->
       expect(@tweet.get('username')).toEqual 'ryanonrails'
