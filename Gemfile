@@ -24,6 +24,7 @@ group :development do
   gem 'sqlite3'
   gem 'rspec-rails', '2.8.1'
   gem 'faker', '1.0.1'
+  gem 'jasminerice'
   
   # Guard setup
   # Install chrome ext: https:/chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei
@@ -33,6 +34,8 @@ group :development do
   # Guard inits
   gem 'guard-livereload'
   gem 'guard-rspec'
+   
+  # windows ftw
   gem 'win32console'
 end
 

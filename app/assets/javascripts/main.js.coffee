@@ -3,6 +3,6 @@
 
 jQuery ->
   #Refresh incoming twitter posts
-  setInterval( ->
-    app.Tweets.fetch({add: true})
-  , 2000)
+  # setInterval( ->
+    # app.Tweets.fetch({add: true})
+  # , 2000)
