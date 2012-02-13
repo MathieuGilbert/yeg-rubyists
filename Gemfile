@@ -4,9 +4,13 @@ gem 'rails', '3.2.0'
 gem 'heroku'
 gem 'jquery-rails'
 gem 'devise'
+gem 'simple-rss'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Backbone helper (mostly used for js libs)
+gem 'rails-backbone'
+
+# Faster web server (run -> rails server thin start)
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -48,9 +52,3 @@ end
 group :production do
   gem 'pg'
 end
-
-# Backbone helper (mostly used for js libs)
-gem 'rails-backbone'
-
-# Faster web server (run -> rails server thin start)
-gem 'thin'
