@@ -3,8 +3,7 @@ jQuery ->
     initialize: () ->
   
     routes:
-      "/index"    : "index"
-      ".*"        : "index"
+      "test"    : "test"
       
     index: ->
       

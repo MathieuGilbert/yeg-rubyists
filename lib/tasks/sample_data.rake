@@ -47,7 +47,7 @@ namespace :db do
   
   # make git events
   task :make_git_events => :environment do
-    make_members
+    make_git_events
   end
 end
 
