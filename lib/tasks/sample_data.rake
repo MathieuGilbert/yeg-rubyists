@@ -1,6 +1,5 @@
 namespace :db do
   desc "Fill database with sample data"
-
   task :populate => :environment do
     
     Rake::Task['db:reset'].invoke
@@ -9,6 +8,21 @@ namespace :db do
     make_tweets
     make_git_events
     make_blog_posts
+  end
+  
+  # add members
+  task :make_members => :environment do
+    make_members
+  end
+  
+  # make tweets
+  task :make_tweets => :environment do
+    make_tweets
+  end
+  
+  # make git events
+  task :make_git_events => :environment do
+    make_members
   end
 end
 
