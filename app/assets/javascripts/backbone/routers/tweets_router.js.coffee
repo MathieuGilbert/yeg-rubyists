@@ -1,6 +1,6 @@
-class YegRubyists.Routers.TweetsRouter extends Backbone.Router
+class app.Routers.TweetsRouter extends Backbone.Router
   initialize: (options) ->
-    @tweets = new YegRubyists.Collections.TweetsCollection(options)
+    @tweets = new app.Collections.TweetsCollection(options)
     @tweets.reset options.tweets
 
   routes:
@@ -8,6 +8,6 @@ class YegRubyists.Routers.TweetsRouter extends Backbone.Router
     ".*"        : "index"
 
   index: ->
-    @view = new YegRubyists.Views.Tweets.IndexView(tweets: @tweets)
+    @view = new app.Views.Tweets.IndexView(tweets: @tweets)
     $("#twitter").html(@view.render().el)
 

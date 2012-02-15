@@ -2,10 +2,10 @@
 @app = window.app ? {}
 
 jQuery ->
-  # app_router = new YegRubyists.MainRouter
+  # app_router = new app.MainRouter
   # Backbone.history.start()
 #   
   #Refresh incoming twitter posts
   # setInterval( ->
-    # YegRubyists.Tweets.fetch({add: true})
+    # app.Tweets.fetch({add: true})
   # , 2000)

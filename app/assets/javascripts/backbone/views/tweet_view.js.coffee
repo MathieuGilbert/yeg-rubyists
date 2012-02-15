@@ -1,6 +1,6 @@
-YegRubyists.Views.Tweets ||= {}
+app.Views.Tweets ||= {}
 
-class YegRubyists.Views.Tweets.TweetView extends Backbone.View
+class app.Views.Tweets.TweetView extends Backbone.View
   template: JST["backbone/templates/tweets/tweet"]
 
   tagName: "li"
