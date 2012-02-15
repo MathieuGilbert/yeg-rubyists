@@ -5,7 +5,7 @@
 #= require_tree ./views
 #= require_tree ./routers
 
-window.YegRubyists =
+@app =
   Models: {}
   Collections: {}
   Routers: {}

@@ -9,7 +9,7 @@
 
 <script>
   $(function() {
-    window.router = new YegRubyists.Routers.TweetsRouter({tweets: <%= @tweets.to_json.html_safe -%> });
+    window.router = new app.Routers.TweetsRouter({tweets: <%= @tweets.to_json.html_safe -%> });
     Backbone.history.start();
   });
 </script>

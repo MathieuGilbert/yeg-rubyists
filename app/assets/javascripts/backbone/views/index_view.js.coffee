@@ -1,6 +1,6 @@
-YegRubyists.Views.Tweets ||= {}
+app.Views.Tweets ||= {}
 
-class YegRubyists.Views.Tweets.IndexView extends Backbone.View
+class app.Views.Tweets.IndexView extends Backbone.View
   template: JST["backbone/templates/tweets/index"]
 
   initialize: () ->
@@ -10,7 +10,7 @@ class YegRubyists.Views.Tweets.IndexView extends Backbone.View
     @options.tweets.each(@addOne)
 
   addOne: (tweet) =>
-    view = new YegRubyists.Views.Tweets.TweetView({model : tweet})
+    view = new app.Views.Tweets.TweetView({model : tweet})
     @$("ul").append(view.render().el)
 
   render: =>
