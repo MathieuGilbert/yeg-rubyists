@@ -1,2 +1,2 @@
-class app.Models.Tweet extends Backbone.Model
+class YegRubyists.Models.Tweet extends Backbone.Model
   paramRoot: 'tweet'
