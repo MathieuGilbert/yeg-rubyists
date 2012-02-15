@@ -5,29 +5,23 @@ class DataParser
 #   commit them to the database
 
   def self.update_data
-    # define the data feeds
-    feed_types = ['twitter', 'github', 'blog']
-    
     # grab all of the members
-    #members = Member.all
     members = Member.all
+
+    # update tweets table
+    self.update_tweets(members)
     
-    # loop through each of the members, and each of their feeds
-    members.each do |member|
-      feed_types.each do |feed_type|
-        self.feed(feed_type, member)
-      end
-    end
+    #update git
+    #update blogs
   end
 
-  def self.feed(type, member)
-    if type == 'twitter' && !member.twitter.empty?
+  def self.update_tweets(members)
+    if !member.twitter.empty?
       begin
-        # grab the members last 10 tweets
-        current_tweets = Member.order("date desc").limit(10)
+        Tweets.order("since_id desc").first
         
         # grab the members last 10 tweets
-        twitter_feed = RestClient::Resource.new "http://api.twitter.com/1/statuses/user_timeline.atom?screen_name=#{member.twitter}&include_rts=true&count=10"
+        twitter_feed = RestClient::Resource.new "view-source:https://api.twitter.com/1/yeg_rubyists/lists/yegrb-members/statuses.atom?&include_rts=true&count=10"
         SimpleRSS.parse ( twitter_feed.get )
 
         # loop through and compare all tweets

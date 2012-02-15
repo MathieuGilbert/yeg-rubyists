@@ -92,7 +92,8 @@ def make_tweets
     5.times do
       member.tweets.create!(:date       => Time.at(rand * Time.now.to_i),
                             :content    => Faker::Lorem.sentence(10),
-                            :url        => "www.zzzz" + Faker::Internet.domain_name)
+                            :url        => "www.zzzz" + Faker::Internet.domain_name,
+                            :since_id   => rand(100000000000000000))
     end
   end
 end
