@@ -16,35 +16,43 @@ class DataParser
   end
 
   def self.update_tweets(members)
-    if !member.twitter.empty?
+    if members.empty?
       begin
-        Tweets.order("since_id desc").first
+        # grab the most recent tweet
+        last_updated_tweet = Tweets.order("since_id desc").first
         
-        # grab the members last 10 tweets
-        twitter_feed = RestClient::Resource.new "view-source:https://api.twitter.com/1/yeg_rubyists/lists/yegrb-members/statuses.atom?&include_rts=true&count=10"
+        # grab the newest tweets from the yeg-members list
+        twitter_feed = RestClient::Resource.new "https://api.twitter.com/1/yeg_rubyists/lists/yegrb-members/statuses.atom?&include_rts=true&count=10&since_id=#{last_updated_tweet.since_id}"
         SimpleRSS.parse ( twitter_feed.get )
 
-        # loop through and compare all tweets
+        # loop through each newest tweet
         twitter_feed.items.each do |new_tweet|
-          tweet_found = false
+          
+          # compare the tweet user name vs the new tweet username
+          members.each do |member|
+            puts new_tweet.author
+            
 
-          current_tweets.items.each do |current_tweet|
-            # check if the tweet exists
-            if current_tweet.title == new_tweet.title
-              tweet_found = true
-            end
           end
-          puts 'tweet ' + tweet_found
-          # tweet wasn't found, add it to the db
-          if tweet_found == false
-            puts 'Adding Tweet'
-            member.tweet.create!({
-              :date    => new_tweet.published,
-              :content => new_tweet.title,
-              :url     => new_tweet.id
-            });
-          end
-        end  
+        end
+# 
+          # current_tweets.items.each do |current_tweet|
+            # # check if the tweet exists
+            # if current_tweet.title == new_tweet.title
+              # tweet_found = true
+            # end
+          # end
+          # puts 'tweet ' + tweet_found
+          # # tweet wasn't found, add it to the db
+          # if tweet_found == false
+            # puts 'Adding Tweet'
+            # member.tweet.create!({
+              # :date    => new_tweet.published,
+              # :content => new_tweet.title,
+              # :url     => new_tweet.id
+            # });
+          # end
+        # end  
 
       rescue
         # 404 -> twitter handle not found
