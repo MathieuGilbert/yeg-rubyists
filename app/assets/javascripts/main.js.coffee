@@ -1,11 +1,6 @@
-# This is the start point
-@app = window.app ? {}
-
+# start
 jQuery ->
-  # app_router = new app.MainRouter
-  # Backbone.history.start()
-#   
   #Refresh incoming twitter posts
-  # setInterval( ->
-    # app.Tweets.fetch({add: true})
-  # , 2000)
+  setInterval( ->
+    router.tweets.fetch({add: true})
+  , 2000)

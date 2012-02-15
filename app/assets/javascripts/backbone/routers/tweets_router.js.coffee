@@ -1,7 +1,7 @@
 class app.Routers.TweetsRouter extends Backbone.Router
   initialize: (options) ->
-    @tweets = new app.Collections.TweetsCollection(options)
-    @tweets.reset options.tweets
+    @tweets = new app.Collections.TweetsCollection()
+    @tweets.reset(options.tweets)
 
   routes:
     "/index"    : "index"
