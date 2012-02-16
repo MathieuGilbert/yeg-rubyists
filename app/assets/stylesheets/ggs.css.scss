@@ -296,7 +296,7 @@ h3 {
     @include grid-base(0);
   }
   
-    header, footer, .feeds {
+  header, footer, .feeds {
     margin: 0 $column*3;
   }
 

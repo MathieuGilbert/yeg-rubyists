@@ -3,9 +3,6 @@ class BlogPost < ActiveRecord::Base
   
   belongs_to :member
   
-  validates :title,     :presence => true
-  validates :summary,   :presence => true
-  validates :date,      :presence => true
-  validates :url,       :presence => true
-  validates :member_id, :presence => true
+  validates :title, :summary, :date, :url, :member_id,  :presence => true
+
 end

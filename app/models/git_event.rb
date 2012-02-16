@@ -3,9 +3,6 @@ class GitEvent < ActiveRecord::Base
   
   belongs_to :member
   
-  validates :date,      :presence => true
-  validates :event,     :presence => true
-  validates :url,       :presence => true
-  validates :member_id, :presence => true
+  validates :date, :event, :url, :member_id, :presence => true
   
 end

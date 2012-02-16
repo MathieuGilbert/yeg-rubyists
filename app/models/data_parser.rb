@@ -63,7 +63,6 @@ class DataParser
           end
         end
         
-    nil    # make sure to have begin rescue
     end 
   end
 
