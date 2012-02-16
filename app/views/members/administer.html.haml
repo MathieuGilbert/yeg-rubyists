@@ -1,0 +1,36 @@
+%table
+  %th
+    Name
+  %th
+    Email
+  %th
+    Twitter
+  %th
+    Tweet Count
+  %th
+    Github
+  %th
+    Blog RSS
+  %th
+    Status
+  %th
+    Is Admin?
+    
+  - @members.each do |member|
+    %tr
+      %td
+        = member.name
+      %td
+        = member.email
+      %td
+        = member.twitter
+      %td
+        = member.tweets.count
+      %td
+        = member.github
+      %td
+        = member.blogrss
+      %td
+        = member.status
+      %td
+        = member.admin
