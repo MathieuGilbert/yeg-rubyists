@@ -8,5 +8,7 @@ Remove html5 validation from forms (devise)
 Display "in reply to"
 
 Notes:
-app.Tweets.fetch()
+To get started:
+rake db:make_admins
+rails c -> DataParser.update_data
 

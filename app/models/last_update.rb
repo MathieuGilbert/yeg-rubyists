@@ -1,4 +1,4 @@
 class LastUpdate < ActiveRecord::Base
-  attr_accessible :twitter, :github, :blog
+  attr_accessible :time
 
 end

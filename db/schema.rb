@@ -33,9 +33,7 @@ ActiveRecord::Schema.define(:version => 20120216205500) do
   end
 
   create_table "last_updates", :force => true do |t|
-    t.datetime "twitter"
-    t.datetime "github"
-    t.datetime "blog"
+    t.datetime "time"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
