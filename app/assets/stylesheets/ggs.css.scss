@@ -215,7 +215,7 @@ h3 {
 /* @media screen and (min-width: 480px) */
 @media screen and (min-width: 30.0em) {
   body {
-    @include grid-base(1);
+    @include grid-base(0);
   }
   
   header, footer, .feeds {
