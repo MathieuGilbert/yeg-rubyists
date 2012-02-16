@@ -1,8 +1,31 @@
 
-.wrapper {
-  background-color: #ffdd00;
+header, footer {
+  background-color: #ffdd88;
 }
+
+#twitter {
+  background-color: #5588dd;
+}
+#github {
+  background-color: #88dd55;
+}
+#blogrss {
+  background-color: #dd5588;
+}
+
 
 ul {
   list-style-type: none;
+}
+
+.feed {
+  min-height: 500px;
+  max-height: 500px;
+  height: auto !important;
+  height: 500px;
+  overflow: hidden;
+}
+
+footer {
+  clear: both;
 }
