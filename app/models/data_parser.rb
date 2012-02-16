@@ -33,22 +33,21 @@ class DataParser
             
             # break up the username and content from the tweet
             # i think there's an easier way to do this, assign multiple vars with regex groups
-            tweet_breakup = new_tweet.title.scan(/(^.*):(.*)/i)
-            username = tweet_breakup[0][0]
-            content = tweet_breakup[0][1]
+            username, content = new_tweet.title.match(/(^.*): (.*)/i).captures
             
             # check if usernames are equal (case insensitive)
             if member.twitter.casecmp(username)
               
-              # now that we know who it belongs to we need to parse the rest of the data
-              # since_id & url => <id>tag:twitter.com,2007:http://twitter.com/RyanOnRails/statuses/169502418399264769</id>
-              # date => <published>2012-02-14T19:25:00+00:00</published>
+              # pull out url, since_id and published_at
+              url, since_id = new_tweet.id.match(/(h.*\/)(.*)/).captures
+              published_dt = Time.parse(new_tweet.published.to_s)
               
               # create tweet
-              member.tweet.create!({
-                :date    => new_tweet.published,
-                :content => content,
-                :url     => new_tweet.id});
+              member.tweets.create!({
+                :date     => published_dt,
+                :content  => content,
+                :url      => url,
+                :since_id => since_id})
                 
               tweet_found = true
             end
