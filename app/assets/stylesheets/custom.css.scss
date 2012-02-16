@@ -1,29 +1,8 @@
-$content-width: 600px;
-$feed-border: 1px;
-$feeds-margin: 10px;
 
-.container {
-  width: $content-width + 8 * $feed-border + 2 * $feeds-margin;
-  border: 1px solid green;
+.wrapper {
+  background-color: #ffdd00;
 }
 
-header {
-  width: $content-width;
-}
-
-footer {
-  width: $content-width;
-}
-
-.feeds {
-  margin: $feeds-margin;
-  border: $feed-border solid red;
-  overflow: hidden;
-  
-  .feed {
-    border: $feed-border solid black;
-    width: 200px;
-    height: 800px;
-    float: left;
-  }
+ul {
+  list-style-type: none;
 }

@@ -1,0 +1,12 @@
+#main.feeds
+  #twitter.feed.wrapper
+  #github.feed.wrapper
+  #blogrss.feed.wrapper
+
+:javascript
+  $(function() {    
+    window.router = new app.Routers.PagesRouter({ tweets: #{@tweets.to_json.html_safe},
+                                                  git_events: #{@tweets.to_json.html_safe} });
+    Backbone.history.start();
+  });
+
