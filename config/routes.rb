@@ -1,8 +1,9 @@
 YegRubyists::Application.routes.draw do
   devise_for :members
 
-  get '/tweets' => 'tweets#index'
-  get '/admin' => 'members#administer'
+  get '/tweets'  => 'tweets#index'
+  get '/admin'   => 'members#administer'
+  put '/approve' => 'members#approve', :via => 'put'
 
   root :to => 'pages#index'
   

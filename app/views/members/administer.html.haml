@@ -31,6 +31,11 @@
       %td
         = member.blogrss
       %td
-        = member.status
+        %strong= member.status
       %td
         = member.admin
+      %td
+        = button_to "Approve Member", { :action => "approve", :id => member.id }, :method => :put
+        
+
+

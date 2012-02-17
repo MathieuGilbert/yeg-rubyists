@@ -7,6 +7,13 @@ class MembersController < ApplicationController
     #current_member.update_attribute :admin, true
     @members = Member.find(:all, :conditions => { :status => "pending" })
   end
+  
+  def approve
+    # approve the member
+    member = Member.find(params[:id])
+    member.update_attributes({:status => 'approved'})
+    redirect_to(admin_path)
+  end
 
   private
     def admin_member
