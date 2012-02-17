@@ -6,7 +6,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'simple-rss'
 gem 'twitter'
-#gem 'github_api'
+gem 'github_api'
 
 # Backbone helper (mostly used for js libs)
 gem 'rails-backbone'
