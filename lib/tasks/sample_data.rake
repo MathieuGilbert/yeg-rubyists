@@ -51,29 +51,8 @@ namespace :db do
   end
 end
 
+
 def make_members
-  # mat admin
-  mat = Member.create!( :name                  => "Mathieu Gilbert",
-                        :email                 => "matnarak@gmail.com",
-                        :password              => "password",
-                        :password_confirmation => "password",
-                        :twitter               => "mathieu_gilbert",
-                        :github                => "mathieugilbert",
-                        :blogrss               => "http://www.helloabs.com/feed/atom",
-                        :status                => "approved" )
-  mat.toggle!(:admin)
-  
-  # ryan admin
-  ryan = Member.create!( :name                  => "Ryan Jones",
-                         :email                 => "ryan.michael.jones@gmail.com",
-                         :password              => "password",
-                         :password_confirmation => "password",
-                         :twitter               => "ryanonrails",
-                         :github                => "ryanonrails",
-                         :blogrss               => "http://www.ryanonrails.com/feed/atom",
-                         :status                => "approved" )
-  ryan.toggle!(:admin)
-  
   
   # 25 pending members
   25.times do |n|
