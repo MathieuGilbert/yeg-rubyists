@@ -15,13 +15,12 @@ class DataParser
         self.update_tweets(members)
         
         # update git_events table
+        self.update_git_events(members)
         
         # update blog_posts table
-        
+        self.update_blog_posts(members)
       end
-      
-      #update git
-      #update blogs
+
       last_update.update_attributes({:time => DateTime.now.new_offset(0)})
     end
   end
@@ -68,10 +67,25 @@ class DataParser
         end
       end
     rescue
-        puts 'twittter failed!!'
+      puts 'twitter failed!!'
     end 
   end
 
+  def self.update_git_events(members)
+    begin
+      
+    rescue
+      puts 'git_events failed!!'
+    end
+  end
+  
+  def self.update_blog_posts(members)
+    begin
+      
+    rescue
+      puts 'blog_posts failed!!'
+    end
+  end
   
   
 private
