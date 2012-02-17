@@ -5,7 +5,8 @@ describe Tweet do
     @member = Factory(:member)
     @attr = { :date      => Time.at(rand * Time.now.to_i),
               :content   => "I like pies",
-              :url       => "http://www.google.com" }
+              :url       => "http://www.google.com",
+              :since_id  => 163088974838120448 }
   end
   
   it "should create a tweet given valid attributes" do
@@ -22,6 +23,10 @@ describe Tweet do
   
   it "should require a url" do
     @member.tweets.build(@attr.merge(:url => "")).should_not be_valid
+  end
+  
+  it "should require a since_id" do
+    @member.tweets.build(@attr.merge(:since_id => nil)).should_not be_valid
   end
   
   it "should require a member id" do
