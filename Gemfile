@@ -5,6 +5,7 @@ gem 'heroku'
 gem 'jquery-rails'
 gem 'devise'
 gem 'simple-rss'
+gem 'twitter'
 
 # Backbone helper (mostly used for js libs)
 gem 'rails-backbone'

@@ -20,6 +20,9 @@ class DataParser
 
   def self.update_tweets(members)
     begin
+      # create twitter client
+      twitter = Twitter::Client.new
+      
       # make sure we have members to match against
       if !members.empty?
           # grab the most recent tweet
@@ -27,37 +30,29 @@ class DataParser
           
           # If there are no since_id's in the db, we go and get all of the possible tweets
           if last_updated_tweet.nil?
-            twitter_rest = RestClient::Resource.new "https://api.twitter.com/1/yeg_rubyists/lists/yegrb-members/statuses.atom?&include_rts=true"
-            twitter_feed = SimpleRSS.parse ( twitter_rest.get )
+            twitter_list = twitter.list_timeline('yegrb-members')
           else
             # grab the newest tweets from the yeg-members list based on the since_id
-            twitter_rest = RestClient::Resource.new "https://api.twitter.com/1/yeg_rubyists/lists/yegrb-members/statuses.atom?&include_rts=true&since_id=#{last_updated_tweet.since_id}"
-            twitter_feed = SimpleRSS.parse ( twitter_rest.get )
+            twitter_list = twitter.list_timeline('yegrb-members', {:since_id => last_updated_tweet.since_id, :include_rts => true})
           end
   
           # loop through each new tweet
-          twitter_feed.items.each do |new_tweet|
-            # break up the username and content from the tweet
-            # i think there's an easier way to do this, assign multiple vars with regex groups
-            username, content = new_tweet.title.match(/(^[^\:]*): (.*)/i).captures
-            
+          twitter_list.each do |new_tweet|
+
             # compare the tweet user name vs the new tweet username
             members.each do |member|
               tweet_found = false
   
               # check if usernames are equal (case insensitive)
-              if member.twitter.casecmp(username) == 0
-  
-                # pull out url, since_id and published_at
-                url, since_id = new_tweet.id.match(/(http.*\/)(.*)/).captures
-                published_dt = Time.parse(new_tweet.published.to_s)
+              if member.twitter.casecmp(new_tweet.user.screen_name) == 0
                 
+                # https://twitter.com/fnichol/status/170273083112947713
                 # create tweet
                 member.tweets.create!({
-                  :date     => published_dt,
-                  :content  => content,
-                  :url      => url + since_id.to_s,
-                  :since_id => since_id})
+                  :date     => Time.parse(new_tweet.created_at.to_s).utc,
+                  :content  => new_tweet.text,
+                  :url      => "https://twitter.com/#{new_tweet.user.screen_name}/status/#{new_tweet.id}",
+                  :since_id => new_tweet.id})
                   
                 tweet_found = true
               end
