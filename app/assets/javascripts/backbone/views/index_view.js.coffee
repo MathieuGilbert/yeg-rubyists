@@ -1,5 +1,6 @@
 app.Views.Tweets ||= {}
 app.Views.GitEvents ||= {}
+app.Views.BlogPosts ||= {}
 
 class app.Views.Tweets.IndexView extends Backbone.View
   template: JST["backbone/templates/tweets/index"]
@@ -36,7 +37,27 @@ class app.Views.GitEvents.IndexView extends Backbone.View
     @$("ul").prepend(view.render().el)
 
   render: =>
-    $(@el).html(@template(tweets: @options.git_events.toJSON() ))
+    $(@el).html(@template(git_events: @options.git_events.toJSON() ))
+    @addAll()
+
+    return this
+
+class app.Views.BlogPosts.IndexView extends Backbone.View
+  template: JST["backbone/templates/blog_posts/index"]
+
+  initialize: () ->
+    @options.blog_posts.bind('add', @addOne);
+    @options.blog_posts.bind('reset', @addAll)
+
+  addAll: () =>
+    @options.blog_posts.each(@addOne)
+
+  addOne: (blog_post) =>
+    view = new app.Views.BlogPosts.BlogPostView({model : blog_post})
+    @$("ul").prepend(view.render().el)
+
+  render: =>
+    $(@el).html(@template(blog_posts: @options.blog_posts.toJSON() ))
     @addAll()
 
     return this

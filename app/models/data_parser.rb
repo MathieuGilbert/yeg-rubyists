@@ -18,7 +18,7 @@ class DataParser
         self.update_git_events(members)
         
         # update blog_posts table
-        self.update_blog_posts(members)
+        self.update_blog_posts
       end
 
       last_update.update_attributes({:time => DateTime.now.new_offset(0)})
@@ -79,9 +79,37 @@ class DataParser
     end
   end
   
-  def self.update_blog_posts(members)
+  def self.update_blog_posts
     begin
+      # get list of members who have blogs
+      bloggers = Member.where("blogrss is not null")
       
+      # loop through members
+      bloggers.each do |blogger|
+        # get most recent blog_post in db by this member
+        last_post = blogger.blog_posts.order("date desc").first
+        
+        # get member's blog feed
+        feed_url = blogger.blogrss
+        rest = RestClient::Resource.new feed_url
+        feed = SimpleRSS.parse(rest.get)
+          
+        if last_post.nil?
+          # get all posts
+          posts = feed.items
+        else
+          # filter feed for posts more recent than latest in db
+          posts = feed.items.find_all{ |item| item.updated > last_post.date }
+        end
+        
+        # write feed posts to db
+        posts.each do |post|
+          blogger.blog_posts.create!( :title   => post.title,
+                                      :summary => post.summary,
+                                      :date    => post.updated.utc,
+                                      :url     => post.link )
+        end
+      end
     rescue
       puts 'blog_posts failed!!'
     end

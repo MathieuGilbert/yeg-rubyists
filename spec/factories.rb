@@ -15,6 +15,7 @@ FactoryGirl.define do
     date        :date_in_last_month
     content     "I really like pies!"
     url         "http://www.twitter.com/sample"
+    since_id    163088974838120448
     association :member
   end
   
@@ -34,7 +35,7 @@ FactoryGirl.define do
   end
   
   factory :date_in_last_month do
-    Time.now - (rand * 60 * 60 * 24 * 30)
+    DateTime.now #- (rand * 60 * 60 * 24 * 30)
   end
 end
 
