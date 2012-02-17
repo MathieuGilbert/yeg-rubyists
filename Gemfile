@@ -40,9 +40,6 @@ group :development do
   # Guard inits
   gem 'guard-livereload'
   gem 'guard-rspec'
-   
-  # windows ftw
-  gem 'win32console'
 end
 
 group :test do

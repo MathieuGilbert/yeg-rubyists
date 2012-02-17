@@ -5,9 +5,14 @@ YegRubyists::Application.routes.draw do
   get '/git_events' => 'git_events#index'
   get '/blog_posts' => 'blog_posts#index'
   get '/admin'   => 'members#administer'
-  put '/approve' => 'members#approve', :via => 'put'
+  put '/approve' => 'members#approve'
+
 
   root :to => 'pages#index'
+
+  # Authenticating your account to the github app - don't touch
+  # get '/github_auth' => 'git_events#github_auth'
+  # get '/authorize' => 'git_events#authorize'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
