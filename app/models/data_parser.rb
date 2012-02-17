@@ -8,10 +8,18 @@ class DataParser
     if last_update.time < (DateTime.now.new_offset(0) - 30.seconds)
       # grab all of the members
       members = Member.all
-  
-      # update tweets table
-      self.update_tweets(members)
-    
+
+      # make sure we have members to match against
+      if !members.empty?
+        # update tweets table
+        self.update_tweets(members)
+        
+        # update git_events table
+        
+        # update blog_posts table
+        
+      end
+      
       #update git
       #update blogs
       last_update.update_attributes({:time => DateTime.now.new_offset(0)})
@@ -22,45 +30,42 @@ class DataParser
     begin
       # create twitter client
       twitter = Twitter::Client.new
-      
-      # make sure we have members to match against
-      if !members.empty?
-          # grab the most recent tweet
-          last_updated_tweet = Tweet.order("since_id desc").first
-          
-          # If there are no since_id's in the db, we go and get all of the possible tweets
-          if last_updated_tweet.nil?
-            twitter_list = twitter.list_timeline('yegrb-members')
-          else
-            # grab the newest tweets from the yeg-members list based on the since_id
-            twitter_list = twitter.list_timeline('yegrb-members', {:since_id => last_updated_tweet.since_id, :include_rts => true})
-          end
-  
-          # loop through each new tweet
-          twitter_list.each do |new_tweet|
 
-            # compare the tweet user name vs the new tweet username
-            members.each do |member|
-              tweet_found = false
-  
-              # check if usernames are equal (case insensitive)
-              if member.twitter.casecmp(new_tweet.user.screen_name) == 0
-                
-                # https://twitter.com/fnichol/status/170273083112947713
-                # create tweet
-                member.tweets.create!({
-                  :date     => Time.parse(new_tweet.created_at.to_s).utc,
-                  :content  => new_tweet.text,
-                  :url      => "https://twitter.com/#{new_tweet.user.screen_name}/status/#{new_tweet.id}",
-                  :since_id => new_tweet.id})
-                  
-                tweet_found = true
-              end
+      # grab the most recent tweet
+      last_updated_tweet = Tweet.order("since_id desc").first
+      
+      # If there are no since_id's in the db, we go and get all of the possible tweets
+      if last_updated_tweet.nil?
+        twitter_list = twitter.list_timeline('yegrb-members')
+      else
+        # grab the newest tweets from the yeg-members list based on the since_id
+        twitter_list = twitter.list_timeline('yegrb-members', {:since_id => last_updated_tweet.since_id, :include_rts => true})
+      end
+
+      # loop through each new tweet
+      twitter_list.each do |new_tweet|
+
+        # compare the tweet user name vs the new tweet username
+        members.each do |member|
+          tweet_found = false
+
+          # check if usernames are equal (case insensitive)
+          if member.twitter.casecmp(new_tweet.user.screen_name) == 0
+            
+            # https://twitter.com/fnichol/status/170273083112947713
+            # create tweet
+            member.tweets.create!({
+              :date     => Time.parse(new_tweet.created_at.to_s).utc,
+              :content  => new_tweet.text,
+              :url      => "https://twitter.com/#{new_tweet.user.screen_name}/status/#{new_tweet.id}",
+              :since_id => new_tweet.id})
               
-              # if a match is found for the tweet break out of this loop
-              break if tweet_found == true
-            end
+            tweet_found = true
           end
+          
+          # if a match is found for the tweet break out of this loop
+          break if tweet_found == true
+        end
       end
     rescue
         puts 'twittter failed!!'
