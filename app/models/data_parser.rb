@@ -81,7 +81,8 @@ private
     
     # Make sure the last update exists
     if last_update.nil?
-      last_update = LastUpdate.create!({:time => DateTime.now.new_offset(0)})
+      # set the last update to today - 30 days (to get all the most recent tweets)
+      last_update = LastUpdate.create!({:time => DateTime.now.new_offset(0) - 30.days})
     end
     
     last_update
