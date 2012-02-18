@@ -19,7 +19,7 @@ class MembersController < ApplicationController
     
     # github here
     if !member.github.empty?
-
+      
     end
     
     # blog here
