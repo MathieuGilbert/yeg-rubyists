@@ -12,13 +12,13 @@ class DataParser
       # make sure we have members to match against
       if !members.empty?
         # update tweets table
-        #self.update_tweets(members)
+        self.update_tweets(members)
         
         # update git_events table
         self.update_git_events(members)
         
         # update blog_posts table
-        #self.update_blog_posts
+        self.update_blog_posts
       end
 
       last_update.update_attributes({:time => DateTime.now.new_offset(0)})
