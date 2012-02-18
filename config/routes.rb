@@ -8,6 +8,7 @@ YegRubyists::Application.routes.draw do
   put '/approve' => 'members#approve'
   
   match '/tweets/:id' => 'tweets#show'
+  match '/git_events/:id' => 'git_events#show'
 
   root :to => 'pages#index'
 

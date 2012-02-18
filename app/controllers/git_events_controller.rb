@@ -6,7 +6,15 @@ class GitEventsController < ApplicationController
     git_events = GitEvent.where('date > ?', params[:date]).order("date DESC")
         
     respond_with(git_events) do |format|
-      format.json { render :json => git_events }
+      format.json { render :json => git_events({:methods => :github_member}) }
+    end
+  end
+
+  def show
+    git_event = GitEvent.find(params[:id])
+    
+    respond_with(git_event) do |format|
+      format.json { render :json => git_event({:methods => :github_member}) }
     end
   end
 

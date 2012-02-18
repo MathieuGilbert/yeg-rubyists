@@ -5,4 +5,7 @@ class GitEvent < ActiveRecord::Base
   
   validates :date, :event, :url, :member_id, :presence => true
   
+  def github_member
+    member
+  end
 end
