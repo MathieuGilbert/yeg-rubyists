@@ -12,13 +12,13 @@ class DataParser
       # make sure we have members to match against
       if !members.empty?
         # update tweets table
-        self.update_tweets(members)
+        #self.update_tweets(members)
         
         # update git_events table
         self.update_git_events(members)
         
         # update blog_posts table
-        self.update_blog_posts
+        #self.update_blog_posts
       end
 
       last_update.update_attributes({:time => DateTime.now.new_offset(0)})
@@ -73,7 +73,32 @@ class DataParser
 
   def self.update_git_events(members)
     begin
-      
+      puts "starting"
+      events = self.get_git_events(["PushEvent"])
+      puts "found #{events.count} events"
+
+      # go through each event
+      events.each do |event|
+        # find the matching member
+        members.each do |member|
+          match_found = false
+
+          if member.github.casecmp(event.actor.login) == 0
+            # build an appropriate message based on the type of event
+            message = "#{member.name} committed!"
+
+            # save event to DB
+            member.git_events.create!( :date  => event.created_at,
+                                       :event => message,
+                                       :url   => "www.irrelevent.com")
+            match_found = true
+          end
+
+          break if match_found
+        end
+
+      end
+        
     rescue
       puts 'git_events failed!!'
     end
@@ -123,11 +148,89 @@ private
     
     # Make sure the last update exists
     if last_update.nil?
-      # set the last update to today - 30 days (to get all the most recent tweets)
+      # set the last update to today - 30 days (to get all the most recent items)
       last_update = LastUpdate.create!({:time => DateTime.now.new_offset(0) - 30.days})
     end
     
     last_update
+  end
+
+  def self.get_git_events(report_on)
+    # create GitHub client
+    github = Github::new
+
+    # get the most recent event in DB
+    last_event = GitEvent.order("date DESC").first
+
+    # if none, use 1 year ago as starting point
+    start_date = last_event.nil? ? DateTime.now - 1.year : last_event.date
+    puts "-- start: #{start_date}"
+    # get all events
+    events = github.events.received('mathieugilbert')
+    puts "got #{events.count} of them"
+    # filter on event type
+    events = events.reject!{ |event| !report_on.include?(event.type) }
+    puts "filtered on type... still have #{events.count} left"
+    # filter on date
+    puts "-- first date: #{events.find_all.first.created_at}"
+    
+    events.each do |event|
+      if !event.created_at.nil? && DateTime.parse(event.created_at) <= start_date
+        puts "YES.... #{DateTime.parse(event.created_at)}"
+      else
+        puts "ELSE.....#{DateTime.parse(event.created_at)}"
+        if event.created_at.nil?
+          puts "WTF"
+        else
+          puts "NO"
+        end
+      end
+    end
+
+    #events = events.reject!{ |event| Time.parse(event.created_at) <= start_date }
+    puts "filtered on date... still have #{events.count} left"
+    return events
+  end
+
+
+  def self.event_message(event)
+    # listing: http://developer.github.com/v3/events/types/
+    case event.type
+    when "CommitComment"
+      "commented on #{event.payload.comment.url}: #{event.payload.comment.body}"
+    when "CreateEvent"
+      ""
+    when "DeleteEvent"
+      ""
+    when "DownloadEvent"
+      ""
+    when "FollowEvent"
+      ""
+    when "ForkEvent"
+      ""
+    when "ForkApplyEvent"
+     ""
+    when "GistEvent"
+      ""
+    when "GollumEvent"
+      ""
+    when "IssueCommentEvent"
+      ""
+    when "IssuesEvent"
+      ""
+    when "MemberEvent"
+      ""
+    when "PublicEvent"
+      ""
+    when "PullRequestEvent"
+      ""
+    when "PushEvent"
+      ""
+    when "TeamAddEvent"
+      ""
+    when "WatchEvent"
+      ""
+    end
   end
 
 end
