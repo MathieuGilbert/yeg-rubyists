@@ -5,7 +5,7 @@
 
 :javascript
   $(function() {    
-    window.router = new app.Routers.PagesRouter({ tweets:     #{@tweets.to_json({:methods => :member_name}).html_safe},
+    window.router = new app.Routers.PagesRouter({ tweets:     #{@tweets.to_json({:methods => :twitter_member}).html_safe},
                                                   git_events: #{@tweets.to_json.html_safe},
                                                   blog_posts: #{@blog_posts.to_json.html_safe} });
     Backbone.history.start();
