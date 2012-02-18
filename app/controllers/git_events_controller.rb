@@ -11,15 +11,15 @@ class GitEventsController < ApplicationController
   end
 
   # Create github app
-  # Now your "shell account" (yegrubyists int his case) needs to be authenticated to the app
+  # Now your "shell account" (yegrubyists in this case) needs to be authenticated to the app
   # Comment out the routes to these
   # Go to url/authorize to auth your github account
   # make sure your github app callbacks are setup correctly
   # once a key is gotten it should last forever (it would be something that you'd store in the DB)
-  # yegrubyists current oauth token is this: d6acbd3b44a8cd51ed3b368233756519192061d4
+  # yegrubyists current oauth token is this: 976899e48b64482df1c6062f0416b4f10f6e139c
   def authorize
     @github = Github.new
-    address = @github.authorize_url :redirect_uri => 'http://96.52.188.123:3000/github_auth'
+    address = @github.authorize_url :redirect_uri => 'http://96.52.188.123:3000/github_auth', :scope =>  'user'
     redirect_to address
   end
 
