@@ -9,7 +9,7 @@ class TweetsController < ApplicationController
     tweets = Tweet.where('date > ?', params[:date]).order("date DESC")
         
     respond_with(tweets) do |format|
-      format.json { render :json => tweets({:methods => :member_name}) }
+      format.json { render :json => tweets({:methods => :twitter_member}) }
     end
   end
   
@@ -18,7 +18,7 @@ class TweetsController < ApplicationController
     tweet = Tweet.find(params[:id])
     
     respond_with(tweet) do |format|
-      format.json { render :json => tweet.to_json({:methods => :member_name}) }
+      format.json { render :json => tweet.to_json({:methods => :twitter_member}) }
     end
   end
 end

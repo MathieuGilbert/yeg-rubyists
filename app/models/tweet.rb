@@ -4,7 +4,7 @@ class Tweet < ActiveRecord::Base
   belongs_to :member
   validates :date, :content, :url, :since_id, :member_id, :presence => true  
   
-  def member_name
-    member.twitter
+  def twitter_member
+    member
   end
 end
