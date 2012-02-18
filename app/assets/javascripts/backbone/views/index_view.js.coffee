@@ -20,7 +20,7 @@ class app.Views.Tweets.IndexView extends Backbone.View
     $(@el).html(@template(tweets: @options.tweets.toJSON() ))
     @addAll()
 
-    return this
+    return @
 
 class app.Views.GitEvents.IndexView extends Backbone.View
   template: JST["backbone/templates/git_events/index"]

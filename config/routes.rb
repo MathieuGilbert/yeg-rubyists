@@ -6,7 +6,8 @@ YegRubyists::Application.routes.draw do
   get '/blog_posts' => 'blog_posts#index'
   get '/admin'   => 'members#administer'
   put '/approve' => 'members#approve'
-
+  
+  match '/tweets/:id' => 'tweets#show'
 
   root :to => 'pages#index'
 
