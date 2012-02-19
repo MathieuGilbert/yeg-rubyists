@@ -169,30 +169,25 @@ private
     start_date = last_event.nil? ? DateTime.now - 1.year : last_event.date
     puts "~~~~~~~~~~-- start: #{start_date}"
     # get all events
-    puts github
-    #events = github.events.fuuuuuu("MathieuGilbert")
-    events = []
+    events = github.events.received("MathieuGilbert")
+
+    filtered_events = []
     puts "got #{events.count} of them"
+
     # filter on event type
-    events = events.reject!{ |event| !report_on.include?(event.type) }
+    events.each do |event|
+      events.delete(event) unless report_on.include?(event.type)
+    end
+
+
     puts "filtered on type... still have #{events.count} left"
     # filter on date
     puts "-- first date: #{events.find_all.first.created_at}"
     
     events.each do |event|
-      if !event.created_at.nil? && DateTime.parse(event.created_at) <= start_date
-        puts "YES.... #{DateTime.parse(event.created_at)}"
-      else
-        puts "ELSE.....#{DateTime.parse(event.created_at)}"
-        if event.created_at.nil?
-          puts "WTF"
-        else
-          puts "NO"
-        end
-      end
+      events.delete(event) unless Time.parse(event.created_at) > start_date
     end
 
-    #events = events.reject!{ |event| Time.parse(event.created_at) <= start_date }
     puts "filtered on date... still have #{events.count} left"
     return events
   end
