@@ -59,5 +59,7 @@ module YegRubyists
     # When JSON-encoding a record, don't wrap the attributes in a hash where the
     # key is named after the model
     config.active_record.include_root_in_json = false
+
+    
   end
 end

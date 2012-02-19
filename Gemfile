@@ -7,6 +7,7 @@ gem 'devise'
 gem 'simple-rss'
 gem 'twitter'
 gem 'github_api'
+gem 'haml'
 
 # Backbone helper (mostly used for js libs)
 gem 'rails-backbone'
@@ -28,7 +29,6 @@ end
 
 group :development do
   gem 'sqlite3'
-  gem 'rspec-rails', '2.8.1'
   gem 'faker', '1.0.1'
   gem 'jasminerice'
   
@@ -45,6 +45,7 @@ end
 group :test do
   gem 'sqlite3'
   gem 'rspec', '2.8.0'
+  gem 'rspec-rails', '2.8.1'
   gem 'factory_girl_rails', '1.6.0'
 end
 

@@ -202,6 +202,7 @@ DEPENDENCIES
   guard
   guard-livereload
   guard-rspec
+  haml
   heroku
   jasminerice
   jquery-rails

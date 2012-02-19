@@ -35,7 +35,7 @@ FactoryGirl.define do
   end
   
   factory :date_in_last_month do
-    Time.now - (rand * 60 * 60 * 24 * 30)
+    Time.now
   end
 end
 
