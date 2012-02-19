@@ -15,10 +15,10 @@ class DataParser
         self.update_tweets(members)
         
         # update git_events table
-        #self.update_git_events(members)
+        self.update_git_events(members)
         
         # update blog_posts table
-        #self.update_blog_posts
+        self.update_blog_posts
       end
 
       last_update.update_attributes({:time => DateTime.now.new_offset(0)})
@@ -164,9 +164,10 @@ private
 
     # if none, use 1 year ago as starting point
     start_date = last_event.nil? ? DateTime.now - 1.year : last_event.date
-    puts "-- start: #{start_date}"
+    puts "~~~~~~~~~~-- start: #{start_date}"
     # get all events
-    events = github.events.received('yegrubyists')
+    puts github
+    events = github.events.received("MathieuGilbert")
     puts "got #{events.count} of them"
     # filter on event type
     events = events.reject!{ |event| !report_on.include?(event.type) }
