@@ -17,16 +17,6 @@ class MembersController < ApplicationController
       add_to_twitter_list(member)
     end
     
-    # github here
-    if !member.github.empty?
-      
-    end
-    
-    # blog here
-    if !member.blogrss.empty?
-
-    end
-    
     member.update_attributes({:status => 'approved'})
     
     redirect_to(admin_path)
