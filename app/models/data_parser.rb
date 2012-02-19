@@ -3,7 +3,7 @@ class DataParser
   def self.update_data
     last_update = self.get_lastest_update
     
-    # Check when the last update has been fired, if it's > 2 minutes, it can fire again
+    # Check when the last update has been fired, if it's > X seconds, it can fire again
     # This is to to prevent getting banned from the service APIs
     if last_update.time < (DateTime.now.new_offset(0) - 30.seconds)
       # grab all of the members
@@ -73,34 +73,22 @@ class DataParser
 
   def self.update_git_events(members)
     begin
-      # get all events of type we care about
-      events = self.get_git_events(["PushEvent"])
+      # get list of GitHubbists
+      githubbists = Member.where("github is not null")
 
-      # go through each event
-      events.each do |event|
-        # find the matching member
-        members.each do |member|
-          match_found = false
+      # update their feeds
+      githubbists.each do |member|
+        # get member's recent events (of types we care about)
+        events = self.get_git_events(member, ["PushEvent"])
 
-          if member.github.casecmp(event.actor.login) == 0
-            # build an appropriate message based on the type of event
+        # write event to DB
+        events.each do |event|
+          message = CGI.unescapeHTML(event.content.to_s)
+          url = "www.lol-not-needed.xxx"
 
-            if event.payload.commits.nil?
-              message = "#{event} slipped through"
-              url = "#"
-            else
-              message = event.payload.commits[0].message
-              url = self.get_repo_url(event.payload.commits[0].url)
-            end
-
-            # save event to DB
-            member.git_events.create!( :date  => event.created_at,
-                                       :event => message,
-                                       :url   => url)
-            match_found = true
-          end
-
-          break if match_found
+          member.git_events.create!( :date => event.updated,
+                                     :event => message,
+                                     :url => url )
         end
       end      
     rescue => ex
@@ -116,21 +104,8 @@ class DataParser
       
       # loop through members
       bloggers.each do |blogger|
-        # get most recent blog_post in db by this member
-        last_post = blogger.blog_posts.order("date desc").first
-        
-        # get member's blog feed
-        feed_url = blogger.blogrss
-        rest = RestClient::Resource.new feed_url
-        feed = SimpleRSS.parse(rest.get)
-          
-        if last_post.nil?
-          # get all posts
-          posts = feed.items
-        else
-          # filter feed for posts more recent than latest in db
-          posts = feed.items.find_all{ |item| item.updated > last_post.date }
-        end
+        # get member's recent posts
+        posts = self.get_blog_posts(blogger)
         
         # write feed posts to db
         posts.each do |post|
@@ -140,8 +115,9 @@ class DataParser
                                       :url     => post.link )
         end
       end
-    rescue
+    rescue => ex
       puts 'blog_posts failed!!'
+      puts ex.inspect
     end
   end
   
@@ -160,30 +136,45 @@ private
     last_update
   end
 
-  def self.get_repo_url(commit_url)
-    commit_url.gsub(/^.*\/repos/i, "https://github.com").gsub(/\/commits\/.*/i, "")
-  end
+  def self.get_git_events(member, report_on)
+    # get member's feed
+    feed_url = "https://github.com/#{member.github}.atom" 
+    rest_client = RestClient::Resource.new feed_url
+    feed = SimpleRSS.parse(rest_client.get)
 
-  def self.get_git_events(report_on)
-    # create GitHub client
-    github = Github::new
+    # get member's last event in the DB
+    last_event = member.git_events.order("date DESC").first
 
-    # get the most recent event in DB
-    last_event = GitEvent.order("date DESC").first
-
-    # if none, use 1 year ago as starting point
-    start_date = last_event.nil? ? DateTime.now - 1.year : last_event.date
-
-    # get all events
-    events = github.events.received("yegrubyists")
-
-    # filter on event type
-    events.delete_if{ |event| !report_on.include?(event.type) }
-
-    # filter on date
-    events.delete_if{ |event| Time.parse(event.created_at) <= start_date }
+    if last_event.nil?
+      # no existing events, get all
+      events = feed.items
+    else
+      # only include most recent events
+      events = feed.items.find_all{ |item| item.updated > last_event.date &&
+                                           item.id.include?("PushEvent") }
+    end
 
     return events
+  end
+
+  def self.get_blog_posts(member)
+    # get member's blog feed
+    feed_url = member.blogrss
+    rest = RestClient::Resource.new feed_url
+    feed = SimpleRSS.parse(rest.get)
+
+    # get most recent blog_post in db by this member
+    last_post = member.blog_posts.order("date desc").first
+
+    if last_post.nil?
+      # get all posts
+      posts = feed.items
+    else
+      # filter feed for posts more recent than latest in db
+      posts = feed.items.find_all{ |item| item.updated > last_post.date }
+    end
+
+    return posts
   end
 
 
