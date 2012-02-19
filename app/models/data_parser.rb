@@ -146,8 +146,9 @@ private
     repo_url = html[s..e]
     repo_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
     
+    # want last commit message (rindex)... if 2, the first is a merge to master, not intended commit
     str = "committed"
-    x = html.index(str) + str.length
+    x = html.rindex(str) + str.length
     s = html.index("<a", x)
     str = ">"
     e = html.index(str, s) + str.length - 1
