@@ -12,15 +12,12 @@ class DataParser
       # make sure we have members to match against
       if !members.empty?
         # update tweets table
-        puts "~~~~~rofldating tweets"
         self.update_tweets(members)
         
         # update git_events table
-        puts "~~~~~rofldating gits"
         self.update_git_events(members)
         
         # update blog_posts table
-        puts "~~~~~rofldating blogs"
         self.update_blog_posts
       end
 
@@ -76,9 +73,8 @@ class DataParser
 
   def self.update_git_events(members)
     begin
-      puts "starting"
+      # get all events of type we care about
       events = self.get_git_events(["PushEvent"])
-      puts "found #{events.count} events"
 
       # go through each event
       events.each do |event|
@@ -88,22 +84,28 @@ class DataParser
 
           if member.github.casecmp(event.actor.login) == 0
             # build an appropriate message based on the type of event
-            message = "#{member.name} committed!"
+
+            if event.payload.commits.nil?
+              message = "#{event} slipped through"
+              url = "#"
+            else
+              message = event.payload.commits[0].message
+              url = self.get_repo_url(event.payload.commits[0].url)
+            end
 
             # save event to DB
             member.git_events.create!( :date  => event.created_at,
                                        :event => message,
-                                       :url   => "www.irrelevent.com")
+                                       :url   => url)
             match_found = true
           end
 
           break if match_found
         end
-
-      end
-        
-    rescue
+      end      
+    rescue => ex
       puts 'git_events failed!!'
+      puts ex.inspect
     end
   end
   
@@ -158,6 +160,10 @@ private
     last_update
   end
 
+  def self.get_repo_url(commit_url)
+    commit_url.gsub(/^.*\/repos/i, "https://github.com").gsub(/\/commits\/.*/i, "")
+  end
+
   def self.get_git_events(report_on)
     # create GitHub client
     github = Github::new
@@ -167,28 +173,16 @@ private
 
     # if none, use 1 year ago as starting point
     start_date = last_event.nil? ? DateTime.now - 1.year : last_event.date
-    puts "~~~~~~~~~~-- start: #{start_date}"
-    # get all events
-    events = github.events.received("MathieuGilbert")
 
-    filtered_events = []
-    puts "got #{events.count} of them"
+    # get all events
+    events = github.events.received("yegrubyists")
 
     # filter on event type
-    events.each do |event|
-      events.delete(event) unless report_on.include?(event.type)
-    end
+    events.delete_if{ |event| !report_on.include?(event.type) }
 
-
-    puts "filtered on type... still have #{events.count} left"
     # filter on date
-    puts "-- first date: #{events.find_all.first.created_at}"
-    
-    events.each do |event|
-      events.delete(event) unless Time.parse(event.created_at) > start_date
-    end
+    events.delete_if{ |event| Time.parse(event.created_at) <= start_date }
 
-    puts "filtered on date... still have #{events.count} left"
     return events
   end
 
