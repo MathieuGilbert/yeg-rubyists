@@ -30,6 +30,27 @@ footer {
   clear: both;
 }
 
+.memberSection {
+  font-weight: bold;
+
+  .name {
+    cursor: pointer;
+  }
+
+  .memberPopup {
+    font-weight: normal;
+    display: none;
+    position: relative;
+    bottom: 50px;
+    left: 50px;
+    border: 1px solid #222;
+    background-color: #edd;
+    width: 200px;
+    z-index: 99;
+  }
+}
+
+
 
 /* Webkit scroll bar hackery */
 

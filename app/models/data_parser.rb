@@ -12,12 +12,15 @@ class DataParser
       # make sure we have members to match against
       if !members.empty?
         # update tweets table
+        puts "~~~~~rofldating tweets"
         self.update_tweets(members)
         
         # update git_events table
+        puts "~~~~~rofldating gits"
         self.update_git_events(members)
         
         # update blog_posts table
+        puts "~~~~~rofldating blogs"
         self.update_blog_posts
       end
 
@@ -167,7 +170,8 @@ private
     puts "~~~~~~~~~~-- start: #{start_date}"
     # get all events
     puts github
-    events = github.events.received("MathieuGilbert")
+    #events = github.events.fuuuuuu("MathieuGilbert")
+    events = []
     puts "got #{events.count} of them"
     # filter on event type
     events = events.reject!{ |event| !report_on.include?(event.type) }

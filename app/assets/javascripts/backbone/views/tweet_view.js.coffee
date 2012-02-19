@@ -4,8 +4,7 @@ class app.Views.Tweets.TweetView extends Backbone.View
   template: JST["backbone/templates/tweets/tweet"]
 
   render: ->
-    tweet_partial = @template(@model.toJSON())
-    $(@el).html(@member_partial(@model) + tweet_partial)
+    $(@el).html(@member_partial(@model) + @template(@model.toJSON()))
     return @
 
   member_partial: (model) ->

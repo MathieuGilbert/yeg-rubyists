@@ -1,1 +1,17 @@
-<span class='name'>Name: <strong><%= name %></strong> (<%= twitter %>)</span><br/>
+<div class='memberSection' onclick="ShowPopup(this)">
+  <span class='name'><%= name %></span>
+
+  <div class='memberPopup'>
+    <strong>Name: </strong><%= name %><br/>
+    <strong>Twitter: </strong><%= twitter %><br/>
+    <strong>GitHub: </strong><%= github %><br/>
+    <strong>Blog: </strong><%= blogrss %><br/>
+  </div>
+</div>
+
+<script>
+  function ShowPopup(parent) {
+    var target = parent.querySelector(".memberPopup");
+    parent.querySelector(".memberPopup").style.display = 'block';
+  }
+</script>
