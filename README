@@ -11,9 +11,8 @@ Notes:
 To get started:
 rake db:make_admins
 rails c -> DataParser.update_data
-
 Anything to do with time has to be in utc
-
-Pull Request:
 bundle exec rspec spec/
 
+TODO:
+Remove main.js from everything but pages index
