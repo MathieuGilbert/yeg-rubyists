@@ -5,4 +5,7 @@ class BlogPost < ActiveRecord::Base
   
   validates :title, :summary, :date, :url, :member_id,  :presence => true
 
+  def blog_member
+    member
+  end
 end
