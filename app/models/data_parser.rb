@@ -83,7 +83,7 @@ class DataParser
 
         # write event to DB
         events.each do |event|
-          message = CGI.unescapeHTML(event.content.to_s)
+          message = self.parse_event_message(CGI.unescapeHTML(event.content.to_s.force_encoding 'utf-8'))
           url = "www.lol-not-needed.xxx"
 
           member.git_events.create!( :date => event.updated,
@@ -136,6 +136,34 @@ private
     last_update
   end
 
+  def self.parse_event_message(html)
+    # this is a block of html tags... grunt it out
+    str = "to master at"
+    x = html.index(str) + str.length
+    s = html.index("<a", x)
+    str = "</a>"
+    e = html.index(str, s) + str.length
+    repo_url = html[s..e]
+    repo_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
+    
+    str = "committed"
+    x = html.index(str) + str.length
+    s = html.index("<a", x)
+    str = ">"
+    e = html.index(str, s) + str.length - 1
+    commit_url = html[s..e]
+    commit_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
+    commit_url += "Committed</a>"
+
+    str = "<blockquote>"
+    s = html.index(str, e) + str.length
+    str = "</blockquote>"
+    e = html.index(str, s) - 1
+    commit_message = html[s..e]
+
+    return commit_url + " to " + repo_url + ":<br/>" + commit_message
+  end
+
   def self.get_git_events(member, report_on)
     # get member's feed
     feed_url = "https://github.com/#{member.github}.atom" 
@@ -150,9 +178,11 @@ private
       events = feed.items
     else
       # only include most recent events
-      events = feed.items.find_all{ |item| item.updated > last_event.date &&
-                                           item.id.include?("PushEvent") }
+      events = feed.items.find_all{ |item| item.updated > last_event.date }
     end
+
+    # only include commits
+    events.delete_if{ |event| !event.id.include?("PushEvent") }
 
     return events
   end
