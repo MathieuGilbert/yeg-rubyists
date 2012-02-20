@@ -22,7 +22,6 @@ FactoryGirl.define do
   factory :git_event do
     date        :date_in_last_month
     event       "Pushed to some/repo"
-    url         "http://www.github.com/sample"
     association :member
   end
   

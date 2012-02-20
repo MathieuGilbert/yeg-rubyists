@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120216205500) do
+ActiveRecord::Schema.define(:version => 20120220032309) do
 
   create_table "blog_posts", :force => true do |t|
     t.string   "title"
@@ -33,9 +33,11 @@ ActiveRecord::Schema.define(:version => 20120216205500) do
   end
 
   create_table "last_updates", :force => true do |t|
-    t.datetime "time"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "tweet_update"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.datetime "git_update"
+    t.datetime "blog_update"
   end
 
   create_table "members", :force => true do |t|

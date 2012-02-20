@@ -4,8 +4,7 @@ describe GitEvent do
   before(:each) do
     @member = Factory(:member)
     @attr = { :date => Time.at(rand * Time.now.to_i),
-              :event => "Pushed to project waffle/sauce.",
-              :url => "http://www.github.com/sample" }
+              :event => "Pushed to project waffle/sauce." }
   end
   
   it "should create an instance given valid attributes" do
@@ -18,10 +17,6 @@ describe GitEvent do
   
   it "should require an event" do
     @member.git_events.build(@attr.merge(:event => "")).should_not be_valid
-  end
-  
-  it "should require a url" do
-    @member.git_events.build(@attr.merge(:url => "")).should_not be_valid
   end
     
   it "should require an associated member" do

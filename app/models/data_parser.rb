@@ -2,10 +2,15 @@
 class DataParser
   def self.update_data
     last_update = self.get_lastest_update
+    twitter_frequency = 30.seconds
+    github_frequency = 2.minutes
+    blog_frequency = 2.minutes
     
     # Check when the last update has been fired, if it's > X seconds, it can fire again
     # This is to to prevent getting banned from the service APIs
-    if last_update.time < (DateTime.now.new_offset(0) - 30.seconds)
+
+    # twitter
+    if last_update.tweet_update < (DateTime.now.new_offset(0) - twitter_frequency)
       # grab all of the members
       members = Member.all
 
@@ -13,33 +18,30 @@ class DataParser
       if !members.empty?
         # update tweets table
         self.update_tweets(members)
-        
-        # update git_events table
-        self.update_git_events(members)
-        
-        # update blog_posts table
-        self.update_blog_posts
       end
 
-      last_update.update_attributes({:time => DateTime.now.new_offset(0)})
+      last_update.update_attributes({:tweet_update => DateTime.now.new_offset(0)})
     end
+
+    # github
+    if last_update.git_update < (DateTime.now.new_offset(0) - github_frequency)
+      # update git_events table
+      self.update_git_events
+      last_update.update_attributes({:git_update => DateTime.now.new_offset(0)})
+    end
+
+    # blogs
+    if last_update.blog_update < (DateTime.now.new_offset(0) - blog_frequency)
+      # update blog_posts table
+      self.update_blog_posts
+      last_update.update_attributes({:blog_update => DateTime.now.new_offset(0)})
+    end
+    
   end
 
   def self.update_tweets(members)
     begin
-      # create twitter client
-      twitter = Twitter::Client.new
-
-      # grab the most recent tweet
-      last_updated_tweet = Tweet.order("since_id desc").first
-      
-      # If there are no since_id's in the db, we go and get all of the possible tweets
-      if last_updated_tweet.nil?
-        twitter_list = twitter.list_timeline('yegrb-members')
-      else
-        # grab the newest tweets from the yeg-members list based on the since_id
-        twitter_list = twitter.list_timeline('yegrb-members', {:since_id => last_updated_tweet.since_id, :include_rts => true})
-      end
+      twitter_list = self.get_tweets
 
       # loop through each new tweet
       twitter_list.each do |new_tweet|
@@ -71,7 +73,7 @@ class DataParser
     end 
   end
 
-  def self.update_git_events(members)
+  def self.update_git_events
     begin
       # get list of GitHubbists
       githubbists = Member.where("github is not null")
@@ -134,6 +136,24 @@ private
     end
     
     last_update
+  end
+
+  def self.get_tweets
+    # create twitter client
+    twitter = Twitter::Client.new
+
+    # grab the most recent tweet
+    last_updated_tweet = Tweet.order("since_id desc").first
+    
+    # If there are no since_id's in the db, we go and get all of the possible tweets
+    if last_updated_tweet.nil?
+      twitter_list = twitter.list_timeline('yegrb-members')
+    else
+      # grab the newest tweets from the yeg-members list based on the since_id
+      twitter_list = twitter.list_timeline('yegrb-members', {:since_id => last_updated_tweet.since_id, :include_rts => true})
+    end
+    
+    return twitter_list
   end
 
   def self.parse_event_message(html)
