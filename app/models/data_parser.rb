@@ -100,6 +100,9 @@ class DataParser
     begin
       # get list of members who have blogs
       bloggers = Member.where("blogrss is not null")
+
+      # define max summary length to display
+      max_length = 100
       
       # loop through members
       bloggers.each do |blogger|
@@ -108,8 +111,11 @@ class DataParser
         
         # write feed posts to db
         posts.each do |post|
+          summary = CGI.unescapeHTML(post.summary)
+          summary = "#{summary[0..max_length-4]}..." if summary.length > max_length
+
           blogger.blog_posts.create!( :title   => post.title,
-                                      :summary => post.summary,
+                                      :summary => summary,
                                       :date    => post.updated.utc,
                                       :url     => post.link )
         end
