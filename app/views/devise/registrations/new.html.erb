@@ -1,10 +1,13 @@
+<%= javascript_include_tag "members/sign_up" %>
 <h2>Sign up</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:novalidate => 'novalidate'}) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label :name %><br />
-    <%= f.text_field :name %></div>
+    <%= f.text_field :name, :data => {:remote => true}, "data-url" => "/members/check_username", "data-type" => :json%>
+    <span id="username_check">&nbsp;</span>
+  </div>
     
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>

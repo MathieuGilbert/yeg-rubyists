@@ -205,7 +205,7 @@ DEPENDENCIES
   haml
   heroku
   jasminerice
-  jquery-rails
+  jquery-rails (>= 1.0.12)
   pg
   rails (= 3.2.0)
   rails-backbone

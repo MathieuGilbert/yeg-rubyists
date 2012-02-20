@@ -1,5 +1,7 @@
 class MembersController < ApplicationController
-  before_filter :authenticate_member!
+  respond_to :html, :json
+
+  before_filter :authenticate_member!, :only => [:administer, :approve]
   before_filter :admin_member, :only => [:administer]
   
   def administer
@@ -21,7 +23,15 @@ class MembersController < ApplicationController
     
     redirect_to(admin_path)
   end
-
+  
+  # method to make sure the username is unique
+  def check_username
+    puts params.to_json
+    @member = Member.find_by_name(params[:member][:name])
+    puts @member.to_json
+    respond_with(@member)
+  end
+  
   private
     def admin_member
       redirect_to(root_path) unless current_member.admin?

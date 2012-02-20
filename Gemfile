@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.0'
 gem 'heroku'
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 1.0.12'
 gem 'devise'
 gem 'simple-rss'
 gem 'twitter'
