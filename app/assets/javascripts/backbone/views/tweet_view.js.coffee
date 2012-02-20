@@ -3,6 +3,8 @@ app.Views.Tweets ||= {}
 class app.Views.Tweets.TweetView extends Backbone.View
   template: JST["backbone/templates/tweets/tweet"]
 
+  tagName: "li"
+
   render: ->
     $(@el).html(@member_partial(@model) + @template(@model.toJSON()))
     return @

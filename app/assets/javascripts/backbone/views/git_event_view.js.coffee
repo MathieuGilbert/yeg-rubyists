@@ -3,6 +3,8 @@ app.Views.GitEvents ||= {}
 class app.Views.GitEvents.GitEventView extends Backbone.View
   template: JST["backbone/templates/git_events/git_event"]
 
+  tagName: "li"
+
   render: ->
     $(@el).html(@member_partial(@model) + @template(@model.toJSON()))
     return @

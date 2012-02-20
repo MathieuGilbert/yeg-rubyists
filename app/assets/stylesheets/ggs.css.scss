@@ -15,7 +15,15 @@ $font-size: 16;
 $em: $font-size * 1;
 
 @mixin grid-base($shift) {
-  font-size: #{($font-size + $shift) / $em}em;
+  body {
+    font-size: #{($font-size + $shift) / $em}em;
+  }
+}
+
+@mixin side-margin($margin) {
+  header, .feeds {
+    margin: 0 $margin;
+  }
 }
 
 /* Margin, padding, and border resets except for form elements */
@@ -161,10 +169,14 @@ body {
   float: left;
   width: $column*18;
 }
-  
-header, footer, .feeds {
-  margin: 0 $column;
+
+footer {
+  .label {
+    display: none;
+  }
 }
+  
+@include side-margin($column);
 
 h1, h2 {
   margin: (#{24/26}em) 0 (#{36/26}em);
@@ -203,7 +215,7 @@ h3 {
 .ie body {
   width: #{640/$em}em;
   margin: 0 auto;
-  @include grid-base(1);
+  font-size: #{($font-size + 1) / $em}em;
 }
 
 .ie h1 {
@@ -211,29 +223,25 @@ h3 {
   margin: (48/42*1em) 0 (24/42*1em);
 }
 
+/* @media screen and (min-width: 260px) */
+@media screen and (min-width: 16.25em) {
+  footer {
+    .label {
+      display: block;
+    }
+  }
+}
 
 /* @media screen and (min-width: 480px) */
 @media screen and (min-width: 30.0em) {
-  body {
-    @include grid-base(0);
-  }
-  
-  header, footer, .feeds {
-    margin: 0 $column*5;
-  }
+  @include grid-base(0); 
+  @include side-margin($column*5);
 }
 
 /* @media screen and (min-width: 640px) */
 @media screen and (min-width: 40em) {
-
-  body {
-    @include grid-base(0);
-  }
-
-  header, footer, .feeds {
-    margin: 0 $column*5;
-  }
-
+  @include grid-base(0);
+  @include side-margin($column*5);
 }
 
 /*
@@ -253,81 +261,43 @@ h3 {
     width: $column*6;
   }
   
-  body {
-    @include grid-base(1);
-  }
-  
-  header, footer, .feeds {
-    margin: 0 $column;
-  }
+  @include grid-base(1);
+  @include side-margin($column);
 }
 
 
 /* @media screen and (min-width: 888px) */
 @media screen and (min-width: 55.5em) {
-  body {
-    @include grid-base(0);
-  }
-  
-  header, footer, .feeds {
-    margin: 0 $column;
-  }
+  @include grid-base(0);
+  @include side-margin($column);
 }
 
 
 /* @media screen and (min-width: 984px) */
 @media screen and (min-width: 61.5em) {
-
-  body {
-    @include grid-base(1);
-  }
-
-  header, footer, .feeds {
-    margin: 0 $column;
-  }
-
+  @include grid-base(1);
+  @include side-margin($column);
 }
 
 
 /* @media screen and (min-width: 1200px) */
 @media screen and (min-width: 75em) {
-
-  body {
-    @include grid-base(0);
-  }
-  
-  header, footer, .feeds {
-    margin: 0 $column*3;
-  }
-
+  @include grid-base(0);
+  @include side-margin($column*3);
 }
 
 
 /* @media screen and (min-width: 1392px) */
 @media screen and (min-width: 87em) {
-
-  body {
-    @include grid-base(1);
-  }
-
-  header, footer, .feeds {
-    margin: 0 $column*3;
-  }
-
+  @include grid-base(1);
+  @include side-margin($column*3);
 }
 
 
 /* @media screen and (min-width: 1680px) */
 @media screen and (min-width: 105em) {
-
-  body {
-    @include grid-base(0);
-  }
-  
-  header, footer, .feeds {
-    margin: 0 $column*3;
-  }
-
+  @include grid-base(0);
+  @include side-margin($column*3);
 }
 
 
@@ -348,25 +318,16 @@ h3 {
     width: $column*6;
   }
   
-  header, footer, .feeds {
-    margin: 0 $column*1;
-  }
-
-  body {
-    @include grid-base(1);
-  }
-
+  @include grid-base(1);
+  @include side-margin($column);
 }
 
 
 /* @media screen and (min-width: 2080px) */
 @media screen and (min-width: 130em) {
   body {
-    @include grid-base(2);
     max-width: (2560/$em)em;
   }
-
-  header, footer, .feeds {
-    margin: 0 $column*1;
-  }
+  @include grid-base(2);
+  @include side-margin($column);
 }
