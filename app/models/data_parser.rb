@@ -41,19 +41,17 @@ class DataParser
 
   def self.update_tweets(members)
     begin
+      # get list of new tweets
       twitter_list = self.get_tweets
 
       # loop through each new tweet
       twitter_list.each do |new_tweet|
-
         # compare the tweet user name vs the new tweet username
         members.each do |member|
           tweet_found = false
 
           # check if usernames are equal (case insensitive)
           if member.twitter.casecmp(new_tweet.user.screen_name) == 0
-            
-            # https://twitter.com/fnichol/status/170273083112947713
             # create tweet
             member.tweets.create!({
               :date     => Time.parse(new_tweet.created_at.to_s).utc,
@@ -68,8 +66,9 @@ class DataParser
           break if tweet_found == true
         end
       end
-    rescue
+    rescue => ex
       puts 'twitter failed!!'
+      puts ex.inspect
     end 
   end
 
@@ -86,11 +85,9 @@ class DataParser
         # write event to DB
         events.each do |event|
           message = self.parse_event_message(CGI.unescapeHTML(event.content.to_s.force_encoding 'utf-8'))
-          url = "www.lol-not-needed.xxx"
 
           member.git_events.create!( :date => event.updated,
-                                     :event => message,
-                                     :url => url )
+                                     :event => message)
         end
       end      
     rescue => ex
@@ -132,7 +129,10 @@ private
     # Make sure the last update exists
     if last_update.nil?
       # set the last update to today - 30 days (to get all the most recent items)
-      last_update = LastUpdate.create!({:time => DateTime.now.new_offset(0) - 30.days})
+      update_time = DateTime.now.new_offset(0) - 30.days
+      last_update = LastUpdate.create!({ :tweet_update => update_time,
+                                         :git_update => update_time,
+                                         :blog_update => update_time })
     end
     
     last_update
@@ -166,23 +166,35 @@ private
     repo_url = html[s..e]
     repo_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
     
-    # want last commit message (rindex)... if 2, the first is a merge to master, not intended commit
+    message = "Push to #{repo_url}!"
+
+    # want ALL commit messages
     str = "committed"
-    x = html.rindex(str) + str.length
-    s = html.index("<a", x)
-    str = ">"
-    e = html.index(str, s) + str.length - 1
-    commit_url = html[s..e]
-    commit_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
-    commit_url += "Committed</a>"
+    x = html.index(str)
 
-    str = "<blockquote>"
-    s = html.index(str, e) + str.length
-    str = "</blockquote>"
-    e = html.index(str, s) - 1
-    commit_message = html[s..e]
+    while !x.nil? do
+      x += str.length
+      s = html.index("<a", x)
+      str = ">"
+      e = html.index(str, s) + str.length - 1
+      commit_url = "&#8220;#{html[s..e]}"
+      commit_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
+      
+      str = "<blockquote>"
+      s = html.index(str, e) + str.length
+      str = "</blockquote>"
+      e = html.index(str, s) - 1
+      commit_message = html[s..e]
 
-    return commit_url + " to " + repo_url + ":<br/>" + commit_message
+      commit_url += "#{commit_message}</a>&#8221;"
+
+      message += "<br/>#{commit_url}"
+      
+      str = "committed"
+      x = html.index(str, e)
+    end
+
+    return message    
   end
 
   def self.get_git_events(member, report_on)
@@ -226,47 +238,6 @@ private
     end
 
     return posts
-  end
-
-
-  def self.event_message(event)
-    # listing: http://developer.github.com/v3/events/types/
-    case event.type
-    when "CommitComment"
-      "commented on #{event.payload.comment.url}: #{event.payload.comment.body}"
-    when "CreateEvent"
-      ""
-    when "DeleteEvent"
-      ""
-    when "DownloadEvent"
-      ""
-    when "FollowEvent"
-      ""
-    when "ForkEvent"
-      ""
-    when "ForkApplyEvent"
-     ""
-    when "GistEvent"
-      ""
-    when "GollumEvent"
-      ""
-    when "IssueCommentEvent"
-      ""
-    when "IssuesEvent"
-      ""
-    when "MemberEvent"
-      ""
-    when "PublicEvent"
-      ""
-    when "PullRequestEvent"
-      ""
-    when "PushEvent"
-      ""
-    when "TeamAddEvent"
-      ""
-    when "WatchEvent"
-      ""
-    end
   end
 
 end
