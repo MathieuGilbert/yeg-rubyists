@@ -1,21 +1,18 @@
-Follow Twitter user on approve member
-
-Sign up - validate Twitter account
-
-Sign up - validate Github account
-
-Sign up - validate Blog url
-
+TODO:
+Sign up - validate Twitter account - RJ
+Sign up - validate Github account - RJ
+Sign up - validate Blog url - RJ
 Design header
-
 Design footer
-
 Pretty up Twitter feed
-
 Pretty up Github feed
-
 Pretty up Blog feed
-
 Pretty up overall feed
-
 Add more Jasmine tests
+
+COMPLETED:
+Follow Twitter user on approve member -> done via OAuth
+
+
+
+
