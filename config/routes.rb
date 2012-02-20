@@ -1,6 +1,6 @@
 YegRubyists::Application.routes.draw do
-  devise_for :members
-
+  devise_for :members, :controllers => {:registrations => "registrations"}
+  
   get '/tweets'  => 'tweets#index'
   get '/git_events' => 'git_events#index'
   get '/blog_posts' => 'blog_posts#index'

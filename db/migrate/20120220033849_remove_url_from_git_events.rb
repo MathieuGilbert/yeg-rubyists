@@ -1,5 +1,5 @@
 class RemoveUrlFromGitEvents < ActiveRecord::Migration
-  def change
-    drop_column :git_events, :url
+  def self.up
+    remove_column :git_events, :url
   end
 end
