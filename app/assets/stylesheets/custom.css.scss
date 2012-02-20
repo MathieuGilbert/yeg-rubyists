@@ -2,6 +2,21 @@ $feed-color: #eebbcc;
 $twitter-color: #5588dd;
 $github-color: #88dd55;
 $blog-color: #dd5588;
+$feed-height: 500px;
+
+@mixin list-style($color) {
+  background-color: $color;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  li {
+    background-color: lighten($color, 10%);
+    opacity: 0.7;
+  }
+  li:hover {
+    background-color: darken($color, 10%);
+  }
+}
 
 body {
   font-family: Verdana, Helvetica, Arial;
@@ -13,31 +28,18 @@ header, footer {
 }
 
 #twitter {
-  background-color: $twitter-color;
-  li {
-    background-color: lighten($twitter-color, 10%);
-  }
-  li:hover {
-    background-color: darken($twitter-color, 10%);
-  }
+  background-image: url("twitter_newbird_blue.png");
+  @include list-style($twitter-color);
 }
+
 #github {
-  background-color: $github-color;
-  li {
-    background-color: lighten($github-color, 10%);
-  }
-  li:hover {
-    background-color: darken($github-color, 10%);
-  }
+  background-image: url("octocat_gems.png");
+  @include list-style($github-color);
 }
+
 #blogrss {
-  background-color: $blog-color;
-  li {
-    background-color: lighten($blog-color, 10%);
-  }
-  li:hover {
-    background-color: darken($blog-color, 10%);
-  }
+  background-image: url("Feeds_256x256.png");  
+  @include list-style($blog-color);
 }
 
 ul {
@@ -45,10 +47,10 @@ ul {
 }
 
 .feed {
-  min-height: 500px;
-  max-height: 500px;
+  min-height: $feed-height;
+  max-height: $feed-height;
   height: auto !important;
-  height: 500px;
+  height: $feed-height;
   overflow: auto;
   overflow-y: scroll;
   word-wrap: break-word;
