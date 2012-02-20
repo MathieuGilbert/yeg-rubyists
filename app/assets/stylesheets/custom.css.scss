@@ -1,19 +1,43 @@
+$feed-color: #eebbcc;
+$twitter-color: #5588dd;
+$github-color: #88dd55;
+$blog-color: #dd5588;
+
 body {
   font-family: Verdana, Helvetica, Arial;
 }
+
 
 header, footer {
   background-color: #ffdd88;
 }
 
 #twitter {
-  background-color: #5588dd;
+  background-color: $twitter-color;
+  li {
+    background-color: lighten($twitter-color, 10%);
+  }
+  li:hover {
+    background-color: darken($twitter-color, 10%);
+  }
 }
 #github {
-  background-color: #88dd55;
+  background-color: $github-color;
+  li {
+    background-color: lighten($github-color, 10%);
+  }
+  li:hover {
+    background-color: darken($github-color, 10%);
+  }
 }
 #blogrss {
-  background-color: #dd5588;
+  background-color: $blog-color;
+  li {
+    background-color: lighten($blog-color, 10%);
+  }
+  li:hover {
+    background-color: darken($blog-color, 10%);
+  }
 }
 
 ul {
@@ -28,6 +52,11 @@ ul {
   overflow: auto;
   overflow-y: scroll;
   word-wrap: break-word;
+
+  li {
+    border: 1px solid #552233;
+    padding: 0 0 0 10px;
+  }
 }
 
 footer {
@@ -41,15 +70,19 @@ footer {
     cursor: pointer;
   }
 
+  .name:hover {
+    color: #aa8800;
+    border-bottom: 1px dotted #443300;  
+  }
+
   .memberPopup {
     font-weight: normal;
     display: none;
-    position: relative;
-    bottom: 50px;
-    left: 50px;
+    position: absolute;
+    padding: 10px 20px;
+    text-align: center;
     border: 1px solid #222;
     background-color: #edd;
-    width: 200px;
     z-index: 99;
   }
 }

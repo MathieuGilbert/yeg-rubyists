@@ -7,7 +7,7 @@ Design footer
 Pretty up Twitter feed
 Pretty up Github feed
 Pretty up Blog feed
-Pretty up overall feed
+Pretty up overall feed - MG
 Add more Jasmine tests
 Make member info popup not suck
 

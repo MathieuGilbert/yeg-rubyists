@@ -1,17 +1,43 @@
 <div class='memberSection' onclick="ShowPopup(this)">
   <span class='name'><%= name %></span>
 
-  <div class='memberPopup'>
-    <strong>Name: </strong><%= name %><br/>
-    <strong>Twitter: </strong><%= twitter %><br/>
-    <strong>GitHub: </strong><%= github %><br/>
-    <strong>Blog: </strong><%= blogrss %><br/>
+  <div id='memberPopup' class='memberPopup'>
+    <strong><%= name %></strong><br/>
+    <% if (twitter != "") { %>
+      <a href=<%= "https://twitter.com/" + twitter %> target="_blank">twitter</a><br/>
+    <% } %>
+    <% if (github != "") { %>
+      <a href=<%= "https://github.com/" + github %> target="_blank">github</a><br/>
+    <% } %>
+    <% if (blogrss != "") { %>
+      <a href=<%= blogrss %> target="_blank">blog feed</a>
+    <% } %>
   </div>
 </div>
 
 <script>
   function ShowPopup(parent) {
-    var target = parent.querySelector(".memberPopup");
-    parent.querySelector(".memberPopup").style.display = 'block';
+    var popup = parent.querySelector(".memberPopup");
+
+    // hide all others
+    var popups = document.getElementsByClassName("memberPopup");
+    for (var i = 0; i < popups.length; i++) {
+      var pop = popups[i];
+      if (pop.style && pop != popup) {
+        pop.style.display = 'none';
+      }
+    }
+
+    if (popup.style.display == 'block') {
+      // close it
+      popup.style.display = 'none';
+    } else {
+      // pop it up
+      popup.style.display = 'block';
+    }
+
+    // put it by the cursor
+    popup.style.pixelLeft = event.pageX - 100;
+    popup.style.pixelTop = event.pageY - 50;
   }
 </script>
