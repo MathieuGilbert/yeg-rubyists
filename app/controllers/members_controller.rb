@@ -5,8 +5,6 @@ class MembersController < ApplicationController
   before_filter :admin_member, :only => [:administer]
   
   def administer
-    # uncomment to give yourself admin:
-    #current_member.update_attribute :admin, true
     @members = Member.find(:all, :conditions => { :status => "pending" })
   end
   
@@ -20,17 +18,21 @@ class MembersController < ApplicationController
     end
     
     member.update_attributes({:status => 'approved'})
-    
     redirect_to(admin_path)
   end
   
   # method to make sure the username is unique
   def check_username
-    puts params.to_json
-    @member = Member.find_by_name(params[:member][:name])
-    puts @member.to_json
+    @member = Member.find(:first, :conditions => [ "lower(name) = ?", params[:member][:name].downcase ])
     respond_with(@member)
   end
+  
+  def check_account(type, username)
+    
+    
+  end
+  
+  
   
   private
     def admin_member

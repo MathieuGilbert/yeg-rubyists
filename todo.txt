@@ -10,6 +10,7 @@ Pretty up Blog feed
 Pretty up overall feed - MG
 Add more Jasmine tests
 Make member info popup not suck
+Make sure only approved members show up in the list (and the initial load)
 
 COMPLETED:
 Follow Twitter user on approve member -> done via OAuth
