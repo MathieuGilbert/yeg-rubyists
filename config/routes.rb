@@ -4,11 +4,17 @@ YegRubyists::Application.routes.draw do
   get '/tweets'  => 'tweets#index'
   get '/git_events' => 'git_events#index'
   get '/blog_posts' => 'blog_posts#index'
-  get '/admin'   => 'members#administer'
-  put '/approve' => 'members#approve'
+  get '/admin' => 'members#administer'
   
   match '/tweets/:id' => 'tweets#show'
   match '/git_events/:id' => 'git_events#show'
+  
+  resources :members do
+    collection do 
+      get :check_username
+      put :approve
+    end
+  end
 
   root :to => 'pages#index'
 
