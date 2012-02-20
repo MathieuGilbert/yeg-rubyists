@@ -1,0 +1,21 @@
+Follow Twitter user on approve member
+
+Sign up - validate Twitter account
+
+Sign up - validate Github account
+
+Sign up - validate Blog url
+
+Design header
+
+Design footer
+
+Pretty up Twitter feed
+
+Pretty up Github feed
+
+Pretty up Blog feed
+
+Pretty up overall feed
+
+Add more Jasmine tests
