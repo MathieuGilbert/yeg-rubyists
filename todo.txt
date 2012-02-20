@@ -9,6 +9,7 @@ Pretty up Github feed
 Pretty up Blog feed
 Pretty up overall feed
 Add more Jasmine tests
+Make member info popup not suck
 
 COMPLETED:
 Follow Twitter user on approve member -> done via OAuth
