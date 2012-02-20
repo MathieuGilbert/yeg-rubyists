@@ -2,16 +2,26 @@ $feed-color: #eebbcc;
 $twitter-color: #5588dd;
 $github-color: #88dd55;
 $blog-color: #dd5588;
-$feed-height: 500px;
+$feed-height: 750px;
+$footer-height: 50px;
+
+@mixin round-corner($h, $v) {
+  border-top-left-radius: $h $v;
+  border-top-right-radius: $h $v;
+  border-bottom-left-radius: $h $v;
+  border-bottom-right-radius: $h $v;
+}
 
 @mixin list-style($color) {
   background-color: $color;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 90%;
 
   li {
     background-color: lighten($color, 10%);
     opacity: 0.7;
+    @include round-corner(5px, 5px);
   }
   li:hover {
     background-color: darken($color, 10%);
@@ -22,9 +32,18 @@ body {
   font-family: Verdana, Helvetica, Arial;
 }
 
-
 header, footer {
   background-color: #ffdd88;
+}
+
+footer {
+  clear: both;
+  text-align: center;
+  position: fixed;
+  bottom: 0px;
+  height: $footer-height;
+  width: 100%;
+  opacity: 0.8;
 }
 
 #twitter {
@@ -46,6 +65,17 @@ ul {
   list-style-type: none;
 }
 
+.feeds {
+  background-color: #8888dd;
+}
+
+.pushup {
+  width: 100%;
+  opacity: 0;
+  height: $footer-height;
+  float: left;
+}
+
 .feed {
   min-height: $feed-height;
   max-height: $feed-height;
@@ -54,17 +84,14 @@ ul {
   overflow: auto;
   overflow-y: scroll;
   word-wrap: break-word;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
 
   li {
     border: 1px solid #552233;
     padding: 5px 5px 5px 10px;
     margin: 3px 0;
   }
-}
-
-footer {
-  clear: both;
-  text-align: center;
 }
 
 .memberSection {

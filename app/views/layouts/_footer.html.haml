@@ -1,1 +1,6 @@
-Footer Here
+%span.label
+  Site by:
+%span.links
+  = render :partial => 'layouts/credits', :locals => { :credit_id => 2 }
+  and
+  = render :partial => 'layouts/credits', :locals => { :credit_id => 1 }
