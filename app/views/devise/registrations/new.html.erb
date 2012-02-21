@@ -5,9 +5,9 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :name %><br />
-    <%= f.text_field :name, :data => {:remote => true}, "data-url" => "/members/check_username", "data-type" => :json%>
-    <span id="username_check">&nbsp;</span>
+  <div><%= f.label "Display Name" %><br />
+    <%= f.text_field :name, :data => {:remote => true}, "data-url" => "/members/member_name_check", "data-type" => :json%>
+    <span id="member_name_check">&nbsp;</span>
   </div>
     
   <div><%= f.label :email %><br />

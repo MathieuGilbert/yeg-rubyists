@@ -22,7 +22,7 @@ class MembersController < ApplicationController
   end
   
   # method to make sure the username is unique
-  def check_username
+  def member_name_check
     @member = Member.find(:first, :conditions => [ "lower(name) = ?", params[:member][:name].downcase ])
     respond_with(@member)
   end
