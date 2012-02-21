@@ -11,7 +11,7 @@ YegRubyists::Application.routes.draw do
   
   resources :members do
     collection do 
-      get :member_name_check
+      get :email_check
       put :approve
     end
   end

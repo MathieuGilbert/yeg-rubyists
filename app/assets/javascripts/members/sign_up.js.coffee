@@ -1,21 +1,21 @@
 $ ->
   # username - validation
-  $("#member_name").bind('ajax:success', (evt, data, status, xhr) ->
-    if (data isnt null) 
-      $('#member_name_check').html('Username is already taken')
-      $('#member_name').addClass("error")
+  $("#member_email").bind('ajax:success', (evt, data, status, xhr) ->
+    if (data is false) 
+      $('#email_check').html('Email format is invalid.')
+      $('#member_email').addClass("error")
     else
-      $('#member_name').addClass("pass")
+      $('#member_email').addClass("pass")
   )
 
   # username - cancel ajax call if input field empty
-  $("#member_name").live('ajax:before', ->
+  $("#member_email").live('ajax:before', ->
     if $(@).val() is ''
       false
   )
-  $("#member_name").focus( ->
-    $('#member_name_check').empty()
-    $('#member_name').removeClass("error")
-    $('#member_name').removeClass("pass")
+  $("#member_email").focus( ->
+    $('#email_check').empty()
+    $('#member_email').removeClass("error")
+    $('#member_email').removeClass("pass")
   )
   

@@ -6,12 +6,13 @@
   <%= devise_error_messages! %>
 
   <div><%= f.label "Display Name" %><br />
-    <%= f.text_field :name, :data => {:remote => true}, "data-url" => "/members/member_name_check", "data-type" => :json%>
-    <span id="member_name_check">&nbsp;</span>
+    <%= f.text_field :name %>
   </div>
     
   <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+    <%= f.email_field :email, :data => {:remote => true, :url => "/members/email_check", :type => :json} %>
+    <span id="email_check">&nbsp;</span>
+  </div>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>

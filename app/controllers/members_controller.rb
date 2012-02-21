@@ -21,10 +21,15 @@ class MembersController < ApplicationController
     redirect_to(admin_path)
   end
   
-  # method to make sure the username is unique
-  def member_name_check
-    @member = Member.find(:first, :conditions => [ "lower(name) = ?", params[:member][:name].downcase ])
-    respond_with(@member)
+  # method to make sure the display name is unique
+  def email_check
+    email_legit = false
+    
+    if params[:member][:email] =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
+      email_legit = true
+    end
+
+    respond_with(email_legit)
   end
   
   def check_account(type, username)
