@@ -12,6 +12,7 @@ YegRubyists::Application.routes.draw do
   resources :members do
     collection do 
       get :email_check
+      get :twitter_check
       put :approve
     end
   end

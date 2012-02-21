@@ -21,7 +21,7 @@ class MembersController < ApplicationController
     redirect_to(admin_path)
   end
   
-  # method to make sure the display name is unique
+  # method to make sure the email is in the correct format
   def email_check
     email_legit = false
     
@@ -32,13 +32,20 @@ class MembersController < ApplicationController
     respond_with(email_legit)
   end
   
-  def check_account(type, username)
+  # check if the twitter account is legit
+  def twitter_check
+    twitter_legit = false
+    begin
+      RestClient.get "twitter.com/#{params[:member][:twitter]}"
+      twitter_legit = true
+    rescue => e
+      # 404
+      twitter_legit = false
+    end
     
-    
+    respond_with(twitter_legit)
   end
-  
-  
-  
+
   private
     def admin_member
       redirect_to(root_path) unless current_member.admin?

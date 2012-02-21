@@ -8,6 +8,7 @@ gem 'simple-rss'
 gem 'twitter'
 gem 'github_api'
 gem 'haml'
+gem 'rest-client'
 
 # Backbone helper (mostly used for js libs)
 gem 'rails-backbone'
