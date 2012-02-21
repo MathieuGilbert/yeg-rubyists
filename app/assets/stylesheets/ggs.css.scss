@@ -21,8 +21,20 @@ $em: $font-size * 1;
 }
 
 @mixin side-margin($margin) {
-  header, .feeds {
+  header, footer, .feeds {
     margin: 0 $margin;
+  }
+}
+
+@mixin ruby-image($size) {
+  header {
+    height: #{$size + 20}px;
+
+    .img {
+      background-image: url("ruby_logo_#{$size}x.png");
+      width: #{$size}px;
+      height: #{$size}px;
+    }
   }
 }
 
@@ -177,6 +189,7 @@ footer {
 }
   
 @include side-margin($column);
+@include ruby-image(50);
 
 h1, h2 {
   margin: (#{24/26}em) 0 (#{36/26}em);
@@ -263,6 +276,7 @@ h3 {
   
   @include grid-base(1);
   @include side-margin($column);
+  @include ruby-image(100);
 }
 
 

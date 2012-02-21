@@ -2,6 +2,8 @@ $feed-color: #eebbcc;
 $twitter-color: #AAC4EE;
 $github-color: #C4EEAA;
 $blog-color: #EEAAC3;
+$body-color: lighten(#ff0000, 45%);
+
 $feed-height: 750px;
 $footer-height: 50px;
 
@@ -30,10 +32,26 @@ $footer-height: 50px;
 
 body {
   font-family: Verdana, Helvetica, Arial;
+  background-color: $body-color;
 }
 
-header, footer {
+header {
+  padding-top: 10px !important;
   background-color: #ffdd88;
+
+  .controls {
+    float: right;
+    border: 1px solid black;
+  }
+  .title {
+    float: center;
+    border: 1px solid black;
+    text-align: center;
+  }
+  .img {
+    float: left;
+    border: 1px solid black;
+  }
 }
 
 footer {
@@ -43,7 +61,8 @@ footer {
   bottom: 0px;
   height: $footer-height;
   width: 100%;
-  opacity: 0.8;
+  opacity: 1;
+  background-color: $body-color;
 }
 
 #twitter {
@@ -66,7 +85,7 @@ ul {
 }
 
 .feeds {
-  background-color: #8888dd;
+  background-color: #000;
 }
 
 .pushup {
@@ -86,6 +105,7 @@ ul {
   word-wrap: break-word;
   padding-top: 10px !important;
   padding-bottom: 10px !important;
+  @include round-corner(5px, 5px);
 
   li {
     border: 1px solid #552233;
@@ -117,7 +137,6 @@ ul {
     z-index: 99;
   }
 }
-
 
 
 /* Webkit scroll bar hackery */
