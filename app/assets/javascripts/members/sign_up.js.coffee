@@ -39,3 +39,42 @@ $ ->
     $('#member_twitter').removeClass("pass")
   )
   
+ # github - validation
+  $("#member_github").bind('ajax:success', (evt, data, status, xhr) ->
+    if (data is false) 
+      $('#github_check').html('Invalid github username.')
+      $('#member_github').addClass("error")
+    else
+      $('#member_github').addClass("pass")
+  )
+
+  # github - cancel ajax call if input field empty
+  $("#member_github").live('ajax:before', ->
+    if $(@).val() is ''
+      false
+  )
+  $("#member_github").focus( ->
+    $('#github_check').empty()
+    $('#member_github').removeClass("error")
+    $('#member_github').removeClass("pass")
+  )
+  
+ # blogrss - validation
+  $("#member_blogrss").bind('ajax:success', (evt, data, status, xhr) ->
+    if (data is false) 
+      $('#blogrss_check').html('Invalid blog url.')
+      $('#member_blogrss').addClass("error")
+    else
+      $('#member_blogrss').addClass("pass")
+  )
+
+  # blogrss - cancel ajax call if input field empty
+  $("#member_blogrss").live('ajax:before', ->
+    if $(@).val() is ''
+      false
+  )
+  $("#member_blogrss").focus( ->
+    $('#blogrss_check').empty()
+    $('#member_blogrss').removeClass("error")
+    $('#member_blogrss').removeClass("pass")
+  )

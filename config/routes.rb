@@ -13,6 +13,8 @@ YegRubyists::Application.routes.draw do
     collection do 
       get :email_check
       get :twitter_check
+      get :github_check
+      get :blogrss_check
       put :approve
     end
   end

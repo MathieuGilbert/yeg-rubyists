@@ -45,6 +45,34 @@ class MembersController < ApplicationController
     
     respond_with(twitter_legit)
   end
+  
+  # check if the github account is legit
+  def github_check
+    github_legit = false
+    begin
+      RestClient.get "github.com/#{params[:member][:github]}"
+      github_legit = true
+    rescue => e
+      # 404
+      github_legit = false
+    end
+    
+    respond_with(github_legit)
+  end
+  
+  # check if the blog rss url is legit
+  def blogrss_check
+    blogrss_legit = false
+    begin
+      RestClient.get params[:member][:blogrss]
+      blogrss_legit = true
+    rescue => e
+      # 404
+      blogrss_legit = false
+    end
+    
+    respond_with(blogrss_legit)
+  end
 
   private
     def admin_member
