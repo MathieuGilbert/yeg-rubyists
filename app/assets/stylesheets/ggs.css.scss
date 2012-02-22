@@ -209,7 +209,7 @@ h3 {
 */
 
 .wrapper {
-  padding: 0 #{($line/2)/$em}em;
+  padding: 0 0 0 #{($line/2)/$em}em;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
       -ms-box-sizing: border-box;
