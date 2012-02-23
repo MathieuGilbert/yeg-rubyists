@@ -10,12 +10,12 @@
   </div>
     
   <div><%= f.label :email %><br />
-    <%= f.email_field :email, :data => {:remote => true, :url => "/members/email_check", :type => :json} %>
+    <%= f.email_field :email, :data => {:remote => true, :url => "/members/email_check", :type => :json}%>
     <span id="email_check">&nbsp;</span>
   </div>
 
   <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <%= f.password_field :password, :remote => true %></div>
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>

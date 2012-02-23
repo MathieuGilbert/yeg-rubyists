@@ -24,7 +24,7 @@ class MembersController < ApplicationController
   # method to make sure the email is in the correct format
   def email_check
     email_legit = false
-    
+    puts params.to_json
     if params[:member][:email] =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
       email_legit = true
     end
