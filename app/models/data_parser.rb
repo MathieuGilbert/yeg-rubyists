@@ -179,26 +179,24 @@ private
     target_index = html.index(target_string)
 
     while !target_index.nil? do
-      # shift target_index to end of target_string
-      target_index += target_string.length
+      # find the commit url
       start_index = html.index("<a", target_index)
+      end_index = html.index(">", start_index)
 
-      target_string = ">"
-      end_index = html.index(target_string, start_index) + target_string.length - 1
       commit_url = "<span class='commitListItem'>#{html[start_index..end_index]}"
       commit_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
       
-      target_string = "<blockquote>"
-      start_index = html.index(target_string, end_index) + target_string.length
-      target_string = "</blockquote>"
-      end_index = html.index(target_string, start_index) - 1
+      message += "#{commit_url}"
+
+      # find the commit message
+      start_index = html.index("<blockquote>", end_index) + "<blockquote>".length
+      end_index = html.index("</blockquote>", start_index) - 1
 
       commit_message = html[start_index..end_index]
 
-      commit_url += "#{commit_message}</a></span><br/>"
-
-      message += "#{commit_url}"
+      message += "#{commit_message}</a></span><br/>"
       
+      # see if there's more
       target_string = "committed"
       target_index = html.index(target_string, end_index)
     end

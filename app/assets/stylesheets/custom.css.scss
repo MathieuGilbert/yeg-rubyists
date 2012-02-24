@@ -163,15 +163,15 @@ ul {
 }
 
 .itemTitle {
-  text-transform: uppercase;
+  font-variant: small-caps;
 }
 
 .itemDetail {
   font-style: italic;
-  padding-left: 20px !important;
+  font-size: 0.8em;
 
   .commitListItem {
-    
+    padding-left: 20px !important;
   }
 
 }
