@@ -121,16 +121,11 @@ ul {
     margin: 0px 0;
     color: #FFFFFF;
 
-    a {
+    p a {
       color: #FFFFFF;
       text-decoration: none;
       border-bottom: 1px dotted #555555;
     }
-  }
-
-  .date {
-    float: right;
-    font-size: .5em !important;
   }
 }
 
@@ -143,21 +138,48 @@ ul {
 
   .profileImage {
     float: left;
+    width: 55px;
+    height: 55px;
   }
   .name {
     cursor: pointer;
-    float: left;
   }
 
   .name:hover {
-    color: #aa8800;
-    border-bottom: 1px dotted #443300;  
+    color: #aa8800;  
   }
 
-  .memberlinks {
-    display: block;
-    float: none;
+  .bottomRow {
+    padding-left: 65px;
+    height: 30px;
+
+    .memberLinks {
+      display: none;
+      float: left;
+
+      a {
+        text-decoration: none;
+      }
+    }
+    .date {
+      float: right;
+      font-size: .5em !important;
+    }
   }
+}
+
+.itemTitle {
+  text-transform: uppercase;
+}
+
+.itemDetail {
+  font-style: italic;
+  padding-left: 20px !important;
+
+  .commitListItem {
+    
+  }
+
 }
 
 

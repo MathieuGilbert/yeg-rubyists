@@ -1,4 +1,30 @@
-<span class='date'><%= FormatUtcDate(date) %></span><br/>
+<div class='memberSection' onclick="ShowLinks(this)">
+  <div class='profileImage'>
+    <img src="assets/placeholder.jpg" />
+  </div>
+  
+  <div class='name'>
+    <%= blog_member.name %>
+  </div>
+
+  <div class='bottomRow'>
+    <div class='memberLinks'>
+      <a href=<%= "https://twitter.com/" + blog_member.twitter %> target="_blank">
+        <img src="assets/plh_twit.jpg" />
+      </a>
+      <a href=<%= "https://github.com/" + blog_member.github %> target="_blank">
+        <img src="assets/plh_git.jpg" />
+      </a>
+      <a href=<%= blog_member.blogrss %> target="_blank">
+        <img src="assets/plh_blog.jpg" />
+      </a>
+    </div>
+    <div class='date'>
+      <%= FormatUtcDate(date) %>
+    </div>
+  </div>
+</div>
+
 <p class='itemTitle'>
   <a href="<%= url %>" target="_blank"><%= title %></a>
 </p>
