@@ -1,3 +1,7 @@
-<span class='date'><%= date %></span><br/>
-<a href="<%= url %>" target="_blank"><%= title %></a><br/>
-<p><%= summary %></p>
+<span class='date'><%= FormatUtcDate(date) %></span><br/>
+<p class='itemTitle'>
+  <a href="<%= url %>" target="_blank"><%= title %></a>
+</p>
+<p class='itemDetail'>
+  <%= summary %>
+</p>

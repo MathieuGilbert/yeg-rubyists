@@ -3,7 +3,7 @@ $body-color: #331111;
 $twitter-color: #250a0a;
 $github-color: $twitter-color;
 $blog-color: $twitter-color;
-$feed-height: 750px;
+$feed-height: 1500px;
 $footer-height: 50px;
 
 @mixin page-texture {
@@ -20,16 +20,16 @@ $footer-height: 50px;
 @mixin list-style($color) {
   /*background-color: $color;*/
   background-repeat: no-repeat;
-  background-position: center 40%;
+  background-position: center 20%;
   background-size: 90%;
 
   li {
-    background-color: lighten($color, 0%);
+    /*background-color: lighten($color, 0%);
     opacity: 0.7;
-    @include round-corner(5px, 5px);
+    @include round-corner(5px, 5px);*/
   }
   li:hover {
-    background-color: darken($color, 2%);
+    /*background-color: darken($color, 2%);*/
   }
 }
 
@@ -70,19 +70,24 @@ footer {
 }
 
 #twitter {
-  background-image: url("twitter_newbird_blue.png");
-  @include list-style($twitter-color);
+  background-image: url("twitter_background.png");
+  background-repeat: repeat-y;
+  background-position: center 20%;
+  background-size: 90%;
 }
 
 #github {
-  background-image: url("octocat_gems.png");
-  @include list-style($github-color);
+  background-image: url("octocat_background.png");
+  background-repeat: repeat-y;
+  background-position: center 20%;
+  background-size: 90%;
 }
 
 #blogrss {
-  background-image: url("Feeds_256x256.png");  
-  @include list-style($blog-color);
-  background-size: 80%;
+  background-image: url("blog_background.png");  
+  background-repeat: repeat-y;
+  background-position: center 20%;
+  background-size: 90%;
 }
 
 ul {
@@ -106,21 +111,42 @@ ul {
   word-wrap: break-word;
   padding-top: 0px !important;
   padding-bottom: 0px !important;
-  @include round-corner(5px, 5px);
+  /*@include round-corner(5px, 5px);*/
   border-right: 0px solid black;
 
   li {
-    border: 1px solid #552233;
+    border-top: 1px solid #552233;
+    border-bottom: 1px solid #552233;
     padding: 5px 5px 5px 10px;
-    margin: 3px 0;
+    margin: 0px 0;
+    color: #FFFFFF;
+
+    a {
+      color: #FFFFFF;
+      text-decoration: none;
+      border-bottom: 1px dotted #555555;
+    }
   }
+
+  .date {
+    float: right;
+    font-size: .5em !important;
+  }
+}
+
+.floatClear {
+  /*clear: both;*/
 }
 
 .memberSection {
   font-weight: bold;
 
+  .profileImage {
+    float: left;
+  }
   .name {
     cursor: pointer;
+    float: left;
   }
 
   .name:hover {
@@ -128,15 +154,9 @@ ul {
     border-bottom: 1px dotted #443300;  
   }
 
-  .memberPopup {
-    font-weight: normal;
-    display: none;
-    position: absolute;
-    padding: 10px 20px;
-    text-align: center;
-    border: 1px solid #222;
-    background-color: #edd;
-    z-index: 99;
+  .memberlinks {
+    display: block;
+    float: none;
   }
 }
 
