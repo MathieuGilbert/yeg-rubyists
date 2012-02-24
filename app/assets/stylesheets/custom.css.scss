@@ -59,12 +59,12 @@ header {
 }
 
 footer {
-  clear: both;
   text-align: center;
-  position: fixed;
+  clear: both;  
+  /*position: fixed;
   bottom: 0px;
+  width: 100%;*/
   height: $footer-height;
-  width: 100%;
   opacity: 1;
   background-color: $body-color;
 }
@@ -94,12 +94,6 @@ ul {
   list-style-type: none;
 }
 
-.pushup {
-  width: 100%;
-  opacity: 0;
-  height: $footer-height;
-  float: left;
-}
 
 .feed {
   min-height: $feed-height;

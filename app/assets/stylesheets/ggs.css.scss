@@ -21,7 +21,7 @@ $em: $font-size * 1;
 }
 
 @mixin side-margin($margin) {
-  header, .feeds {
+  header, footer, .feeds {
     margin: 0 $margin;
   }
 }
