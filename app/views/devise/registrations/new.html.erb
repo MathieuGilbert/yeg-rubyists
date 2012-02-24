@@ -1,8 +1,8 @@
-<%= javascript_include_tag "members/sign_up" %>
-<%= stylesheet_link_tag "members/sign_up"%>
+<%= javascript_include_tag "members/member_validation" %>
+<%= stylesheet_link_tag "members/member_validation" %>
 <h2>Sign up</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:novalidate => 'novalidate'}) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label "Display Name" %><br />
