@@ -6,7 +6,7 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, 
-                  :twitter, :github, :blogrss, :status
+                  :twitter, :github, :blogrss, :status, :avatar
   
   validates :name,  :presence => true
   validate :social_media_supplied
@@ -14,6 +14,8 @@ class Member < ActiveRecord::Base
   has_many :tweets, :dependent => :destroy
   has_many :git_events, :dependent => :destroy
   has_many :blog_posts, :dependent => :destroy
+  
+  has_attached_file :avatar, :styles => { :thumb => "32X32>" }
   
   def social_media_supplied
     if twitter.empty? and github.empty? and blogrss.empty?

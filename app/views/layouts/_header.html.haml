@@ -2,7 +2,7 @@
     :target => "_blank",
     :title => "Ruby Language" }
   .img
-
+  
 %h1.title
   Edmonton Rubyists!
 
@@ -16,3 +16,4 @@
   - else
     = link_to 'Edit Account', edit_member_path
     = link_to 'Sign out', destroy_member_session_path
+    = image_tag current_member.avatar.url(:thumb)
