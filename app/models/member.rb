@@ -20,7 +20,7 @@ class Member < ActiveRecord::Base
   has_many :blog_posts, :dependent => :destroy
   
   # Relationships
-  belongs_to :avatar
+  has_one :avatar
   
   def social_media_supplied
     if twitter.empty? and github.empty? and blogrss.empty?

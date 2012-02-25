@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120225171334) do
+ActiveRecord::Schema.define(:version => 20120225191553) do
 
   create_table "avatars", :force => true do |t|
     t.string   "description"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20120225171334) do
     t.binary   "binary_data"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "member_id"
   end
 
   create_table "blog_posts", :force => true do |t|
@@ -67,7 +68,6 @@ ActiveRecord::Schema.define(:version => 20120225171334) do
     t.datetime "updated_at",                                    :null => false
     t.boolean  "admin",                  :default => false
     t.string   "status",                 :default => "pending"
-    t.integer  "avatar_id"
   end
 
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true

@@ -1,7 +1,7 @@
 == RJ == 
 - Ability to pick picture from signup
 - Loading gifs during ajax calls (ajax:loading)
-- Style devise pages
+- Style devise pages (ie: field_with_errors)
 
 == MG ==
 - Design header - MG
@@ -22,6 +22,7 @@
 - Sign up captcha
 - Display "in reply to" on Tweets
 - Make whole system config driven (so other people can implement it for themselves)
+- Display avatars so people know which one they're picking
 
 --------------------------------- COMPLETED ---------------------------------
 ===== Release 1.0 =====

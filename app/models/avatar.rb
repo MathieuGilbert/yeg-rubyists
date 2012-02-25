@@ -1,5 +1,5 @@
 class Avatar < ActiveRecord::Base
-  has_one :members
+  belongs_to :member
   
  def image_file=(input_data)
     self.filename = input_data.original_filename
