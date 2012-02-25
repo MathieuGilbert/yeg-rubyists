@@ -1,7 +1,6 @@
 TODO:
-- Sign up - validate Twitter account clientside/serverside - RJ
-- Sign up - validate Github account clientside/serverside - RJ
-- Sign up - validate Blog url clientside/serverside - RJ
+- Ability to pick picture from signup - RJ
+- Disable signup button during ajax load on signup page - RJ
 - Design header - MG
 - Design footer - MG
 - Pretty up overall feed
@@ -9,7 +8,6 @@ TODO:
   - make profile link images display conditional on values present
 - Add more Jasmine tests
 - Ability to delete users (or let users delete themselves from Edit), removing all their feed items
-- Ability to pick picture from signup
 - Pick better fonts & styles
 - Finalize grid breakpoints and properties at each point
   - column widths
@@ -18,8 +16,12 @@ TODO:
 
 
 COMPLETED:
+
+===== Release 1.0 =====
 - Follow Twitter user on approve member -> done via OAuth
 - Remove member info popup, make it show icons
 - Make sure only approved members show up in the list (and the initial load)
-
+- Sign up - validate Twitter account clientside/serverside
+- Sign up - validate Github account clientside/serverside
+- Sign up - validate Blog url clientside/serverside
 
