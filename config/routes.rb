@@ -7,6 +7,7 @@ YegRubyists::Application.routes.draw do
   get '/admin' => 'members#administer'
   
   match '/tweets/:id' => 'tweets#show'
+  match '/members/member_image/:id' => 'members#member_image'
   match '/git_events/:id' => 'git_events#show'
   
   resources :members do
@@ -16,6 +17,7 @@ YegRubyists::Application.routes.draw do
       get :github_check
       get :blogrss_check
       put :approve
+      get :member_image
     end
   end
 

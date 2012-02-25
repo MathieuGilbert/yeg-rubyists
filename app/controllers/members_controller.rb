@@ -24,7 +24,6 @@ class MembersController < ApplicationController
   # method to make sure the email is in the correct format
   def email_check
     email_legit = false
-    puts params.to_json
     if params[:member][:email] =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
       email_legit = true
     end
@@ -72,6 +71,16 @@ class MembersController < ApplicationController
     end
     
     respond_with(blogrss_legit)
+  end
+  
+  def member_image
+    # relate avatar to member (avatar_id in member)
+    # get member's avatar Member.find(params[:id]) 
+    # Avatar.find(member.avatar_id)
+    
+    @avatarz = Avatar.all.first
+    @image = @avatarz.binary_data
+    send_data @image, :type => @avatarz.content_type, :filename => 'waffles.gif', :disposition => 'inline'
   end
 
   private

@@ -10,10 +10,6 @@ gem 'github_api'
 gem 'haml'
 gem 'rest-client'
 
-# file upload tool
-gem "paperclip", "~> 2.0"
-#gem "rmagick" 
-
 # Backbone helper (mostly used for js libs)
 gem 'rails-backbone'
 
