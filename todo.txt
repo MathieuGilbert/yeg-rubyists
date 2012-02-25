@@ -11,6 +11,11 @@ TODO:
 - Make sure only approved members show up in the list (and the initial load) - MG
 - Ability to delete users (or let users delete themselves from Edit), removing all their feed items
 - Ability to pick picture from signup
+- Pick better fonts & styles
+- Finalize grid breakpoints and properties at each point
+  - column widths
+  - font sizes (by area if needed)
+  - specific components layout
 
 
 COMPLETED:
