@@ -1,2 +1,28 @@
-<span class='date'><%= date %></span><br/>
+<div class='memberSection' onclick="ShowLinks(this)">
+  <div class='profileImage'>
+    <img src="assets/placeholder.jpg" />
+  </div>
+  
+  <div class='name'>
+    <%= github_member.name %>
+  </div>
+
+  <div class='bottomRow'>
+    <div class='memberLinks'>
+      <a href=<%= "https://twitter.com/" + github_member.twitter %> target="_blank">
+        <img src="assets/plh_twit.jpg" />
+      </a>
+      <a href=<%= "https://github.com/" + github_member.github %> target="_blank">
+        <img src="assets/plh_git.jpg" />
+      </a>
+      <a href=<%= github_member.blogrss %> target="_blank">
+        <img src="assets/plh_blog.jpg" />
+      </a>
+    </div>
+    <div class='date'>
+      <%= FormatUtcDate(date) %>
+    </div>
+  </div>
+</div>
+
 <%= event %>

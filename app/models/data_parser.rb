@@ -67,7 +67,7 @@ class DataParser
         end
       end
     rescue => ex
-      puts 'twitter failed!!'
+      puts '~~~~ twitter failed!!'
       puts ex.inspect
     end 
   end
@@ -91,7 +91,7 @@ class DataParser
         end
       end      
     rescue => ex
-      puts 'git_events failed!!'
+      puts '~~~~ git_events failed!!'
       puts ex.inspect
     end
   end
@@ -121,7 +121,7 @@ class DataParser
         end
       end
     rescue => ex
-      puts 'blog_posts failed!!'
+      puts '~~~~ blog_posts failed!!'
       puts ex.inspect
     end
   end
@@ -164,41 +164,46 @@ private
 
   def self.parse_event_message(html)
     # this is a block of html tags... grunt it out
-    str = "to master at"
-    x = html.index(str) + str.length
-    s = html.index("<a", x)
-    str = "</a>"
-    e = html.index(str, s) + str.length
-    repo_url = html[s..e]
+    target_string = "to master at"
+    target_index = html.index(target_string) + target_string.length
+    start_index = html.index("<a", target_index)
+    target_string = "</a>"
+    end_index = html.index(target_string, start_index) + target_string.length
+    repo_url = html[start_index..end_index]
     repo_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
     
-    message = "Push to #{repo_url}!"
+    message = "<p class='itemTitle'>Push to #{repo_url}!</p><p class='itemDetail'>"
 
     # want ALL commit messages
-    str = "committed"
-    x = html.index(str)
+    target_string = "committed"
+    target_index = html.index(target_string)
 
-    while !x.nil? do
-      x += str.length
-      s = html.index("<a", x)
-      str = ">"
-      e = html.index(str, s) + str.length - 1
-      commit_url = "&#8220;#{html[s..e]}"
+    while !target_index.nil? do
+      # find the commit url
+      start_index = html.index("<a", target_index)
+      end_index = html.index(">", start_index)
+
+      commit_url = "<span class='commitListItem'>#{html[start_index..end_index]}"
       commit_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
       
-      str = "<blockquote>"
-      s = html.index(str, e) + str.length
-      str = "</blockquote>"
-      e = html.index(str, s) - 1
-      commit_message = html[s..e]
+      message += "#{commit_url}"
 
-      commit_url += "#{commit_message}</a>&#8221;"
+      # find the commit message
+      start_index = html.index("<blockquote>", end_index) + "<blockquote>".length
+      end_index = html.index("</blockquote>", start_index) - 1
 
-      message += "<br/>#{commit_url}"
+      commit_message = html[start_index..end_index]
+
+      message += "#{commit_message}</a></span><br/>"
       
-      str = "committed"
-      x = html.index(str, e)
+      # see if there's more
+      target_string = "committed"
+      target_index = html.index(target_string, end_index)
     end
+
+    # strip out final br
+    message = message[0..message.length - 6]
+    message += "</p>"
 
     return message    
   end

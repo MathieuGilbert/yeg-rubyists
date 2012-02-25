@@ -3,7 +3,7 @@ $body-color: #331111;
 $twitter-color: #250a0a;
 $github-color: $twitter-color;
 $blog-color: $twitter-color;
-$feed-height: 750px;
+$feed-height: 1500px;
 $footer-height: 50px;
 
 @mixin page-texture {
@@ -20,16 +20,16 @@ $footer-height: 50px;
 @mixin list-style($color) {
   /*background-color: $color;*/
   background-repeat: no-repeat;
-  background-position: center 40%;
+  background-position: center 20%;
   background-size: 90%;
 
   li {
-    background-color: lighten($color, 0%);
+    /*background-color: lighten($color, 0%);
     opacity: 0.7;
-    @include round-corner(5px, 5px);
+    @include round-corner(5px, 5px);*/
   }
   li:hover {
-    background-color: darken($color, 2%);
+    /*background-color: darken($color, 2%);*/
   }
 }
 
@@ -59,42 +59,41 @@ header {
 }
 
 footer {
-  clear: both;
   text-align: center;
-  position: fixed;
+  clear: both;  
+  /*position: fixed;
   bottom: 0px;
+  width: 100%;*/
   height: $footer-height;
-  width: 100%;
   opacity: 1;
   background-color: $body-color;
 }
 
 #twitter {
-  background-image: url("twitter_newbird_blue.png");
-  @include list-style($twitter-color);
+  background-image: url("twitter_background.png");
+  background-repeat: repeat-y;
+  background-position: center 20%;
+  background-size: 90%;
 }
 
 #github {
-  background-image: url("octocat_gems.png");
-  @include list-style($github-color);
+  background-image: url("octocat_background.png");
+  background-repeat: repeat-y;
+  background-position: center 20%;
+  background-size: 90%;
 }
 
 #blogrss {
-  background-image: url("Feeds_256x256.png");  
-  @include list-style($blog-color);
-  background-size: 80%;
+  background-image: url("blog_background.png");  
+  background-repeat: repeat-y;
+  background-position: center 20%;
+  background-size: 90%;
 }
 
 ul {
   list-style-type: none;
 }
 
-.pushup {
-  width: 100%;
-  opacity: 0;
-  height: $footer-height;
-  float: left;
-}
 
 .feed {
   min-height: $feed-height;
@@ -106,38 +105,75 @@ ul {
   word-wrap: break-word;
   padding-top: 0px !important;
   padding-bottom: 0px !important;
-  @include round-corner(5px, 5px);
+  /*@include round-corner(5px, 5px);*/
   border-right: 0px solid black;
 
   li {
-    border: 1px solid #552233;
+    border-top: 1px solid #552233;
+    border-bottom: 1px solid #552233;
     padding: 5px 5px 5px 10px;
-    margin: 3px 0;
+    margin: 0px 0;
+    color: #FFFFFF;
+
+    p a {
+      color: #FFFFFF;
+      text-decoration: none;
+      border-bottom: 1px dotted #555555;
+    }
   }
+}
+
+.floatClear {
+  /*clear: both;*/
 }
 
 .memberSection {
   font-weight: bold;
 
+  .profileImage {
+    float: left;
+    width: 55px;
+    height: 55px;
+  }
   .name {
     cursor: pointer;
   }
 
   .name:hover {
-    color: #aa8800;
-    border-bottom: 1px dotted #443300;  
+    color: #aa8800;  
   }
 
-  .memberPopup {
-    font-weight: normal;
-    display: none;
-    position: absolute;
-    padding: 10px 20px;
-    text-align: center;
-    border: 1px solid #222;
-    background-color: #edd;
-    z-index: 99;
+  .bottomRow {
+    padding-left: 65px;
+    height: 30px;
+
+    .memberLinks {
+      display: none;
+      float: left;
+
+      a {
+        text-decoration: none;
+      }
+    }
+    .date {
+      float: right;
+      font-size: .5em !important;
+    }
   }
+}
+
+.itemTitle {
+  font-variant: small-caps;
+}
+
+.itemDetail {
+  font-style: italic;
+  font-size: 0.8em;
+
+  .commitListItem {
+    padding-left: 20px !important;
+  }
+
 }
 
 

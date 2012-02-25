@@ -1,43 +1,22 @@
-<div class='memberSection' onclick="ShowPopup(this)">
-  <span class='name'><%= name %></span>
-
-  <div id='memberPopup' class='memberPopup'>
-    <strong><%= name %></strong><br/>
-    <% if (twitter != "") { %>
-      <a href=<%= "https://twitter.com/" + twitter %> target="_blank">twitter</a><br/>
-    <% } %>
-    <% if (github != "") { %>
-      <a href=<%= "https://github.com/" + github %> target="_blank">github</a><br/>
-    <% } %>
-    <% if (blogrss != "") { %>
-      <a href=<%= blogrss %> target="_blank">blog feed</a>
-    <% } %>
+<div class='memberSection' onclick="ShowLinks(this)">
+  <div class='profileImage'>
+    <img src="assets/placeholder.jpg" />
   </div>
+  
+  <div class='name'>
+    <%= name %>
+  </div>
+
+  <div class='memberLinks'>
+    <a href=<%= "https://twitter.com/" + twitter %> target="_blank">
+      <img src="assets/plh_twit.jpg" />
+    </a>
+    <a href=<%= "https://github.com/" + github %> target="_blank">
+      <img src="assets/plh_git.jpg" />
+    </a>
+    <a href=<%= blogrss %> target="_blank">
+      <img src="assets/plh_blog.jpg" />
+    </a>
+  </div>
+
 </div>
-
-<script>
-  function ShowPopup(parent) {
-    var popup = parent.querySelector(".memberPopup");
-
-    // hide all others
-    var popups = document.getElementsByClassName("memberPopup");
-    for (var i = 0; i < popups.length; i++) {
-      var pop = popups[i];
-      if (pop.style && pop != popup) {
-        pop.style.display = 'none';
-      }
-    }
-
-    if (popup.style.display == 'block') {
-      // close it
-      popup.style.display = 'none';
-    } else {
-      // pop it up
-      popup.style.display = 'block';
-    }
-
-    // put it by the cursor
-    popup.style.pixelLeft = event.pageX - 100;
-    popup.style.pixelTop = event.pageY - 50;
-  }
-</script>
