@@ -1,6 +1,7 @@
 TODO:
 - Ability to pick picture from signup - RJ
 - Disable signup button during ajax load on signup page - RJ
+- Style devise pages - RJ
 - Design header - MG
 - Design footer - MG
 - Pretty up overall feed
