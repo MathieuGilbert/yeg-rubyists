@@ -1,8 +1,4 @@
-$feed-color: #221111;
-$body-color: #331111;
-$twitter-color: #250a0a;
-$github-color: $twitter-color;
-$blog-color: $twitter-color;
+$body-color: #222222;
 $feed-height: 1500px;
 $footer-height: 30px;
 
@@ -18,19 +14,9 @@ $footer-height: 30px;
 }
 
 @mixin list-style($color) {
-  /*background-color: $color;*/
   background-repeat: no-repeat;
   background-position: center 20%;
   background-size: 90%;
-
-  li {
-    /*background-color: lighten($color, 0%);
-    opacity: 0.7;
-    @include round-corner(5px, 5px);*/
-  }
-  li:hover {
-    /*background-color: darken($color, 2%);*/
-  }
 }
 
 body {
@@ -63,7 +49,7 @@ footer {
   clear: both;  
   height: $footer-height;
   opacity: 1;
-  padding-top: 8px !important;
+  padding-top: 12px !important;
   padding-bottom: 0px !important;
 
   img {
@@ -207,9 +193,3 @@ ul {
     background: rgba(173,13,4,0.8); 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8); 
 }
-
-/*
-* .feed::-webkit-scrollbar-thumb:window-inactive { 
-*   background: rgba(255,0,0,0.4); 
-* }
-*/
