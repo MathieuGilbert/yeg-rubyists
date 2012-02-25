@@ -1,9 +1,13 @@
-TODO:
-- Ability to pick picture from signup - RJ
-- Disable signup button during ajax load on signup page - RJ
-- Style devise pages - RJ
+== RJ == 
+- Ability to pick picture from signup
+- Disable signup button during ajax load on signup page
+- Style devise pages
+
+== MG ==
 - Design header - MG
 - Design footer - MG
+
+--------------------------------- TODO ---------------------------------
 - Pretty up overall feed
   - replace profile links with proper images
   - make profile link images display conditional on values present
@@ -14,10 +18,9 @@ TODO:
   - column widths
   - font sizes (by area if needed)
   - specific components layout
+- Devise forgot password functionality
 
-
-COMPLETED:
-
+--------------------------------- COMPLETED ---------------------------------
 ===== Release 1.0 =====
 - Follow Twitter user on approve member -> done via OAuth
 - Remove member info popup, make it show icons
