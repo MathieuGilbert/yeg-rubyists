@@ -5,7 +5,6 @@
 
 == MG ==
 - Design header - MG
-- Design footer - MG
 
 --------------------------------- TODO ---------------------------------
 - Pretty up overall feed
@@ -34,4 +33,4 @@
 - Sign up - validate Blog url clientside/serverside
 - Disable signup button during ajax load on signup page (user can still submit invalid form, but this gives them a chance to fix before submitting)
 - Remove html5 validation from forms (devise) form_for :html => {:novalidate => 'novalidate'
-
+- Design footer

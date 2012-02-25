@@ -26,18 +26,6 @@ $em: $font-size * 1;
   }
 }
 
-@mixin ruby-image($size) {
-  header {
-    height: #{$size + 20}px;
-
-    .img {
-      background-image: url("ruby_logo_#{$size}x.png");
-      width: #{$size}px;
-      height: #{$size}px;
-    }
-  }
-}
-
 /* Margin, padding, and border resets except for form elements */
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, nav, section, menu, time, mark, audio, video, canvas {
@@ -189,7 +177,6 @@ footer {
 }
   
 @include side-margin($column);
-@include ruby-image(50);
 
 h1, h2 {
   margin: (#{24/26}em) 0 (#{36/26}em);
@@ -276,7 +263,6 @@ h3 {
   
   @include grid-base(1);
   @include side-margin($column);
-  @include ruby-image(100);
 }
 
 

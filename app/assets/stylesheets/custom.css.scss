@@ -1,5 +1,6 @@
 $body-color: #222222;
 $feed-height: 1500px;
+$feed-border-color: rgba(173,13,4,0.8);
 $footer-height: 30px;
 
 @mixin page-texture {
@@ -19,6 +20,18 @@ $footer-height: 30px;
   background-size: 90%;
 }
 
+@mixin fancy-links {
+  a {
+    color: #FFFFFF;
+    text-decoration: none;
+    border-bottom: 1px dotted #555555;
+    margin: 0 8px;
+  }
+  a:hover {
+    border-bottom: 1px dotted #FF0000;
+  }
+}
+
 body {
   font-family: Gill Sans / Gill Sans MT, Verdana, Helvetica, Arial, sans-serif;
   background-color: $body-color;
@@ -27,20 +40,24 @@ body {
 
 header {
   padding-top: 10px !important;
-  background-color: #ffdd88;
+  opacity: 1;
+  -moz-opacity: 1;
+  filter:alpha(opacity=1);
+  height: 90px;
 
   .controls {
     float: right;
-    border: 1px solid black;
+    border: 0px solid black;
+
+    @include fancy-links;
   }
   .title {
-    float: center;
-    border: 1px solid black;
+    border: 0px solid black;
     text-align: center;
-  }
-  .img {
-    float: left;
-    border: 1px solid black;
+    text-shadow: #EE1111 0px 0px 10px;
+    color: #FFEEEE;
+    float: center;
+    width: auto;
   }
 }
 
@@ -49,7 +66,7 @@ footer {
   clear: both;  
   height: $footer-height;
   opacity: 1;
-  padding-top: 12px !important;
+  padding-top: 5px !important;
   padding-bottom: 0px !important;
 
   img {
@@ -57,13 +74,15 @@ footer {
     width: 20px;
   }
   .credit {
-    width: 80px;;
+    width: 80px;
     float: left;
+    @include fancy-links;
   }
   .centerer {
     width: 220px;
   }
 }
+
 
 #twitter {
   background-image: url("twitter_background_op35.png");
@@ -86,8 +105,17 @@ footer {
   background-size: 90%;
 }
 
-ul {
-  list-style-type: none;
+.feeds {
+  ul {
+    list-style-type: none;
+    li:first-child {
+      border-top: 0px !important;
+    }
+    li:last-child {
+      border-bottom: 0px !important;
+    }
+  }
+
 }
 
 
@@ -101,20 +129,18 @@ ul {
   word-wrap: break-word;
   padding-top: 0px !important;
   padding-bottom: 0px !important;
-  /*@include round-corner(5px, 5px);*/
-  border-right: 0px solid black;
+  border-top: 1px solid $feed-border-color;
+  border-bottom: 1px solid $feed-border-color;
 
   li {
-    border-top: 1px solid rgba(173,13,4,0.8);
-    border-bottom: 1px solid rgba(173,13,4,0.8);
+    border-top: 1px solid $feed-border-color;
+    border-bottom: 1px solid $feed-border-color;
     padding: 5px 5px 5px 10px;
     margin: 0px 0;
     color: #FFFFFF;
 
-    p a {
-      color: #FFFFFF;
-      text-decoration: none;
-      border-bottom: 1px dotted #555555;
+    p {
+      @include fancy-links;
     }
   }
 }
