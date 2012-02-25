@@ -1,0 +1,29 @@
+// Sexy Input Boxes
+input {
+    border:2px solid #dadada;
+    border-radius:7px;
+    font-size:20px;
+    padding:5px; 
+}
+input:focus { 
+    outline:none;
+    border-color:#9ecaed;
+    box-shadow:0 0 10px #9ecaed;
+}
+
+.error { 
+    outline:none;
+    border-color:#ED0033;
+    box-shadow:0 0 10px #ED0033;
+}
+
+.pass { 
+    outline:none;
+    border-color:#00ED1C;
+    box-shadow:0 0 10px #00ED1C;
+}
+
+#devise_signup
+{
+  color:white;
+}
