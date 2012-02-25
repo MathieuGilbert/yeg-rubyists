@@ -4,21 +4,22 @@ TODO:
 - Sign up - validate Blog url clientside/serverside - RJ
 - Design header - MG
 - Design footer - MG
-- Pretty up Twitter feed
-- Pretty up Github feed
-- Pretty up Blog feed
-- Pretty up overall feed - MG
+- Pretty up overall feed
+  - replace profile links with proper images
+  - make profile link images display conditional on values present
 - Add more Jasmine tests
-- Remove member infp popup, make it show icons
-- Make sure only approved members show up in the list (and the initial load)
 - Ability to delete users (or let users delete themselves from Edit), removing all their feed items
-- Replace feed <li> transparency with equivalent PNG, so text stays opaque (requires finalizing colors).
-- Ability to pic picture from signup
+- Ability to pick picture from signup
+- Pick better fonts & styles
+- Finalize grid breakpoints and properties at each point
+  - column widths
+  - font sizes (by area if needed)
+  - specific components layout
 
 
 COMPLETED:
 - Follow Twitter user on approve member -> done via OAuth
-
-
+- Remove member info popup, make it show icons
+- Make sure only approved members show up in the list (and the initial load)
 
 

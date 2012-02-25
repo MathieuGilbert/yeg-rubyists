@@ -1,7 +1,8 @@
 # this is the main class that parses the data before putting it in the DB
 class DataParser
+  #include Yeg_Extensions
+
   def self.update_data
-    last_update = self.get_lastest_update
     twitter_frequency = 30.seconds
     github_frequency = 2.minutes
     blog_frequency = 2.minutes
@@ -9,51 +10,49 @@ class DataParser
     # Check when the last update has been fired, if it's > X seconds, it can fire again
     # This is to to prevent getting banned from the service APIs
 
-    # twitter
-    if last_update.tweet_update < (DateTime.now.new_offset(0) - twitter_frequency)
-      # grab all of the members
-      members = Member.all
+    # grab all of the approved members
+    members = Member.where(:status => 'approved')
 
-      # make sure we have members to match against
-      if !members.empty?
-        # update tweets table
-        self.update_tweets(members)
+    # make sure we have members to match against
+    if !members.empty?
+      last_update = self.get_lastest_update
+
+      # twitter
+      if last_update.tweet_update < (DateTime.now.new_offset(0) - twitter_frequency)
+        self.update_tweets(members.where("twitter is not null"))
+        last_update.update_attributes({:tweet_update => DateTime.now.new_offset(0)})
       end
 
-      last_update.update_attributes({:tweet_update => DateTime.now.new_offset(0)})
-    end
+      # github
+      if last_update.git_update < (DateTime.now.new_offset(0) - github_frequency)
+        self.update_git_events(members.where("github is not null"))
+        last_update.update_attributes({:git_update => DateTime.now.new_offset(0)})
+      end
 
-    # github
-    if last_update.git_update < (DateTime.now.new_offset(0) - github_frequency)
-      # update git_events table
-      self.update_git_events
-      last_update.update_attributes({:git_update => DateTime.now.new_offset(0)})
-    end
+      # blogs
+      if last_update.blog_update < (DateTime.now.new_offset(0) - blog_frequency)
+        self.update_blog_posts(members.where("blogrss is not null"))
+        last_update.update_attributes({:blog_update => DateTime.now.new_offset(0)})
+      end
 
-    # blogs
-    if last_update.blog_update < (DateTime.now.new_offset(0) - blog_frequency)
-      # update blog_posts table
-      self.update_blog_posts
-      last_update.update_attributes({:blog_update => DateTime.now.new_offset(0)})
     end
-    
   end
 
-  def self.update_tweets(members)
+  def self.update_tweets(tweeters)
     begin
-      # get list of new tweets
+      # get list of new tweets from Twitter API
       twitter_list = self.get_tweets
 
       # loop through each new tweet
       twitter_list.each do |new_tweet|
         # compare the tweet user name vs the new tweet username
-        members.each do |member|
+        tweeters.each do |tweeter|
           tweet_found = false
 
           # check if usernames are equal (case insensitive)
-          if member.twitter.casecmp(new_tweet.user.screen_name) == 0
+          if tweeter.twitter.casecmp(new_tweet.user.screen_name) == 0
             # create tweet
-            member.tweets.create!({
+            tweeter.tweets.create!({
               :date     => Time.parse(new_tweet.created_at.to_s).utc,
               :content  => new_tweet.text,
               :url      => "https://twitter.com/#{new_tweet.user.screen_name}/status/#{new_tweet.id}",
@@ -72,11 +71,8 @@ class DataParser
     end 
   end
 
-  def self.update_git_events
+  def self.update_git_events(githubbists)
     begin
-      # get list of GitHubbists
-      githubbists = Member.where("github is not null")
-
       # update their feeds
       githubbists.each do |member|
         # get member's recent events (of types we care about)
@@ -96,11 +92,8 @@ class DataParser
     end
   end
   
-  def self.update_blog_posts
+  def self.update_blog_posts(bloggers)
     begin
-      # get list of members who have blogs
-      bloggers = Member.where("blogrss is not null")
-
       # define max summary length to display
       max_length = 100
       
@@ -111,8 +104,8 @@ class DataParser
         
         # write feed posts to db
         posts.each do |post|
-          summary = CGI.unescapeHTML(post.summary)
-          summary = "#{summary[0..max_length-4]}..." if summary.length > max_length
+          summary = CGI.unescapeHTML(post.summary.to_s.force_encoding 'utf-8')
+          summary.ellipsis_if_longer_than!(max_length)
 
           blogger.blog_posts.create!( :title   => post.title,
                                       :summary => summary,
@@ -212,7 +205,7 @@ private
     # get member's feed
     feed_url = "https://github.com/#{member.github}.atom" 
     rest_client = RestClient::Resource.new feed_url
-    feed = SimpleRSS.parse(rest_client.get)
+    feed = SimpleRSS.parse(rest_client.get.to_s.force_encoding 'utf-8')
 
     # get member's last event in the DB
     last_event = member.git_events.order("date DESC").first
@@ -235,7 +228,7 @@ private
     # get member's blog feed
     feed_url = member.blogrss
     rest = RestClient::Resource.new feed_url
-    feed = SimpleRSS.parse(rest.get)
+    feed = SimpleRSS.parse(rest.get.to_s.force_encoding 'utf-8')
 
     # get most recent blog_post in db by this member
     last_post = member.blog_posts.order("date desc").first

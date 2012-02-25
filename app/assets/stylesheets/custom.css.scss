@@ -34,7 +34,7 @@ $footer-height: 50px;
 }
 
 body {
-  font-family: Verdana, Helvetica, Arial;
+  font-family: Gill Sans / Gill Sans MT, Verdana, Helvetica, Arial, sans-serif;
   background-color: $body-color;
   @include page-texture;
 }
@@ -70,21 +70,21 @@ footer {
 }
 
 #twitter {
-  background-image: url("twitter_background.png");
+  background-image: url("twitter_background_op35.png");
   background-repeat: repeat-y;
   background-position: center 20%;
   background-size: 90%;
 }
 
 #github {
-  background-image: url("octocat_background.png");
+  background-image: url("octocat_background_op35.png");
   background-repeat: repeat-y;
   background-position: center 20%;
   background-size: 90%;
 }
 
 #blogrss {
-  background-image: url("blog_background.png");  
+  background-image: url("blog_background_op35.png");  
   background-repeat: repeat-y;
   background-position: center 20%;
   background-size: 90%;
@@ -109,8 +109,8 @@ ul {
   border-right: 0px solid black;
 
   li {
-    border-top: 1px solid #552233;
-    border-bottom: 1px solid #552233;
+    border-top: 1px solid rgba(173,13,4,0.8);
+    border-bottom: 1px solid rgba(173,13,4,0.8);
     padding: 5px 5px 5px 10px;
     margin: 0px 0;
     color: #FFFFFF;
@@ -167,8 +167,10 @@ ul {
 }
 
 .itemDetail {
-  font-style: italic;
+  font-style: none;
   font-size: 0.8em;
+  font-weight: bold;
+  letter-spacing: 1px;
 
   .commitListItem {
     padding-left: 20px !important;
