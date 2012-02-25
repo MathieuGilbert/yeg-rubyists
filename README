@@ -1,18 +1,7 @@
 A project to display the yegrb rubyists
 
-Future Features:
-Let user pick the image they want to use while signing up
-Validate, github, twitter, gravatar, rss blog as they fill out the form (swirly circle --> checkmark or X)
-Signup captcha
-Remove html5 validation from forms (devise)
-Display "in reply to"
+What's currently being worked on:
+todo.txt
 
-Notes:
-To get started:
-rake db:make_admins
-rails c -> DataParser.update_data
-Anything to do with time has to be in utc
-bundle exec rspec spec/
-
-TODO:
-Remove main.js from everything but pages index
+Installation:
+Instructions pending.

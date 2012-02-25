@@ -1,6 +1,6 @@
 == RJ == 
 - Ability to pick picture from signup
-- Disable signup button during ajax load on signup page
+- Loading gifs during ajax calls (ajax:loading)
 - Style devise pages
 
 == MG ==
@@ -19,6 +19,9 @@
   - font sizes (by area if needed)
   - specific components layout
 - Devise forgot password functionality
+- Sign up captcha
+- Display "in reply to" on Tweets
+- Make whole system config driven (so other people can implement it for themselves)
 
 --------------------------------- COMPLETED ---------------------------------
 ===== Release 1.0 =====
@@ -28,4 +31,6 @@
 - Sign up - validate Twitter account clientside/serverside
 - Sign up - validate Github account clientside/serverside
 - Sign up - validate Blog url clientside/serverside
+- Disable signup button during ajax load on signup page (user can still submit invalid form, but this gives them a chance to fix before submitting)
+- Remove html5 validation from forms (devise) form_for :html => {:novalidate => 'novalidate'
 
