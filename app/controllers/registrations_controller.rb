@@ -24,10 +24,13 @@ private
   def create_member_avatar(avatar_type, member)
     if avatar_type == "Twitter"
       image = RestClient.get "http://a0.twimg.com/profile_images/1764782745/RJ_normal.jpg"
-      m.avatar.create!({:description => 'test',
+      new_avatar = Avatar.create!({:description => 'test',
                              :content_type => image.headers[:content_type], 
                              :filename => 'twitter', 
                              :binary_data => image.body})
+                             
+      # assign the avatar to the member
+      member.avatar = new_avatar
     end
     
     

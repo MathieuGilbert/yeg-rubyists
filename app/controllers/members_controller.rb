@@ -74,13 +74,12 @@ class MembersController < ApplicationController
   end
   
   def member_image
-    # relate avatar to member (avatar_id in member)
-    # get member's avatar Member.find(params[:id]) 
-    # Avatar.find(member.avatar_id)
+    # Grab members avatar
+    @avatar = Avatar.find_by_member_id(params[:member_id])
     
-    @avatarz = Avatar.all.first
-    @image = @avatarz.binary_data
-    send_data @image, :type => @avatarz.content_type, :filename => 'waffles.gif', :disposition => 'inline'
+    # Fire it out to the screen
+    @image = @avatar.binary_data
+    send_data @image, :type => @avatar.content_type, :disposition => 'inline'
   end
 
   private
