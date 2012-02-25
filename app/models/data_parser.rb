@@ -1,6 +1,6 @@
 # this is the main class that parses the data before putting it in the DB
 class DataParser
-  include Yeg_Extensions
+  #include Yeg_Extensions
 
   def self.update_data
     twitter_frequency = 30.seconds
