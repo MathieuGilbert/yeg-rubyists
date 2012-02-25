@@ -4,7 +4,7 @@ $twitter-color: #250a0a;
 $github-color: $twitter-color;
 $blog-color: $twitter-color;
 $feed-height: 1500px;
-$footer-height: 50px;
+$footer-height: 30px;
 
 @mixin page-texture {
   background-image: url("black-Linen.PNG");
@@ -61,12 +61,22 @@ header {
 footer {
   text-align: center;
   clear: both;  
-  /*position: fixed;
-  bottom: 0px;
-  width: 100%;*/
   height: $footer-height;
   opacity: 1;
-  background-color: $body-color;
+  padding-top: 8px !important;
+  padding-bottom: 0px !important;
+
+  img {
+    float: left;
+    width: 20px;
+  }
+  .credit {
+    width: 80px;;
+    float: left;
+  }
+  .centerer {
+    width: 220px;
+  }
 }
 
 #twitter {

@@ -1,7 +1,6 @@
 # this is the main class that parses the data before putting it in the DB
 class DataParser
-  #include Yeg_Extensions
-
+  
   def self.update_data
     twitter_frequency = 30.seconds
     github_frequency = 2.minutes
@@ -165,7 +164,7 @@ private
     repo_url = html[start_index..end_index]
     repo_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
     
-    message = "<p class='itemTitle'>Push to #{repo_url}!</p><p class='itemDetail'>"
+    message = "<p class='itemTitle'>Push to #{repo_url}</p><p class='itemDetail'>"
 
     # want ALL commit messages
     target_string = "committed"
