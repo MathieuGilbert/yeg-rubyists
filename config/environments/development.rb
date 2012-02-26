@@ -34,4 +34,7 @@ YegRubyists::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  # Global for current site reference
+  SITE_URL = "localhost:3000"
 end

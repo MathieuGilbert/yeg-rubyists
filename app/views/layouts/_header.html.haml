@@ -12,3 +12,4 @@
   - else
     = link_to 'Edit Account', edit_member_path
     = link_to 'Sign out', destroy_member_session_path
+    = image_tag("http://#{SITE_URL}/members/member_image/#{current_member.id}" )
