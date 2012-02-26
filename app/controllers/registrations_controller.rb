@@ -11,10 +11,10 @@ class RegistrationsController < Devise::RegistrationsController
       create_member_avatar(params[:avatar_type], @member)
       
       # sign the user in
-      sign_in @member
+      #sign_in @member
       
       # send em home
-      redirect_to root_path
+      #redirect_to root_path
     else
       render :action => "new"
     end
@@ -29,13 +29,11 @@ private
     if avatar_type == "Twitter"
       # get the profile image from twitter
       profile_image_url = twitter_img_url(member.twitter)
-      
-      puts 'hihi' + profile_image_url.to_s
-      
-      if profile_image_url.empty?
+
+      if !profile_image_url.empty?
         # go out and grab the image
         image = RestClient.get profile_image_url
-        
+
         # create the new image blobbers
         new_avatar = Avatar.create!({:description => 'test',
                                :content_type => image.headers[:content_type], 
