@@ -1,6 +1,7 @@
 %center
   %h1.huge.title
-    Edmonton Rubyists!
+    %a{ :href => root_path }
+      Edmonton Rubyists!
 
 .controls
   - if member_signed_in? && current_member.admin?
