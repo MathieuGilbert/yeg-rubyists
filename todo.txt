@@ -3,9 +3,7 @@
 - Loading gifs during ajax calls (ajax:loading)
 - Style devise pages (ie: field_with_errors)
 - Check user display pic exists with field entered (ie Twitter need a twitter username)
-- On update re-pending user
-- On update errors
-- Save avatar_type in DB
+- Save avatar_type in DB - github and gravatr, twitter done
 
 == MG ==
 - Design header - MG
@@ -38,3 +36,5 @@
 - Disable signup button during ajax load on signup page (user can still submit invalid form, but this gives them a chance to fix before submitting)
 - Remove html5 validation from forms (devise) form_for :html => {:novalidate => 'novalidate'
 - Design footer
+- On update re-pending user
+- On update errors
