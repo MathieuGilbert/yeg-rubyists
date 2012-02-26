@@ -11,10 +11,10 @@ class RegistrationsController < Devise::RegistrationsController
       create_member_avatar(params[:avatar_type], @member)
       
       # sign the user in
-      #sign_in @member
+      sign_in @member
       
       # send em home
-      #redirect_to root_path
+      redirect_to root_path
     else
       render :action => "new"
     end
