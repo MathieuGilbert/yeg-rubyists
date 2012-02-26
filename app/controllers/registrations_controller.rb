@@ -21,7 +21,17 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    super
+    @member = current_member
+    @member.update_attributes(params[:member]) 
+
+    # the member has passed validation so we need to save their avatar
+    create_member_avatar(params[:avatar_type], @member)
+    
+    # sign the user in
+    sign_in @member
+    
+    # send em home
+    redirect_to root_path
   end
   
 private
@@ -30,6 +40,7 @@ private
       # get the profile image from twitter
       profile_image_url = twitter_img_url(member.twitter)
 
+      puts profile_image_url
       if !profile_image_url.empty?
         # go out and grab the image
         image = RestClient.get profile_image_url
