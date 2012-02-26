@@ -1,9 +1,8 @@
 == RJ == 
-- Ability to pick picture from signup
 - Loading gifs during ajax calls (ajax:loading)
 - Style devise pages (ie: field_with_errors)
 - Check user display pic exists with field entered (ie Twitter need a twitter username)
-- Save avatar_type in DB - github and gravatr, twitter done
+- Clean up garbage avatars
 
 == MG ==
 - Design header - MG
@@ -38,3 +37,9 @@
 - Design footer
 - On update re-pending user
 - On update errors
+- Ability to pick picture from signup
+- Save avatar_type and actual avatar in DB - github/gravtar & twitter done
+
+
+
+

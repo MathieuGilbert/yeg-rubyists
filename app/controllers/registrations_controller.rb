@@ -52,33 +52,38 @@ class RegistrationsController < Devise::RegistrationsController
   
 private
   def create_member_avatar(avatar_type, member)
-    puts 'here2'
-    puts avatar_type
+    
     if avatar_type == "Twitter"
-      puts 'here1'
-      # get the profile image from twitter
-      profile_image_url = twitter_img_url(member.twitter)
-      puts 'here3'
-      puts profile_image_url
-      if !profile_image_url.empty?
-        # go out and grab the image
-        image = RestClient.get profile_image_url
-
-        # create the new image blobbers
-        new_avatar = Avatar.create!({:description => 'test',
-                               :content_type => image.headers[:content_type], 
-                               :filename => 'twitter', 
-                               :binary_data => image.body})
-                               
-        # assign the avatar to the member
-        member.avatar = new_avatar
-      end
+      # create twitter avatar and apply to member
+      save_avatar(twitter_img_url(member.twitter), member)
     end
     
-    #if github
-    
-    
-    
+    if avatar_type == "Gravatar"
+      # create gravatar avatar and apply to member
+      save_avatar(gravatar_img_url(member.email), member)
+    end
+  end
+  
+  def save_avatar(image_url, member)
+    unless image_url.empty?
+      # go out and grab the image
+      image = RestClient.get image_url
+      
+      # create the new image blobbers
+      new_avatar = Avatar.create!({:description => '',
+                             :content_type => image.headers[:content_type], 
+                             :filename => member.name, 
+                             :binary_data => image.body})
+                             puts 'here3'
+      # assign the avatar to the member
+      member.avatar = new_avatar
+    end
+  end
+  
+  def gravatar_img_url(gravatar_email)
+    # generate gravatar md5 and return the url
+    gravatar_MD5 = Digest::MD5.hexdigest(gravatar_email.to_s.downcase)
+    gravatar_url = "http://www.gravatar.com/avatar/#{gravatar_MD5}.png"
   end
     
   def twitter_img_url(twitter_username)
