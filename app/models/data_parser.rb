@@ -104,7 +104,7 @@ class DataParser
         # write feed posts to db
         posts.each do |post|
           summary = CGI.unescapeHTML(post.summary.to_s.force_encoding 'utf-8')
-          summary = summary.ellipsis_if_longer_than(summary, max_length)
+          summary = self.ellipsis_if_longer_than(summary, max_length)
 
           blogger.blog_posts.create!( :title   => post.title,
                                       :summary => summary,
