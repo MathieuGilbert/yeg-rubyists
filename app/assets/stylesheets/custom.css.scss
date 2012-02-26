@@ -133,10 +133,9 @@ footer {
   border-bottom: 1px solid $feed-border-color;
 
   li {
-    border-top: 1px solid $feed-border-color;
     border-bottom: 1px solid $feed-border-color;
-    padding: 5px 5px 5px 10px;
-    margin: 0px 0;
+    padding: 0px 5px 5px 10px;
+    margin: 10px 0 0 0;
     color: #FFFFFF;
 
     p {
@@ -216,6 +215,6 @@ footer {
 .feed::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: rgba(173,13,4,0.8); 
+    background: $feed-border-color; 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8); 
 }
