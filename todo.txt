@@ -6,9 +6,8 @@
 - Save avatar_type in DB - github and gravatr, twitter done
 
 == MG ==
-- Pretty up overall feed
-  - replace profile links with proper images
-  - make profile link images display conditional on values present
+
+
 
 --------------------------------- TODO ---------------------------------
 - Add more Jasmine tests
@@ -21,6 +20,7 @@
   - specific components layout
 - Devise forgot password functionality
 - Sign up captcha
+- Pretty up overall feed
 - Display "in reply to" on Tweets
 - Make whole system config driven (so other people can implement it for themselves)
 - Display avatars so people know which one they're picking
@@ -39,3 +39,5 @@
 - On update re-pending user
 - On update errors
 - Design header
+- replace profile links with proper images
+- make profile link images display conditional on values present
