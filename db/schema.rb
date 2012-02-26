@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120225191553) do
+ActiveRecord::Schema.define(:version => 20120226155652) do
 
   create_table "avatars", :force => true do |t|
     t.string   "description"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20120225191553) do
     t.datetime "updated_at",                                    :null => false
     t.boolean  "admin",                  :default => false
     t.string   "status",                 :default => "pending"
+    t.string   "avatar_type"
   end
 
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true

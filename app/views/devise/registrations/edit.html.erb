@@ -35,7 +35,7 @@
   
   <div id="avatar_type"> 
     Pick your avatar you'd like to represent you on the site: <br />
-    <%= select_tag "avatar_type", options_for_select([ "Gravatar", "Twitter", "Github" ], "Gravatar") %>
+    <%= f.select "avatar_type", options_for_select([ "Gravatar", "Twitter", "Github" ], current_member.avatar_type) %>
   </div>
 
   <div><%= f.submit "Update" %></div>
