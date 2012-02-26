@@ -21,25 +21,44 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update
+    # update the member
     @member = current_member
-    @member.update_attributes(params[:member]) 
+    
+    # update without pass
+    if params[:member][:password].blank?
+      params[:member].delete(:password)
+      params[:member].delete(:password_confirmation) if params[:password_confirmation].blank?
+    end
 
-    # the member has passed validation so we need to save their avatar
-    create_member_avatar(params[:avatar_type], @member)
+    # update member
+    if @member.update_attributes(params[:member]) 
+      # the member has passed validation so we need to save their avatar
+      create_member_avatar(params[:member][:avatar_type], @member)
+      
+      # sign the user in
+      sign_in @member
+      
+      # set the users status to pending so we can approve it again
+      @member.update_attributes({:status => 'pending'}) 
+      
+      # send em home
+      redirect_to root_path
+    else
+      # update failed
+      render :action => "edit"
+    end
     
-    # sign the user in
-    sign_in @member
-    
-    # send em home
-    redirect_to root_path
   end
   
 private
   def create_member_avatar(avatar_type, member)
+    puts 'here2'
+    puts avatar_type
     if avatar_type == "Twitter"
+      puts 'here1'
       # get the profile image from twitter
       profile_image_url = twitter_img_url(member.twitter)
-
+      puts 'here3'
       puts profile_image_url
       if !profile_image_url.empty?
         # go out and grab the image
