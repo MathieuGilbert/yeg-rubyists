@@ -87,13 +87,4 @@ class MembersController < ApplicationController
       redirect_to(root_path) unless current_member.admin?
     end
     
-    def add_to_twitter_list(member)
-      # grab the twitter list
-      twitter = Twitter::Client.new
-      twitter_list = twitter.list_timeline('yegrb-members')
-      
-      # add twitter user to yeg-members list to start monitoring tweets
-      twitter.list_add_member('yegrb-members', member.twitter)
-    end
-    
 end

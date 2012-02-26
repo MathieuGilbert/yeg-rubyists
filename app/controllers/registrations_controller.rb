@@ -4,16 +4,16 @@ class RegistrationsController < Devise::RegistrationsController
   end
   
   def create
-    puts params.to_json
-    @member = Member.new(params[:member])
-    if @member.save
-      # the member has passed validation so we need to save their avatar
-      puts params[:avatar_type]
-      create_member_avatar(params[:avatar_type], @member)
-      redirect_to root_path
-    else
-      render :action => "new"
-    end
+    super
+    # puts params.to_json
+    # @member = Member.new(params[:member])
+    # if @member.save
+      # # the member has passed validation so we need to save their avatar
+      # create_member_avatar(params[:avatar_type], @member)
+      # redirect_to root_path
+    # else
+      # render :action => "new"
+    # end
   end
 
   def update
@@ -23,19 +23,36 @@ class RegistrationsController < Devise::RegistrationsController
 private
   def create_member_avatar(avatar_type, member)
     if avatar_type == "Twitter"
-      image = RestClient.get "http://a0.twimg.com/profile_images/1764782745/RJ_normal.jpg"
-      new_avatar = Avatar.create!({:description => 'test',
-                             :content_type => image.headers[:content_type], 
-                             :filename => 'twitter', 
-                             :binary_data => image.body})
-                             
-      # assign the avatar to the member
-      member.avatar = new_avatar
+      # get the profile image from twitter
+      profile_image_url = twitter_img_url(member.twitter)
+
+      if profile_image_url.empty?
+        # go out and grab the image
+        image = RestClient.get profile_image_url
+        
+        # create the new image blobbers
+        new_avatar = Avatar.create!({:description => 'test',
+                               :content_type => image.headers[:content_type], 
+                               :filename => 'twitter', 
+                               :binary_data => image.body})
+                               
+        # assign the avatar to the member
+        member.avatar = new_avatar
+      end
     end
+    
+    #if github
     
     
     
   end
-  
-  
+    
+  def twitter_img_url(twitter_username)
+    # get the twitter feed in XML since simple rss ignore the fields we need
+    h = Hpricot.XML(RestClient.get "http://api.twitter.com/1/statuses/user_timeline.xml?screen_name=#{twitter_username}&include_rts=true&count=1")
+    
+    # grab the profile image url
+    profile_image_url = h.search("profile_image_url").inner_html
+  end
+
 end 

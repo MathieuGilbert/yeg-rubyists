@@ -88,6 +88,7 @@ GEM
       rubyzip
       term-ansicolor (~> 1.0.5)
     hike (1.2.1)
+    hpricot (0.8.6)
     i18n (0.6.0)
     jasminerice (0.0.8)
       haml
@@ -204,6 +205,7 @@ DEPENDENCIES
   guard-rspec
   haml
   heroku
+  hpricot
   jasminerice
   jquery-rails (>= 1.0.12)
   pg

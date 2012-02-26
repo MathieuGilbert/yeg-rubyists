@@ -9,6 +9,7 @@ gem 'twitter'
 gem 'github_api'
 gem 'haml'
 gem 'rest-client'
+gem 'hpricot'
 
 # Backbone helper (mostly used for js libs)
 gem 'rails-backbone'
