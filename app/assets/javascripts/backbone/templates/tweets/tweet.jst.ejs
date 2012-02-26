@@ -11,17 +11,17 @@
     <div class='memberLinks'>
       <% if (twitter_member.twitter) { %>
         <a href=<%= "https://twitter.com/" + twitter_member.twitter %> target="_blank">
-          <img src="assets/plh_twit.jpg" />
+          <img src="assets/twitter_icon.png" />
         </a>
       <% } %>
       <% if (twitter_member.github) { %>
         <a href=<%= "https://github.com/" + twitter_member.github %> target="_blank">
-          <img src="assets/plh_git.jpg" />
+          <img src="assets/github_icon.png" />
         </a>
       <% } %>
       <% if (twitter_member.blogrss) { %>
         <a href=<%= twitter_member.blogrss %> target="_blank">
-          <img src="assets/plh_blog.jpg" />
+          <img src="assets/blog_icon.png" />
         </a>
       <% } %>
     </div>
@@ -29,7 +29,7 @@
       <%= FormatUtcDate(date) %>
     </div>
   </div>
-  
+
 </div>
 
 <p class='itemDetail'>

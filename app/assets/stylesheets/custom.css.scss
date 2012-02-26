@@ -51,8 +51,9 @@ header {
 
     @include fancy-links;
   }
-  .title {
-    border: 0px solid black;
+
+  .title a {
+    text-decoration: none;
     text-align: center;
     text-shadow: #EE1111 0px 0px 10px;
     color: #FFEEEE;
