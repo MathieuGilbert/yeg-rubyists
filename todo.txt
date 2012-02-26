@@ -6,14 +6,14 @@
 - Save avatar_type in DB - github and gravatr, twitter done
 
 == MG ==
-- Design header - MG
-
---------------------------------- TODO ---------------------------------
 - Pretty up overall feed
   - replace profile links with proper images
   - make profile link images display conditional on values present
+
+--------------------------------- TODO ---------------------------------
 - Add more Jasmine tests
 - Ability to delete users (or let users delete themselves from Edit), removing all their feed items
+  - maybe just self-deactivate
 - Pick better fonts & styles
 - Finalize grid breakpoints and properties at each point
   - column widths
@@ -38,3 +38,4 @@
 - Design footer
 - On update re-pending user
 - On update errors
+- Design header
