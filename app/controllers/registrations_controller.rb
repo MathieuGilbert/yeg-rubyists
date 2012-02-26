@@ -4,16 +4,20 @@ class RegistrationsController < Devise::RegistrationsController
   end
   
   def create
-    super
-    # puts params.to_json
-    # @member = Member.new(params[:member])
-    # if @member.save
-      # # the member has passed validation so we need to save their avatar
-      # create_member_avatar(params[:avatar_type], @member)
-      # redirect_to root_path
-    # else
-      # render :action => "new"
-    # end
+    @member = Member.new(params[:member])
+    
+    if @member.save
+      # the member has passed validation so we need to save their avatar
+      create_member_avatar(params[:avatar_type], @member)
+      
+      # sign the user in
+      sign_in @member
+      
+      # send em home
+      redirect_to root_path
+    else
+      render :action => "new"
+    end
   end
 
   def update
@@ -25,7 +29,9 @@ private
     if avatar_type == "Twitter"
       # get the profile image from twitter
       profile_image_url = twitter_img_url(member.twitter)
-
+      
+      puts 'hihi' + profile_image_url.to_s
+      
       if profile_image_url.empty?
         # go out and grab the image
         image = RestClient.get profile_image_url
