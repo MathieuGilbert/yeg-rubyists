@@ -1,15 +1,5 @@
 $ ->
   # email - validation
-  # disable signup button before ajax call
-  $("#member_email").bind('ajax:before', (evt, data, status, xhr) ->
-    $("input[type=submit]").attr("disabled", "disabled")
-  )
-  
-  # enable signup button after ajax call
-  $("#member_email").bind('ajax:complete', (evt, data, status, xhr) ->
-    $("input[type=submit]").removeAttr("disabled")
-  )  
-  
   # apply css class based on result
   $("#member_email").bind('ajax:success', (evt, data, status, xhr) ->
     if (data is false) 
@@ -31,17 +21,6 @@ $ ->
   )
   
   # twitter - validation
- 
-  # disable signup button before ajax call
-  $("#member_twitter").bind('ajax:before', (evt, data, status, xhr) ->
-    $("input[type=submit]").attr("disabled", "disabled")
-  )  
-  
-  # enable signup button after ajax call
-  $("#member_twitter").bind('ajax:complete', (evt, data, status, xhr) ->
-    $("input[type=submit]").removeAttr("disabled")
-  )  
-    
   $("#member_twitter").bind('ajax:success', (evt, data, status, xhr) ->
     if (data is false) 
       $('#twitter_check').html('Invalid twitter username.')
@@ -61,18 +40,7 @@ $ ->
     $('#member_twitter').removeClass("pass")
   )
   
-  # github - validation
- 
-  # disable signup button before ajax call
-  $("#member_github").bind('ajax:before', (evt, data, status, xhr) ->
-    $("input[type=submit]").attr("disabled", "disabled")
-  )  
-  
-  # enable signup button after ajax call
-  $("#member_github").bind('ajax:complete', (evt, data, status, xhr) ->
-    $("input[type=submit]").removeAttr("disabled")
-  )  
-    
+  # github - validation    
   $("#member_github").bind('ajax:success', (evt, data, status, xhr) ->
     if (data is false) 
       $('#github_check').html('Invalid github username.')
@@ -93,16 +61,6 @@ $ ->
   )
   
   # blogrss - validation
- 
-  # disable signup button before ajax call
-  $("#member_blogrss").bind('ajax:before', (evt, data, status, xhr) ->
-    $("input[type=submit]").attr("disabled", "disabled")
-  )  
-  
-  # enable signup button after ajax call
-  $("#member_blogrss").bind('ajax:complete', (evt, data, status, xhr) ->
-    $("input[type=submit]").removeAttr("disabled")
-  )  
   $("#member_blogrss").bind('ajax:success', (evt, data, status, xhr) ->
     if (data is false) 
       $('#blogrss_check').html('Invalid blog url.')

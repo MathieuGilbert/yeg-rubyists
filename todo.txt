@@ -1,11 +1,8 @@
 == RJ == 
-- Loading gifs during ajax calls (ajax:loading)
 - Style devise pages (ie: field_with_errors)
-- Check user display pic exists with field entered (ie Twitter need a twitter username)
 - Clean up garbage avatars
 
 == MG ==
-
 
 
 --------------------------------- TODO ---------------------------------
@@ -23,6 +20,7 @@
 - Display "in reply to" on Tweets
 - Make whole system config driven (so other people can implement it for themselves)
 - Display avatars so people know which one they're picking
+- Loading gifs during ajax calls (ajax:loading)
 
 --------------------------------- COMPLETED ---------------------------------
 ===== Release 1.0 =====
@@ -42,3 +40,4 @@
 - Design header
 - replace profile links with proper images
 - make profile link images display conditional on values present
+- Check user display pic exists with field entered (ie Twitter need a twitter username)

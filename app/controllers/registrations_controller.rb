@@ -32,6 +32,13 @@ class RegistrationsController < Devise::RegistrationsController
 
     # update member
     if @member.update_attributes(params[:member]) 
+      
+      # delete avatar if it exists to keep db clean
+      unless @member.avatar.nil?
+        avatar = member.avatar
+        avatar.delete
+      end
+      
       # the member has passed validation so we need to save their avatar
       create_member_avatar(params[:member][:avatar_type], @member)
       

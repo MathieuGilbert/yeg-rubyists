@@ -14,6 +14,7 @@ class Member < ActiveRecord::Base
   validate :twitter_check
   validate :github_check
   validate :blogrss_check
+  validate :avatar_check
   
   has_many :tweets, :dependent => :destroy
   has_many :git_events, :dependent => :destroy
@@ -68,5 +69,9 @@ class Member < ActiveRecord::Base
     end
   end
 
-
+  def avatar_check
+    if avatar_type == "Twitter" && twitter.empty?
+      errors.add :base, "You must have a twitter username to set as your profile image."
+    end
+  end
 end
