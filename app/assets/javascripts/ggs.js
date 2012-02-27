@@ -72,7 +72,13 @@ function setHeights() {
 ender.domReady(function () {
 
 /*  Add control classes and switch element */
-  ender('body').addClass('ggs-hidden ggs-animated').append('<div id="ggs-switch"><div class="ggs-switchBar"></div><div class="ggs-switchBar"></div><div class="ggs-switchBar"></div></div>');
+  ender('body').addClass('ggs-hidden ggs-animated').append('\
+    <div id="ggs-switch">\
+      <div class="ggs-switchBar"></div>\
+      <div class="ggs-switchBar"></div>\
+      <div class="ggs-switchBar"></div>\
+      <div id="widthDisplay"></div>\
+    </div>');
 
 /*  Create CSS */
     var styles = '\
@@ -132,6 +138,7 @@ ender.domReady(function () {
 
 /*  Resize guides when window size changes */
   ender(window).on('resize', setHeights);
+  ender(window).on('resize', UpdateWidthDisplay);
 
 /*  Add listeners for switch element */
   ender('#ggs-switch').click(function(){
@@ -155,5 +162,10 @@ ender.domReady(function () {
       );
     }
   });
+
+  function UpdateWidthDisplay() {
+    var target = document.getElementById("widthDisplay");
+    target.innerHTML = window.innerWidth + "px";
+  }
 
 });

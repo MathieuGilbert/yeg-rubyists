@@ -176,7 +176,7 @@ footer {
   }
 }
   
-@include side-margin($column);
+@include side-margin(0);
 
 h1, h2 {
   margin: (#{24/26}em) 0 (#{36/26}em);
@@ -235,14 +235,16 @@ h3 {
 /* @media screen and (min-width: 480px) */
 @media screen and (min-width: 30.0em) {
   @include grid-base(0); 
-  @include side-margin($column*5);
+  @include side-margin($column*3);
 }
 
-/* @media screen and (min-width: 640px) */
+
+/* @media screen and (min-width: 640px) 
 @media screen and (min-width: 40em) {
   @include grid-base(0);
-  @include side-margin($column*5);
+  @include side-margin($column*3);
 }
+*/
 
 /*
 *
@@ -261,45 +263,45 @@ h3 {
     width: $column*6;
   }
   
-  @include grid-base(1);
-  @include side-margin($column);
+  @include grid-base(0);
+  @include side-margin($column*0);
 }
 
 
-/* @media screen and (min-width: 888px) */
+/* @media screen and (min-width: 888px) 
 @media screen and (min-width: 55.5em) {
   @include grid-base(0);
   @include side-margin($column);
 }
+*/
 
-
-/* @media screen and (min-width: 984px) */
+/* @media screen and (min-width: 1024px) */
 @media screen and (min-width: 61.5em) {
-  @include grid-base(1);
+  @include grid-base(0);
   @include side-margin($column);
 }
 
 
-/* @media screen and (min-width: 1200px) */
+/* @media screen and (min-width: 1200px) 
 @media screen and (min-width: 75em) {
   @include grid-base(0);
   @include side-margin($column*3);
 }
+*/
 
-
-/* @media screen and (min-width: 1392px) */
+/* @media screen and (min-width: 1392px) 
 @media screen and (min-width: 87em) {
   @include grid-base(1);
   @include side-margin($column*3);
 }
+*/
 
-
-/* @media screen and (min-width: 1680px) */
+/* @media screen and (min-width: 1680px) 
 @media screen and (min-width: 105em) {
   @include grid-base(0);
   @include side-margin($column*3);
 }
-
+*/
 
 /*
 *
@@ -318,8 +320,8 @@ h3 {
     width: $column*6;
   }
   
-  @include grid-base(1);
-  @include side-margin($column);
+  @include grid-base(0);
+  @include side-margin($column*3);
 }
 
 
@@ -329,5 +331,5 @@ h3 {
     max-width: (2560/$em)em;
   }
   @include grid-base(2);
-  @include side-margin($column);
+  @include side-margin($column*3);
 }
