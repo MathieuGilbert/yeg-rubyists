@@ -1,6 +1,5 @@
 == RJ == 
-- Style devise pages (ie: field_with_errors)
-- Clean up garbage avatars
+- Style devise pages (ie: field_with_errors, etc.)
 
 == MG ==
 
@@ -19,7 +18,7 @@
 - Pretty up overall feed
 - Display "in reply to" on Tweets
 - Make whole system config driven (so other people can implement it for themselves)
-- Display avatars so people know which one they're picking
+- Display avatars during signup and edit so people know which one they're picking
 - Loading gifs during ajax calls (ajax:loading)
 
 --------------------------------- COMPLETED ---------------------------------
