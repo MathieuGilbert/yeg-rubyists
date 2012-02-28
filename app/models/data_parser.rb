@@ -164,7 +164,7 @@ private
     repo_url = html[start_index..end_index]
     repo_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
     
-    message = "<p class='itemTitle'>Push to #{repo_url}</p><p class='itemDetail'>"
+    message = "<p class='itemTitle'>Push to #{repo_url}</p>"
 
     # want ALL commit messages
     target_string = "committed"
@@ -175,7 +175,7 @@ private
       start_index = html.index("<a", target_index)
       end_index = html.index(">", start_index)
 
-      commit_url = "<span class='commitListItem'>#{html[start_index..end_index]}"
+      commit_url = "<p class='itemDetail commitListItem'>#{html[start_index..end_index]}"
       commit_url.sub!("href=\"", "target=\"_blank\" href=\"https://github.com")
       
       message += "#{commit_url}"
@@ -186,16 +186,13 @@ private
 
       commit_message = html[start_index..end_index]
 
-      message += "#{commit_message}</a></span><br/>"
+      message += "#{commit_message}</a></p>"
       
       # see if there's more
       target_string = "committed"
       target_index = html.index(target_string, end_index)
     end
 
-    # strip out final br
-    message = message[0..message.length - 6]
-    message += "</p>"
 
     return message    
   end

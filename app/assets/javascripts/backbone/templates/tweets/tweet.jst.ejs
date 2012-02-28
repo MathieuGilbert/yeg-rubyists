@@ -6,6 +6,9 @@
   <div class='name'>
     <%= twitter_member.name %>
   </div>
+  <div class='date'>
+    <%= FormatUtcDate(date) %>
+  </div>
 
   <div class='bottomRow'>
     <div class='memberLinks'>
@@ -24,9 +27,6 @@
           <img src="assets/blog_icon.png" />
         </a>
       <% } %>
-    </div>
-    <div class='date'>
-      <%= FormatUtcDate(date) %>
     </div>
   </div>
 

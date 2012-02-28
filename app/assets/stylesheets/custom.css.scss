@@ -25,7 +25,6 @@ $footer-height: 30px;
     color: #FFFFFF;
     text-decoration: none;
     border-bottom: 1px dotted #555555;
-    margin: 0 8px;
   }
   a:hover {
     border-bottom: 1px dotted #FF0000;
@@ -33,7 +32,7 @@ $footer-height: 30px;
 }
 
 body {
-  font-family: Gill Sans / Gill Sans MT, Verdana, Helvetica, Arial, sans-serif;
+  font-family: "Verdana", sans-serif;
   background-color: $body-color;
   @include page-texture;
 }
@@ -154,25 +153,33 @@ footer {
 
   .profileImage {
     float: left;
-    width: 38px;
-    height: 55px;
+    width: 32px;
+    height: 32px;
 
     img {
       width: 32px;
       height: 32px;
     }
   }
+
   .name {
     cursor: pointer;
+    float: left;
+    margin-left: 5px;
   }
 
   .name:hover {
     color: #aa8800;  
   }
 
+  .date {
+    float: right;
+    font-size: .7em !important;
+    margin-left: 10px;
+  }
+
   .bottomRow {
-    padding-left: 45px;
-    height: 30px;
+    height: 20px;
 
     .memberLinks {
       display: none;
@@ -190,29 +197,32 @@ footer {
         filter:alpha(opacity=1);
       }
     }
-    .date {
-      float: right;
-      font-size: .5em !important;
-    }
   }
+}
+
+#blogrss .itemDetail {
+  padding-left: 20px !important;
 }
 
 .itemTitle {
   font-variant: small-caps;
+  clear: both;
 }
 
 .itemDetail {
   font-style: none;
   font-size: 0.8em;
-  font-weight: bold;
+  font-weight: normal;
   letter-spacing: 1px;
-
-  .commitListItem {
-    padding-left: 20px !important;
-  }
-
+  clear: both;
 }
 
+.commitListItem {
+  padding-left: 20px !important;
+}
+.commitListItem:before {
+  content: "+ ";
+}
 
 /* Webkit scroll bar hackery */
 
