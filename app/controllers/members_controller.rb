@@ -5,7 +5,7 @@ class MembersController < ApplicationController
   before_filter :admin_member, :only => [:administer]
   
   def administer
-    @members = Member.find(:all, :conditions => { :status => "pending" })
+    @members = Member.where({:status => "pending"}).all
   end
   
   def approve
