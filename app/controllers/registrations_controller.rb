@@ -1,12 +1,15 @@
 class RegistrationsController < Devise::RegistrationsController
+  before_filter :setup_negative_captcha, :only => [:new, :create]
+
   def new
     super
   end
   
   def create
-    @member = Member.new(params[:member])
+    #@member = Member.new(params[:member])
+    @member = Member.new(@captcha.values)
     
-    if @member.save
+    if @captcha.valid? && @member.save
       # the member has passed validation so we need to save their avatar
       create_member_avatar(params[:avatar_type], @member)
       
@@ -16,6 +19,7 @@ class RegistrationsController < Devise::RegistrationsController
       # send em home
       redirect_to root_path
     else
+      flash[:notice] = @captcha.error if @captcha.error
       render :action => "new"
     end
   end
@@ -99,6 +103,14 @@ private
     
     # grab the profile image url
     profile_image_url = h.search("profile_image_url").inner_html
+  end
+
+  def setup_negative_captcha
+    @captcha = NegativeCaptcha.new(
+      :secret   => 'cbbdfd485324f2196b7fd9a9ed7936f209826a81f3be170efe218b127df5605127cd5ddcf49b6669367763e20942f1465c380d5dbc7922689d07c96b54f7fc91',
+      :spinner  => request.remote_ip,
+      :fields   => [:name, :email, :password, :password_confirmation, :twitter, :github, :blogrss],
+      :params   => params)
   end
 
 end 
