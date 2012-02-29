@@ -5,7 +5,6 @@
 - Sign up captcha
 
 --------------------------------- TODO ---------------------------------
-
 - Ability to delete users (or let users delete themselves from Edit), removing all their feed items
   - maybe just self-deactivate
 - Devise forgot password functionality
