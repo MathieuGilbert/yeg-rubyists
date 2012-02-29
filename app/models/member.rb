@@ -51,9 +51,10 @@ class Member < ActiveRecord::Base
   def github_check
     begin
       if !github.empty?
-        RestClient.get "github.com/#{github}"
+        RestClient.get "https://github.com/#{github}"
       end
     rescue => e
+      f = e.to_s
       errors.add :base, "Invalid Github account."
     end
   end

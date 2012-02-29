@@ -35,7 +35,7 @@ class RegistrationsController < Devise::RegistrationsController
       
       # delete avatar if it exists to keep db clean
       unless @member.avatar.nil?
-        avatar = member.avatar
+        avatar = @member.avatar
         avatar.delete
       end
       
@@ -81,7 +81,7 @@ private
                              :content_type => image.headers[:content_type], 
                              :filename => member.name, 
                              :binary_data => image.body})
-                             puts 'here3'
+
       # assign the avatar to the member
       member.avatar = new_avatar
     end
