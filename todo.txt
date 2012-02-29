@@ -1,6 +1,7 @@
 == RJ == 
 - Style devise pages (ie: field_with_errors, etc.)
 
+
 == MG ==
 
 
