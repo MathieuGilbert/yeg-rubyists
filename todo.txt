@@ -2,24 +2,25 @@
 - Style devise pages (ie: field_with_errors, etc.)
 
 == MG ==
-
+- Sign up captcha
 
 --------------------------------- TODO ---------------------------------
-- Add more Jasmine tests
+
 - Ability to delete users (or let users delete themselves from Edit), removing all their feed items
   - maybe just self-deactivate
-- Pick better fonts & styles
+- Devise forgot password functionality
+- Display avatars during signup and edit so people know which one they're picking
+- Loading gifs during ajax calls (ajax:loading)
+
+- Add more Jasmine tests
+- Make whole system config driven (so other people can implement it for themselves)
+- Display "in reply to" on Tweets
+
 - Finalize grid breakpoints and properties at each point
   - column widths
   - font sizes (by area if needed)
   - specific components layout
-- Devise forgot password functionality
-- Sign up captcha
-- Pretty up overall feed
-- Display "in reply to" on Tweets
-- Make whole system config driven (so other people can implement it for themselves)
-- Display avatars during signup and edit so people know which one they're picking
-- Loading gifs during ajax calls (ajax:loading)
+
 
 --------------------------------- COMPLETED ---------------------------------
 ===== Release 1.0 =====
@@ -40,3 +41,5 @@
 - replace profile links with proper images
 - make profile link images display conditional on values present
 - Check user display pic exists with field entered (ie Twitter need a twitter username)
+- Pretty up overall feed
+- Pick better fonts & styles
