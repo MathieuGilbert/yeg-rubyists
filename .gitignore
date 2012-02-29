@@ -15,5 +15,4 @@
 /tmp
 
 # Ignore this RubyMine thing
-.idea/.generators
-.idea/.rakeTasks
+.idea/*
