@@ -13,7 +13,7 @@ class MembersController < ApplicationController
     member = Member.find(params[:id])
   
     # add the member to the twitter list
-    if !member.twitter.empty?
+    if !member.twitter.blank?
       add_to_twitter_list(member)
     end
     

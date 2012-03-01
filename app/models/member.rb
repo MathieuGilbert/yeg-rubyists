@@ -24,7 +24,7 @@ class Member < ActiveRecord::Base
   has_one :avatar
   
   def social_media_supplied
-    if twitter.empty? and github.empty? and blogrss.empty?
+    if twitter.blank? and github.blank? and blogrss.blank?
       errors.add :base, "At least 1 social media link is required."
     end
   end
@@ -39,7 +39,7 @@ class Member < ActiveRecord::Base
   # check if the twitter account is legit
   def twitter_check
     begin
-      if !twitter.empty?
+      if !twitter.blank?
         RestClient.get "twitter.com/#{twitter}"
       end
     rescue => e
@@ -50,11 +50,10 @@ class Member < ActiveRecord::Base
   # check if the github account is legit
   def github_check
     begin
-      if !github.empty?
+      if !github.blank?
         RestClient.get "https://github.com/#{github}"
       end
     rescue => e
-      f = e.to_s
       errors.add :base, "Invalid Github account."
     end
   end
@@ -62,7 +61,7 @@ class Member < ActiveRecord::Base
   # check if the blog rss url is legit
   def blogrss_check
     begin
-      if !blogrss.empty?
+      if !blogrss.blank?
         RestClient.get blogrss
       end
     rescue => e
@@ -71,7 +70,7 @@ class Member < ActiveRecord::Base
   end
 
   def avatar_check
-    if avatar_type == "Twitter" && twitter.empty?
+    if avatar_type == "Twitter" && twitter.blank?
       errors.add :base, "You must have a twitter username to set as your profile image."
     end
   end
