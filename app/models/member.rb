@@ -39,10 +39,10 @@ class Member < ActiveRecord::Base
   # check if the twitter account is legit
   def twitter_check
     begin
-      if !twitter.blank?
+      unless twitter.blank?
         RestClient.get "twitter.com/#{twitter}"
       end
-    rescue => e
+    rescue
       errors.add :base, "Invalid Twitter account."
     end
   end
@@ -50,10 +50,10 @@ class Member < ActiveRecord::Base
   # check if the github account is legit
   def github_check
     begin
-      if !github.blank?
+      unless github.blank?
         RestClient.get "https://github.com/#{github}"
       end
-    rescue => e
+    rescue
       errors.add :base, "Invalid Github account."
     end
   end
@@ -61,10 +61,10 @@ class Member < ActiveRecord::Base
   # check if the blog rss url is legit
   def blogrss_check
     begin
-      if !blogrss.blank?
+      unless blogrss.blank?
         RestClient.get blogrss
       end
-    rescue => e
+    rescue
       errors.add :base, "Invalid Blog URL"
     end
   end
