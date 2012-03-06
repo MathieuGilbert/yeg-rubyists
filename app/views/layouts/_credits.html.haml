@@ -1,3 +1,2 @@
-- @user = Member.find(credit_id)
 .credit
-  %a{ :title => @user.name, :href => "https://twitter.com/#{@user.twitter}", :target => "_blank" } #{@user.name.split[0]}
+  %a{ :title => full_name, :href => "https://twitter.com/#{twitter}", :target => "_blank" } #{display_name}
