@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/stefants/negative-captcha.git
+  revision: dc0c1bbde675066ad99e7c701aaac82d789ccf37
+  specs:
+    negative-captcha (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -208,6 +214,7 @@ DEPENDENCIES
   hpricot
   jasminerice
   jquery-rails (>= 1.0.12)
+  negative-captcha!
   pg
   rails (= 3.2.0)
   rails-backbone

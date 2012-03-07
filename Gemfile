@@ -10,6 +10,7 @@ gem 'github_api'
 gem 'haml'
 gem 'rest-client'
 gem 'hpricot'
+gem 'negative-captcha', :git => 'git://github.com/stefants/negative-captcha.git'
 
 # Backbone helper (mostly used for js libs)
 gem 'rails-backbone'

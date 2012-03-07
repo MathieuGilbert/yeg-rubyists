@@ -10,7 +10,6 @@
 - Devise forgot password functionality
 - Display avatars during signup and edit so people know which one they're picking
 - Loading gifs during ajax calls (ajax:loading)
-- Sign up captcha
 
 - Add more Jasmine tests
 - Make whole system config driven (so other people can implement it for themselves)
@@ -43,3 +42,4 @@
 - Check user display pic exists with field entered (ie Twitter need a twitter username)
 - Pretty up overall feed
 - Pick better fonts & styles
+- Sign up captcha

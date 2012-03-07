@@ -225,6 +225,13 @@ footer {
   content: "+ ";
 }
 
+#new_member {
+
+  input[type="text"], input[type="email"], input[type="password"], input[type="url"] {
+    width: 316px;
+  }
+}
+
 /* Webkit scroll bar hackery */
 
 .feed::-webkit-scrollbar {
