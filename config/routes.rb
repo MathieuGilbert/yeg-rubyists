@@ -11,7 +11,7 @@ YegRubyists::Application.routes.draw do
   match '/git_events/:id' => 'git_events#show'
   
   resources :members do
-    collection do 
+    collection do
       get :email_check
       get :twitter_check
       get :github_check

@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   respond_to :html, :json
 
-  before_filter :authenticate_member!, :only => [:administer, :approve]
+  before_filter :authenticate_member!, :only => [:administer, :approve, :delete]
   before_filter :admin_member, :only => [:administer]
   
   def administer

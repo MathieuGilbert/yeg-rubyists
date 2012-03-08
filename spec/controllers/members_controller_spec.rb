@@ -9,14 +9,15 @@ describe MembersController do
     it "should protect the admin page" do
       get :administer
       response.should redirect_to(new_member_session_path)
-    end  
+    end
+
   end
   
   describe "logged-in members" do
     before(:each) do
       sign_in(@member)
     end
-    
+
     describe "non-admins" do
       it "should deny non admins access to /admin" do
         get :administer
