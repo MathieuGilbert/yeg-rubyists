@@ -2,11 +2,9 @@
 - Style devise pages (ie: field_with_errors, etc.)
 
 == MG ==
-
+- Let users delete themselves from Edit, removing all their feed items
 
 --------------------------------- TODO ---------------------------------
-- Ability to delete users (or let users delete themselves from Edit), removing all their feed items
-  - maybe just self-deactivate
 - Devise forgot password functionality
 - Display avatars during signup and edit so people know which one they're picking
 - Loading gifs during ajax calls (ajax:loading)

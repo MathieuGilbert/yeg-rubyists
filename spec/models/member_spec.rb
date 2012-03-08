@@ -6,14 +6,14 @@ describe Member do
               :email                 => "member@example.com",
               :password              => "password",
               :password_confirmation => "password",
-              :twitter               => "http://www.twitter.com",
-              :github                => "http://www.github.com",
-              :blogrss               => "http://www.google.com",
+              :twitter               => "mathieu_gilbert",
+              :github                => "mathieugilbert",
+              :blogrss               => "http://www.helloabs.com/rss",
               :status                => "pending" }
   end
   
   it "should create a member given valid attributes" do
-    member = Member.create!(@attr)
+    Member.create!(@attr)
   end
 
   it "should require a name" do
