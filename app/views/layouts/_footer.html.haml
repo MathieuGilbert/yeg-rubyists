@@ -1,7 +1,6 @@
-%center
-  .centerer
-    %img{ :src => '/assets/ruby_logo_20x.png' }
-    = render :partial => 'layouts/credits', :locals => { :credit_id => 2 }
-    %img{ :src => '/assets/ruby_logo_20x.png' }
-    = render :partial => 'layouts/credits', :locals => { :credit_id => 1 }
-    %img{ :src => '/assets/ruby_logo_20x.png' }
+.centerer
+  %img{ :src => '/assets/ruby_logo_20x.png' }
+  = render :partial => 'layouts/credits', :locals => { :full_name => 'Ryan Jones', :display_name => 'Ryan', :twitter => 'ryanonrails' }
+  %img{ :src => '/assets/ruby_logo_20x.png' }
+  = render :partial => 'layouts/credits', :locals => { :full_name => 'Mathieu Gilbert', :display_name => 'Mathieu', :twitter => 'mathieu_gilbert' }
+  %img{ :src => '/assets/ruby_logo_20x.png' }

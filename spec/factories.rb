@@ -5,9 +5,9 @@ FactoryGirl.define do
     password              "password"
     password_confirmation "password"
     remember_me           false
-    twitter               "http://www.twitter.com/sample"
-    github                "http://www.github.com/sample"
-    blogrss               "http://www.blog.com/sample.rss"
+    twitter               "mathieu_gilbert"
+    github                "mathieugilbert"
+    blogrss               "http://www.helloabs.com/rss"
     status                "pending"
   end
   

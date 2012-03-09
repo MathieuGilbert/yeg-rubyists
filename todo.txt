@@ -3,14 +3,11 @@
 testing rubymine branch
 
 == MG ==
-- Sign up captcha
+- Loading gifs during ajax calls (ajax:loading)
 
 --------------------------------- TODO ---------------------------------
-- Ability to delete users (or let users delete themselves from Edit), removing all their feed items
-  - maybe just self-deactivate
 - Devise forgot password functionality
 - Display avatars during signup and edit so people know which one they're picking
-- Loading gifs during ajax calls (ajax:loading)
 
 - Add more Jasmine tests
 - Make whole system config driven (so other people can implement it for themselves)
@@ -43,3 +40,5 @@ testing rubymine branch
 - Check user display pic exists with field entered (ie Twitter need a twitter username)
 - Pretty up overall feed
 - Pick better fonts & styles
+- Sign up captcha
+- Let users delete themselves from Edit, removing all their feed items

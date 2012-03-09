@@ -4,44 +4,46 @@
 <div id="devise_signup">
   <h2>Sign up</h2>
   
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:novalidate => 'novalidate', :multipart => true}) do |f| %>
+  <%= form_for(:member, :as => :create, :url => '/members', :html => {:novalidate => 'novalidate', :multipart => true}) do |f| %>
+    <%= raw negative_captcha(@captcha) %>
     <%= devise_error_messages! %>
-  
-    <div><%= f.label "Display Name" %><br />
-      <%= f.text_field :name %>
+
+    <div>
+      <%= negative_label_tag(@captcha, :name, 'Display Name') %><br />
+      <%= negative_text_field_tag @captcha, :name %>
     </div>
-      
+
     <div><%= f.label :email %><br />
       <%= f.email_field :email, :data => {:remote => true, :url => "/members/email_check", :type => :json}%>
       <span id="email_check">&nbsp;</span>
     </div>
-  
+
     <div><%= f.label :password %><br />
     <%= f.password_field :password, :remote => true %></div>
-  
+
     <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %></div>
-    
+
     <div><%= f.label :twitter %><br />
       <%= f.text_field :twitter, :data => {:remote => true, :url => "/members/twitter_check", :type => :json} %>
       <span id="twitter_check">&nbsp;</span>
     </div>
-      
+
     <div><%= f.label :github, "github" %><br />
       <%= f.text_field :github, :data => {:remote => true, :url => "/members/github_check", :type => :json} %>
       <span id="github_check">&nbsp;</span>
     </div>
-      
+
     <div><%= f.label :blogrss, "Blog RSS" %><br />
       <%= f.url_field :blogrss, :data => {:remote => true, :url => "/members/blogrss_check", :type => :json} %>
       <span id="blogrss_check">&nbsp;</span>
     </div>
-    
-    <div id="avatar_type"> 
+
+    <div id="avatar_type">
       Pick your avatar you'd like to represent you on the site: <br />
       <%= f.select "avatar_type", options_for_select([ "Gravatar", "Twitter" ], "Gravatar") %>
     </div>
-    
+
     <div><%= f.submit "Sign up" %></div>
   <% end %>
 </div>
