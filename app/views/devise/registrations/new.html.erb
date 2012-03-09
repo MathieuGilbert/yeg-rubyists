@@ -4,7 +4,7 @@
 <div id="devise_signup">
   <h2>Sign up</h2>
   
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:novalidate => 'novalidate', :multipart => true}) do |f| %>
+  <%= form_for(:member, :as => :create, :url => '/', :html => {:novalidate => 'novalidate', :multipart => true}) do |f| %>
     <%= raw negative_captcha(@captcha) %>
     <%= devise_error_messages! %>
 

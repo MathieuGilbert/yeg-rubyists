@@ -18,6 +18,7 @@ YegRubyists::Application.routes.draw do
       get :blogrss_check
       put :approve
       get :member_image
+      delete :destroy
     end
   end
 

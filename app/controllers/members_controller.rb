@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   respond_to :html, :json
 
-  before_filter :authenticate_member!, :only => [:administer, :approve, :delete]
+  before_filter :authenticate_member!, :only => [:administer, :approve, :destroy]
   before_filter :admin_member, :only => [:administer]
   
   def administer
@@ -80,6 +80,15 @@ class MembersController < ApplicationController
     # Fire it out to the screen
     @image = @avatar.binary_data
     send_data @image, :type => @avatar.content_type, :disposition => 'inline'
+  end
+
+  def destroy
+    member = current_member
+    member.tweets.destroy_all
+    member.git_events.destroy_all
+    member.blog_posts.destroy_all
+    member.destroy
+    redirect_to root_path
   end
 
   private
