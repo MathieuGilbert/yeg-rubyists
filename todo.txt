@@ -2,12 +2,11 @@
 - Style devise pages (ie: field_with_errors, etc.)
 
 == MG ==
-- Let users delete themselves from Edit, removing all their feed items
+- Loading gifs during ajax calls (ajax:loading)
 
 --------------------------------- TODO ---------------------------------
 - Devise forgot password functionality
 - Display avatars during signup and edit so people know which one they're picking
-- Loading gifs during ajax calls (ajax:loading)
 
 - Add more Jasmine tests
 - Make whole system config driven (so other people can implement it for themselves)
@@ -41,3 +40,4 @@
 - Pretty up overall feed
 - Pick better fonts & styles
 - Sign up captcha
+- Let users delete themselves from Edit, removing all their feed items
