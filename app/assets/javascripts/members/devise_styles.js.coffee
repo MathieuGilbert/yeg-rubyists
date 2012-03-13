@@ -20,6 +20,11 @@ $ ->
     $('#email_check').empty()
     $('#member_email').removeClass("error")
     $('#member_email').removeClass("pass")
+    setImageClass("#email_status", "new")
+  )
+
+  $("#member_email").bind('ajax:beforeSend', ->
+    setImageClass("#email_status", "checking")
   )
 
   # twitter - validation
@@ -43,12 +48,12 @@ $ ->
     $('#twitter_check').empty()
     $('#member_twitter').removeClass("error")
     $('#member_twitter').removeClass("pass")
-    #setImageClass("#twitter_status", "new")
+    setImageClass("#twitter_status", "new")
   )
 
-#  $("#member_twitter").blur( ->
-#    setImageClass("#twitter_status", "checking")
-#  )
+  $("#member_twitter").bind('ajax:beforeSend', ->
+    setImageClass("#twitter_status", "checking")
+  )
 
   # github - validation
   $("#member_github").bind('ajax:success', (evt, data, status, xhr) ->
@@ -71,6 +76,11 @@ $ ->
     $('#github_check').empty()
     $('#member_github').removeClass("error")
     $('#member_github').removeClass("pass")
+    setImageClass("#github_status", "new")
+  )
+
+  $("#member_github").bind('ajax:beforeSend', ->
+    setImageClass("#github_status", "checking")
   )
 
   # blogrss - validation
@@ -94,7 +104,13 @@ $ ->
     $('#blogrss_check').empty()
     $('#member_blogrss').removeClass("error")
     $('#member_blogrss').removeClass("pass")
+    setImageClass("#blogrss_status", "new")
   )
+
+  $("#member_blogrss").bind('ajax:beforeSend', ->
+    setImageClass("#blogrss_status", "checking")
+  )
+
 
   setImageClass = (elementId, newClass) ->
     $(elementId).removeClass("new valid invalid checking")
