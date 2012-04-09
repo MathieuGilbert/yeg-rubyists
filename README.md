@@ -19,7 +19,7 @@ Column Errors:
 **Twitter column not showing up?**
 Make sure you have the twitter oauth account setup correctly (and the keys updated)
 
-**Blog column not showing up?**
+**Blog column not showing up?**  
 Make sure the blog url is in Atom format (not RSS). IE: http://www.ryanonrails.com/feed/atom/
 
 TODO
