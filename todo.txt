@@ -1,11 +1,11 @@
-== RJ == 
-- Style devise pages (ie: field_with_errors, etc.)
-testing rubymine branch
+== RJ ==
 
 == MG ==
 - Loading gifs during ajax calls (ajax:loading)
 
 --------------------------------- TODO ---------------------------------
+- Delete old data
+
 - Devise forgot password functionality
 - Display avatars during signup and edit so people know which one they're picking
 
@@ -42,3 +42,4 @@ testing rubymine branch
 - Pick better fonts & styles
 - Sign up captcha
 - Let users delete themselves from Edit, removing all their feed items
+- Style devise pages (ie: field_with_errors, etc.)
