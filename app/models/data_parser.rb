@@ -13,7 +13,7 @@ class DataParser
     members = Member.where(:status => 'approved')
 
     # make sure we have members to match against
-    if !members.empty?
+    unless members.empty?
       last_update = self.get_lastest_update
 
       # twitter

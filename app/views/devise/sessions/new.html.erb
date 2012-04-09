@@ -3,7 +3,8 @@
 
 <div id="devise_signup">
   <h2>Sign in</h2>
-  
+  <%= render 'd_errors' %>
+
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <div><%= f.label :email %><br />
     <%= f.email_field :email %></div>
@@ -15,7 +16,8 @@
       <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
     <% end -%>
   
-    <div><%= f.submit "Sign in" %></div>
+    <div id="submit"><%= f.submit "Sign in" %>
+      <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+    </div>
   <% end %>
 </div>
-<%= render "links" %>

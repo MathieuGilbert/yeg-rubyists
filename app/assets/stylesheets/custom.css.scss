@@ -47,7 +47,7 @@ header {
   .controls {
     float: right;
     border: 0px solid black;
-
+    margin-top: 5px;
     @include fancy-links;
   }
 
@@ -243,4 +243,13 @@ footer {
     border-radius: 10px;
     background: $feed-border-color; 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8); 
+}
+
+#admin_members {
+  color:white;
+  margin:0px auto;
+  width:500px;
+  table {
+    margin-bottom: 30px;
+  }
 }

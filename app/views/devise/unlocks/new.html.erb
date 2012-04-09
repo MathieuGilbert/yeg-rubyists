@@ -1,12 +1,15 @@
-<h2>Resend unlock instructions</h2>
+<%= stylesheet_link_tag "members/devise_styles" %>
 
-<%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div id="devise_signup">
+    <h2>Sign in</h2>
+    <h2>Resend unlock instructions</h2>
+    <%= render 'd_errors' %>
+    <%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
+      <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+      <div><%= f.label :email %><br />
+      <%= f.email_field :email %></div>
 
-  <div><%= f.submit "Resend unlock instructions" %></div>
-<% end %>
-
-<%= render "links" %>
+      <div id="submit"><%= f.submit "Resend unlock instructions" %></div>
+    <% end %>
+</div>

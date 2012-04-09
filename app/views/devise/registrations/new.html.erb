@@ -3,7 +3,7 @@
 
 <div id="devise_signup">
   <h2>Sign up</h2>
-
+  <%= render 'd_errors' %>
   <%= form_for(:member, :as => :create, :url => '/members', :html => {:novalidate => 'novalidate', :multipart => true}) do |f| %>
     <%= raw negative_captcha(@captcha) %>
     <%= devise_error_messages! %>
@@ -31,13 +31,13 @@
       <span id="twitter_check">&nbsp;</span>
     </div>
 
-    <div><%= f.label :github, "github" %><br />
+    <div><%= f.label :github, "Github" %><br />
       <%= f.text_field :github, :data => {:remote => true, :url => "/members/github_check", :type => :json} %>
       <div class="github new" id="github_status"></div>
       <span id="github_check">&nbsp;</span>
     </div>
 
-    <div><%= f.label :blogrss, "Blog RSS" %><br />
+    <div><%= f.label :blogrss, "Blog Atom RSS (ex: http://www.ryanonrails.com/feed/atom)" %><br />
       <%= f.url_field :blogrss, :data => {:remote => true, :url => "/members/blogrss_check", :type => :json} %>
       <div class="blogrss new" id="blogrss_status"></div>
       <span id="blogrss_check">&nbsp;</span>
@@ -48,7 +48,8 @@
       <%= f.select "avatar_type", options_for_select([ "Gravatar", "Twitter" ], "Gravatar") %>
     </div>
 
-    <div><%= f.submit "Sign up" %></div>
+    <div id="submit"><%= f.submit "Sign up" %>
+      <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+    </div>
   <% end %>
 </div>
-<%= render "links" %>
