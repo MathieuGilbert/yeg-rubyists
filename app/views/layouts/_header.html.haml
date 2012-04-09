@@ -5,11 +5,13 @@
 
 .controls
   - if member_signed_in? && current_member.admin?
-    = link_to 'Admin | ', admin_path
-
+    = link_to 'Admin', admin_path
+    |
   - if !member_signed_in?
-    = link_to 'Sign up | ', new_member_registration_path
+    = link_to 'Sign up', new_member_registration_path
+    |
     = link_to 'Sign in', member_session_path
   - else
-    = link_to 'Edit Account |', edit_member_registration_path
+    = link_to 'Edit Account', edit_member_registration_path
+    |
     = link_to 'Sign out', destroy_member_session_path

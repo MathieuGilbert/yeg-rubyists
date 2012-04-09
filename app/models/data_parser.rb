@@ -156,7 +156,10 @@ private
 
   def self.parse_event_message(html)
     # this is a block of html tags... grunt it out
-    target_string = "to master at"
+
+    # Trying to retrieve the RepoURL in:
+    # ... UserName pushed to BranchName at RepoURL..."
+    target_string = "<span>pushed</span>"
     target_index = html.index(target_string) + target_string.length
     start_index = html.index("<a", target_index)
     target_string = "</a>"

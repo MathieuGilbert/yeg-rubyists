@@ -21,6 +21,8 @@ $footer-height: 30px;
 }
 
 @mixin fancy-links {
+  color: #FFFFFF;
+
   a {
     color: #FFFFFF;
     text-decoration: none;
