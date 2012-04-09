@@ -3,7 +3,7 @@
 
 <div id="devise_signup">
   <h2>Sign up</h2>
-  
+
   <%= form_for(:member, :as => :create, :url => '/members', :html => {:novalidate => 'novalidate', :multipart => true}) do |f| %>
     <%= raw negative_captcha(@captcha) %>
     <%= devise_error_messages! %>
@@ -15,6 +15,7 @@
 
     <div><%= f.label :email %><br />
       <%= f.email_field :email, :data => {:remote => true, :url => "/members/email_check", :type => :json}%>
+      <div class="email new" id="email_status"></div>
       <span id="email_check">&nbsp;</span>
     </div>
 
@@ -26,21 +27,24 @@
 
     <div><%= f.label :twitter %><br />
       <%= f.text_field :twitter, :data => {:remote => true, :url => "/members/twitter_check", :type => :json} %>
+      <div class="twitter new" id="twitter_status"></div>
       <span id="twitter_check">&nbsp;</span>
     </div>
 
     <div><%= f.label :github, "github" %><br />
       <%= f.text_field :github, :data => {:remote => true, :url => "/members/github_check", :type => :json} %>
+      <div class="github new" id="github_status"></div>
       <span id="github_check">&nbsp;</span>
     </div>
 
     <div><%= f.label :blogrss, "Blog RSS" %><br />
       <%= f.url_field :blogrss, :data => {:remote => true, :url => "/members/blogrss_check", :type => :json} %>
+      <div class="blogrss new" id="blogrss_status"></div>
       <span id="blogrss_check">&nbsp;</span>
     </div>
 
     <div id="avatar_type">
-      Pick your avatar you'd like to represent you on the site: <br />
+      Pick the avatar you'd like to represent you: <br />
       <%= f.select "avatar_type", options_for_select([ "Gravatar", "Twitter" ], "Gravatar") %>
     </div>
 
