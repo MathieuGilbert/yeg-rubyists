@@ -6,8 +6,6 @@
   <%= render 'd_errors' %>
   <%= form_for(:member, :as => :create, :url => '/members', :html => {:novalidate => 'novalidate', :multipart => true}) do |f| %>
     <%= raw negative_captcha(@captcha) %>
-    <%= devise_error_messages! %>
-
     <div>
       <%= negative_label_tag(@captcha, :name, 'Display Name') %><br />
       <%= negative_text_field_tag @captcha, :name %>
