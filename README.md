@@ -5,8 +5,9 @@ A project to display the yegrb rubyists activity
 Installation
 --------
 Git clone
-Update twitter oauth -> config/initializers/twitter.rb  
-Create a few users  
+Update twitter oauth -> config/initializers/twitter.rb
+Update make admins task
+Run rake db:make_admins
 Run rails console -> DataParser.update_data (should populate data based on users)
 
 General Errors

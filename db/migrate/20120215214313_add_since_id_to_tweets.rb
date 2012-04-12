@@ -1,5 +1,5 @@
 class AddSinceIdToTweets < ActiveRecord::Migration
   def change
-    add_column :tweets, :since_id, :integer
+    add_column :tweets, :since_id, :bitint
   end
 end
