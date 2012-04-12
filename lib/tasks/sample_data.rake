@@ -4,10 +4,11 @@ namespace :db do
     
     Rake::Task['db:reset'].invoke
     
-    make_members
-    make_tweets
-    make_git_events
-    make_blog_posts
+    #make_members
+    #make_tweets
+    #make_git_events
+    #make_blog_posts
+    make_admins
   end
   
   # add members
@@ -17,27 +18,7 @@ namespace :db do
   
   # make admins
   task :make_admins  => :environment do
-    # mat admin
-    mat = Member.create!( :name                  => "Mathieu Gilbert",
-                          :email                 => "matnarak@gmail.com",
-                          :password              => "password",
-                          :password_confirmation => "password",
-                          :twitter               => "mathieu_gilbert",
-                          :github                => "mathieugilbert",
-                          :blogrss               => "http://www.helloabs.com/feed/atom",
-                          :status                => "approved" )
-    mat.toggle!(:admin)
-    
-    # ryan admin
-    ryan = Member.create!( :name                  => "Ryan Jones",
-                           :email                 => "ryan.michael.jones@gmail.com",
-                           :password              => "password",
-                           :password_confirmation => "password",
-                           :twitter               => "ryanonrails",
-                           :github                => "ryanonrails",
-                           :blogrss               => "http://www.ryanonrails.com/feed/atom",
-                           :status                => "approved" )
-    ryan.toggle!(:admin)
+    make_admins
   end
   
   # make tweets
@@ -49,6 +30,30 @@ namespace :db do
   task :make_git_events => :environment do
     make_git_events
   end
+end
+
+def make_admins
+  # mat admin
+  mat = Member.create!( :name                  => "Mathieu Gilbert",
+                        :email                 => "matnarak@gmail.com",
+                        :password              => "password",
+                        :password_confirmation => "password",
+                        :twitter               => "mathieu_gilbert",
+                        :github                => "mathieugilbert",
+                        :blogrss               => "http://www.helloabs.com/feed/atom",
+                        :status                => "approved" )
+  mat.toggle!(:admin)
+
+  # ryan admin
+  ryan = Member.create!( :name                  => "Ryan Jones",
+                         :email                 => "ryan.michael.jones@gmail.com",
+                         :password              => "password",
+                         :password_confirmation => "password",
+                         :twitter               => "ryanonrails",
+                         :github                => "ryanonrails",
+                         :blogrss               => "http://www.ryanonrails.com/feed/atom",
+                         :status                => "approved" )
+  ryan.toggle!(:admin)
 end
 
 
