@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417154444) do
+ActiveRecord::Schema.define(:version => 20120417161213) do
 
   create_table "avatars", :force => true do |t|
     t.string   "description"
@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(:version => 20120417154444) do
 
   create_table "git_events", :force => true do |t|
     t.string   "date"
-    t.text     "event",      :limit => 1000
+    t.text     "event"
     t.integer  "member_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "last_updates", :force => true do |t|
@@ -78,10 +78,10 @@ ActiveRecord::Schema.define(:version => 20120417154444) do
     t.string   "date"
     t.string   "content"
     t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.integer  "member_id"
-    t.integer  "since_id"
+    t.integer  "since_id",   :limit => 8
   end
 
 end
