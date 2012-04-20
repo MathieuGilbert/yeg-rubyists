@@ -36,6 +36,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.7)
     arel (3.0.2)
+    bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (3.0.0)
     coffee-rails (3.2.2)
@@ -46,6 +47,11 @@ GEM
       execjs
     coffee-script-source (1.2.0)
     daemons (1.1.8)
+    delayed_job (3.0.2)
+      activesupport (~> 3.0)
+    delayed_job_active_record (0.3.2)
+      activerecord (> 2.1.0)
+      delayed_job (~> 3.0.0)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -71,6 +77,7 @@ GEM
       addressable (~> 2.2)
       multipart-post (~> 1.1)
       rack (~> 1.1)
+    fattr (2.2.1)
     ffi (1.0.11)
     github_api (0.4.5)
       faraday (~> 0.7.4)
@@ -116,6 +123,7 @@ GEM
       faraday (~> 0.7)
       multi_json (~> 1.0)
     orm_adapter (0.0.6)
+    pg (0.13.2)
     pg (0.13.2-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -163,17 +171,22 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.8.0)
     rubyzip (0.9.6.1)
+    rush (0.6.8)
+      session
     sass (3.1.15)
     sass-rails (3.2.4)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    session (3.1.0)
+      fattr
     simple-rss (1.2.3)
     simple_oauth (0.1.5)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.5)
     sqlite3 (1.3.5-x86-mingw32)
     term-ansicolor (1.0.7)
     thin (1.3.1)
@@ -196,12 +209,18 @@ GEM
       multi_json (>= 1.0.2)
     warden (1.1.1)
       rack (>= 1.0)
+    workless (1.0.1)
+      delayed_job (>= 2.0.7)
+      heroku
+      rails
+      rush
 
 PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  delayed_job_active_record
   devise
   factory_girl_rails (= 1.6.0)
   faker (= 1.0.1)
@@ -227,3 +246,4 @@ DEPENDENCIES
   thin
   twitter
   uglifier (>= 1.0.3)
+  workless (~> 1.0.1)

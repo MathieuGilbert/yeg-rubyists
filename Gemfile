@@ -11,6 +11,9 @@ gem 'haml'
 gem 'rest-client'
 gem 'hpricot'
 gem 'negative-captcha', :git => 'git://github.com/stefants/negative-captcha.git'
+gem 'delayed_job_active_record'
+gem 'workless', '~> 1.0.1'
+
 
 # Backbone helper (mostly used for js libs)
 gem 'rails-backbone'

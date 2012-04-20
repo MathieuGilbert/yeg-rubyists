@@ -74,9 +74,9 @@ class MembersController < ApplicationController
   end
   
   def member_image
-    # Grab members avatar
+    # Grab members avatar (every member has to have an avatar)
     @avatar = Avatar.find_by_member_id(params[:member_id])
-    
+
     # Fire it out to the screen
     @image = @avatar.binary_data
     send_data @image, :type => @avatar.content_type, :disposition => 'inline'
