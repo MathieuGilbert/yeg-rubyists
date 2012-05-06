@@ -93,8 +93,6 @@ class Member < ActiveRecord::Base
     end
   end
 
-  handle_asynchronously :create_member_avatar
-
   private
 
     def save_avatar(image_url, member)

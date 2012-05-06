@@ -42,7 +42,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
 
       # the member has passed validation so we need to save their avatar
-      @member.create_member_avatar(params[:member][:avatar_type], @member)
+      @member.delay.create_member_avatar(params[:member][:avatar_type], @member)
 
       # sign the user in
       sign_in @member

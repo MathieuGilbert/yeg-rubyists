@@ -101,6 +101,9 @@ GEM
       rubyzip
       term-ansicolor (~> 1.0.5)
     hike (1.2.1)
+    hirefire (0.1.4)
+      heroku (>= 1.4)
+      rush (~> 0.6.7)
     hpricot (0.8.6)
     i18n (0.6.0)
     jasminerice (0.0.8)
@@ -209,11 +212,6 @@ GEM
       multi_json (>= 1.0.2)
     warden (1.1.1)
       rack (>= 1.0)
-    workless (1.0.1)
-      delayed_job (>= 2.0.7)
-      heroku
-      rails
-      rush
 
 PLATFORMS
   x86-mingw32
@@ -230,6 +228,7 @@ DEPENDENCIES
   guard-rspec
   haml
   heroku
+  hirefire
   hpricot
   jasminerice
   jquery-rails (>= 1.0.12)
@@ -246,4 +245,3 @@ DEPENDENCIES
   thin
   twitter
   uglifier (>= 1.0.3)
-  workless (~> 1.0.1)
