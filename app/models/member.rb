@@ -77,14 +77,19 @@ class Member < ActiveRecord::Base
 
   def create_member_avatar(avatar_type, member)
 
-    if avatar_type == "Twitter"
-      # create twitter avatar and apply to member
-      save_avatar(twitter_img_url(member.twitter), member)
-    end
+    #lets get some error handling up in hurr
+    begin
+      if avatar_type == "Twitter"
+        # create twitter avatar and apply to member
+        save_avatar(twitter_img_url(member.twitter), member)
+      end
 
-    if avatar_type == "Gravatar"
-      # create gravatar avatar and apply to member
-      save_avatar(gravatar_img_url(member.email), member)
+      if avatar_type == "Gravatar"
+        # create gravatar avatar and apply to member
+        save_avatar(gravatar_img_url(member.email), member)
+      end
+    rescue => error
+      error.to_s
     end
   end
 
