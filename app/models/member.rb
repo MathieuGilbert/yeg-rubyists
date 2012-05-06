@@ -112,7 +112,7 @@ class Member < ActiveRecord::Base
       gravatar_url = "http://www.gravatar.com/avatar/#{gravatar_MD5}.png"
     end
 
-    def twitter_img_url(twitter_username)
+    def self.twitter_img_url(twitter_username)
       # get the twitter feed in XML since simple rss ignore the fields we need
       h = Hpricot.XML(RestClient.get "http://api.twitter.com/1/statuses/user_timeline.xml?screen_name=#{twitter_username}&include_rts=true&count=1")
 

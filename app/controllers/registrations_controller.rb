@@ -44,6 +44,9 @@ class RegistrationsController < Devise::RegistrationsController
       # the member has passed validation so we need to save their avatar
       Delayed::Job.enqueue MemberJob.new(params[:member][:avatar_type], @member)
 
+      #debugging
+      #MemberJob.new(params[:member][:avatar_type], @member).perform
+
       # sign the user in
       sign_in @member
 
