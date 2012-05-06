@@ -74,12 +74,14 @@ class MembersController < ApplicationController
   end
   
   def member_image
-    # Grab members avatar (every member has to have an avatar)
+    # Grab members avatar if it exists
     @avatar = Avatar.find_by_member_id(params[:member_id])
 
     # Fire it out to the screen
-    @image = @avatar.binary_data
-    send_data @image, :type => @avatar.content_type, :disposition => 'inline'
+    unless @image.nil?
+      @image = @avatar.binary_data
+      send_data @image, :type => @avatar.content_type, :disposition => 'inline'
+    end
   end
 
   def destroy
