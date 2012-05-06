@@ -94,6 +94,7 @@ class Member < ActiveRecord::Base
     def save_avatar(image_url, member)
       unless image_url.empty?
         # go out and grab the image
+        Rails.logger.debug 'save avatar BP 1'
         image = RestClient.get image_url
 
         # create the new image blobbers
