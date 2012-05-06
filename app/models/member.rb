@@ -75,7 +75,7 @@ class Member < ActiveRecord::Base
     end
   end
 
-  def self.create_member_avatar(avatar_type, member)
+  def create_member_avatar(avatar_type, member)
 
     if avatar_type == "Twitter"
       # create twitter avatar and apply to member
@@ -88,9 +88,11 @@ class Member < ActiveRecord::Base
     end
   end
 
+  handle_asynchronously :create_member_avatar
+
   private
 
-    def self.save_avatar(image_url, member)
+    def save_avatar(image_url, member)
       unless image_url.empty?
         # go out and grab the image
         image = RestClient.get image_url
@@ -106,13 +108,13 @@ class Member < ActiveRecord::Base
       end
     end
 
-    def self.gravatar_img_url(gravatar_email)
+    def gravatar_img_url(gravatar_email)
       # generate gravatar md5 and return the url
       gravatar_MD5 = Digest::MD5.hexdigest(gravatar_email.to_s.downcase)
       gravatar_url = "http://www.gravatar.com/avatar/#{gravatar_MD5}.png"
     end
 
-    def self.twitter_img_url(twitter_username)
+    def twitter_img_url(twitter_username)
       # get the twitter feed in XML since simple rss ignore the fields we need
       h = Hpricot.XML(RestClient.get "http://api.twitter.com/1/statuses/user_timeline.xml?screen_name=#{twitter_username}&include_rts=true&count=1")
 
