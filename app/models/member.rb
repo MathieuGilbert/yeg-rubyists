@@ -90,7 +90,7 @@ class Member < ActiveRecord::Base
 
   private
 
-    def save_avatar(image_url, member)
+    def self.save_avatar(image_url, member)
       unless image_url.empty?
         # go out and grab the image
         image = RestClient.get image_url
@@ -106,7 +106,7 @@ class Member < ActiveRecord::Base
       end
     end
 
-    def gravatar_img_url(gravatar_email)
+    def self.gravatar_img_url(gravatar_email)
       # generate gravatar md5 and return the url
       gravatar_MD5 = Digest::MD5.hexdigest(gravatar_email.to_s.downcase)
       gravatar_url = "http://www.gravatar.com/avatar/#{gravatar_MD5}.png"
